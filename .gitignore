@@ -24,6 +24,7 @@ tsconfig.tsbuildinfo
 # Generated/temp data
 data/temp_msasl/
 data/temp_wlasl_face/
+data/signs/
 data/videos/
 data/landmarks/
 data/generated/
@@ -35,3 +36,4 @@ MSASL/
 
 # Logs
 *.log
+.vercel

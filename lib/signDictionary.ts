@@ -166,7 +166,9 @@ export async function fetchSignAnimation(entry: SignDictionaryEntry): Promise<Si
   }
 
   if (!url) {
-    url = `/api/signs/${encodeURIComponent(entry.gloss)}`
+    url = entry.jsonPath?.startsWith("/")
+      ? entry.jsonPath
+      : `/data/signs/${encodeURIComponent(entry.gloss.replace(/\s+/g, "_"))}.json`
   }
 
   const response = await fetch(url)

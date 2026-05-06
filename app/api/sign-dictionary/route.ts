@@ -20,7 +20,7 @@ export async function GET() {
     .map((entry) => ({
       gloss: entry.word,
       type: "word" as const,
-      jsonPath: entry.jsonPath || `signs/${entry.word}.json`,
+      jsonPath: entry.jsonPath || `/data/signs/${entry.word}.json`,
       available: Boolean(entry.landmarksAvailable),
       source: "WLASL",
       fps: 30,

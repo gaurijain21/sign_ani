@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server"
-import { loadSignData, getWordStatus } from "@/lib/manifest"
 
 export async function GET(
   request: Request,
@@ -7,31 +6,7 @@ export async function GET(
 ) {
   const { word } = await params
   const decodedWord = decodeURIComponent(word).toLowerCase().trim()
-  
-  // Get word status
-  const { status, entry } = await getWordStatus(decodedWord)
-  
-  // Load sign data
-  const { data, source, error } = await loadSignData(decodedWord)
-  
-  if (error && !data) {
-    // Return appropriate error based on status
-    return NextResponse.json(
-      { 
-        error, 
-        word: decodedWord,
-        status,
-        inWlasl: status !== "not_in_wlasl",
-        entry,
-      },
-      { status: status === "not_in_wlasl" ? 404 : 409 }
-    )
-  }
+  const filename = decodedWord.replace(/\s+/g, "_")
 
-  return NextResponse.json({
-    ...data,
-    status,
-    source,
-    entry,
-  })
+  return NextResponse.redirect(new URL(`/data/signs/${encodeURIComponent(filename)}.json`, request.url))
 }
