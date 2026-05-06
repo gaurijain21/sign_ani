@@ -13,13 +13,25 @@ firebase-service-account*.json
 *firebase-adminsdk*.json
 
 # Common ignores
-node_modules
+node_modules/
 .next/
 .venv/
 __pycache__/
 .pytest_cache/
 .DS_Store
 tsconfig.tsbuildinfo
+
+# Generated/temp data
 data/temp_msasl/
 data/temp_wlasl_face/
+data/videos/
+data/landmarks/
+data/generated/
+data/cache/
+
+# Large datasets
 WLASL/
+MSASL/
+
+# Logs
+*.log
