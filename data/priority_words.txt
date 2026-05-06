@@ -1,0 +1,10 @@
+# One WLASL gloss per line. Lines starting with # are ignored.
+# Use this file with:
+# python scripts/process_batch.py --word-file data/priority_words.txt
+
+hello
+thanks
+yes
+no
+book
+drink

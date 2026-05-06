@@ -1,0 +1,14 @@
+.git
+.venv
+.next
+node_modules
+__pycache__
+.pytest_cache
+
+firebase-service-account*.json
+*service-account*.json
+*firebase-adminsdk*.json
+
+data/temp_msasl
+data/temp_wlasl_face
+WLASL

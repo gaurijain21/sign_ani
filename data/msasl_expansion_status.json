@@ -1,0 +1,688 @@
+{
+  "processedVideoKeys": [],
+  "failedUrls": {
+    "981d2bcb02f473b9": {
+      "word": "school",
+      "url": "https://www.youtube.com/watch?v=1AyT77LqJzQ",
+      "error": "ERROR: [youtube] 1AyT77LqJzQ: Video unavailable",
+      "timestamp": "2026-05-06T12:59:30.152636"
+    },
+    "204a63d7898eeb02": {
+      "word": "laugh",
+      "url": "www.youtube.com/watch?v=9FdHlMOnVjg",
+      "error": "ERROR: [youtube] 9FdHlMOnVjg: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "timestamp": "2026-05-06T13:35:47.990012"
+    },
+    "f398634713f1d5b3": {
+      "word": "school",
+      "url": "https://www.youtube.com/watch?v=1AyT77LqJzQ",
+      "error": "ERROR: [youtube] 1AyT77LqJzQ: Video unavailable",
+      "timestamp": "2026-05-06T13:36:18.109877"
+    },
+    "5824eb7711a98913": {
+      "word": "past",
+      "url": "https://www.youtube.com/watch?v=cJOyCgIKyeA",
+      "error": "ERROR: [youtube] cJOyCgIKyeA: Video unavailable",
+      "timestamp": "2026-05-06T13:36:53.963725"
+    },
+    "1016463d79fbad43": {
+      "word": "germany",
+      "url": "www.youtube.com/watch?v=zqfcp6NRKpA",
+      "error": "ERROR: [youtube] zqfcp6NRKpA: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "timestamp": "2026-05-06T13:37:55.199460"
+    },
+    "1a747cd579b612ef": {
+      "word": "like",
+      "url": "www.youtube.com/watch?v=7y5Ye-2-ZBs",
+      "error": "ERROR: [youtube] 7y5Ye-2-ZBs: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "timestamp": "2026-05-06T13:37:57.123023"
+    },
+    "b47c30cc36ce98f9": {
+      "word": "portugal",
+      "url": "www.youtube.com/watch?v=rYW7VFPi9_w",
+      "error": "ERROR: [youtube] rYW7VFPi9_w: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "timestamp": "2026-05-06T13:41:09.576958"
+    },
+    "4fc7e8f7fc6975bd": {
+      "word": "yellow",
+      "url": "https://www.youtube.com/watch?v=0Beq_NIDj2c",
+      "error": "ERROR: [youtube] 0Beq_NIDj2c: Video unavailable",
+      "timestamp": "2026-05-06T13:57:58.747260"
+    },
+    "5cbff726fdd19094": {
+      "word": "yellow",
+      "url": "https://www.youtube.com/watch?v=0Beq_NIDj2c",
+      "error": "ERROR: [youtube] 0Beq_NIDj2c: Video unavailable",
+      "timestamp": "2026-05-06T13:58:00.528722"
+    },
+    "48f337a692bf24c4": {
+      "word": "again",
+      "url": "www.youtube.com/watch?v=AoQAPgEUIAs",
+      "error": "ERROR: [youtube] AoQAPgEUIAs: Video unavailable",
+      "timestamp": "2026-05-06T14:00:42.254630"
+    },
+    "0e2e7c7cb001e365": {
+      "word": "football",
+      "url": "www.youtube.com/watch?v=25BrmaKbzYo",
+      "error": "ERROR: [youtube] 25BrmaKbzYo: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+      "timestamp": "2026-05-06T14:01:37.057863"
+    },
+    "6c5bd2b5604dff4b": {
+      "word": "i love you",
+      "url": "https://www.youtube.com/watch?v=CZkLkFnsNBA",
+      "error": "ERROR: [youtube] CZkLkFnsNBA: Video unavailable",
+      "timestamp": "2026-05-06T14:23:16.857825"
+    }
+  },
+  "failedProcessing": {
+    "8d56af4dec00833e": {
+      "word": "match",
+      "url": "https://www.youtube.com/watch?v=C37R_Ix8-qs",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:35:31.390669"
+    },
+    "e96481ee9b85c9f5": {
+      "word": "fail",
+      "url": "https://www.youtube.com/watch?v=PIsUJl8BN_I",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:35:46.231645"
+    },
+    "2b04893d18fb6ed2": {
+      "word": "book",
+      "url": "https://www.youtube.com/watch?v=J7tP98oDxqE",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:35:59.013282"
+    },
+    "39b6bcc03d350b56": {
+      "word": "sign language",
+      "url": "www.youtube.com/watch?v=N2mG9ZKjrGA",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:36:15.782437"
+    },
+    "854ad73ef078bac6": {
+      "word": "easter",
+      "url": "https://www.youtube.com/watch?v=SVWABYmFdhs",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:36:36.514843"
+    },
+    "d3fb04517745fdce": {
+      "word": "boring",
+      "url": "https://www.youtube.com/watch?v=CYx7qm62Zwo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:36:52.290985"
+    },
+    "15ebf45ef75d2cec": {
+      "word": "phone",
+      "url": "https://www.youtube.com/watch?v=HPz_C5XM4o4",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:37:09.298848"
+    },
+    "3ca5144010b85cb2": {
+      "word": "phone",
+      "url": "https://www.youtube.com/watch?v=HPz_C5XM4o4",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:37:19.417057"
+    },
+    "59dd896a4cd34fd2": {
+      "word": "phone",
+      "url": "https://www.youtube.com/watch?v=HPz_C5XM4o4",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:37:34.893456"
+    },
+    "92cff106215d9ec5": {
+      "word": "library",
+      "url": "https://www.youtube.com/watch?v=S2cqitZ0qes",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:37:52.995364"
+    },
+    "ba7af35e62d02273": {
+      "word": "cochlear implant",
+      "url": "https://www.youtube.com/watch?v=I_QDeKcyvns",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:38:14.567154"
+    },
+    "0d87985c70617d38": {
+      "word": "rainbow",
+      "url": "https://www.youtube.com/watch?v=WeAFuzYTdtU",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:38:32.924997"
+    },
+    "9a39deea2efe92e9": {
+      "word": "rainbow",
+      "url": "https://www.youtube.com/watch?v=WeAFuzYTdtU",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:38:46.790948"
+    },
+    "73fc07c47c3c6021": {
+      "word": "rainbow",
+      "url": "https://www.youtube.com/watch?v=WeAFuzYTdtU",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:39:03.218096"
+    },
+    "4120214e7935daba": {
+      "word": "letter",
+      "url": "https://www.youtube.com/watch?v=sKbKzPIaFNA",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:39:15.186989"
+    },
+    "8340a45edc000d71": {
+      "word": "from",
+      "url": "https://www.youtube.com/watch?v=fQ58eciJmCY",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:39:27.131201"
+    },
+    "17d74120d6babd1f": {
+      "word": "his",
+      "url": "https://www.youtube.com/watch?v=GYWm0gdybFA",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:39:43.995897"
+    },
+    "9dcc71935f4c047d": {
+      "word": "hong kong",
+      "url": "https://www.youtube.com/watch?v=PIfDfi4Qx60",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:39:57.379032"
+    },
+    "c82adab15ac73580": {
+      "word": "every morning",
+      "url": "https://www.youtube.com/watch?v=fv1nQoXRlsI",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:40:07.153117"
+    },
+    "d42b203dacfa503d": {
+      "word": "france",
+      "url": "https://www.youtube.com/watch?v=iJuIO4n0-VU",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:40:24.849054"
+    },
+    "7957f356e35031d3": {
+      "word": "give",
+      "url": "https://www.youtube.com/watch?v=7G6B6kaMjb4",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:40:38.753532"
+    },
+    "4c80ecef1b30d4c3": {
+      "word": "shock",
+      "url": "https://www.youtube.com/watch?v=XCiFsGrb_Nk",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:40:52.806574"
+    },
+    "03522b4ed3402248": {
+      "word": "puerto rico",
+      "url": "https://www.youtube.com/watch?v=NNZD9RAgL4w",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:41:07.508857"
+    },
+    "599c02c6f11e0317": {
+      "word": "breakfast",
+      "url": "https://www.youtube.com/watch?v=bUezx9Zp16E",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:41:23.074963"
+    },
+    "84dcbbba9c7d6e36": {
+      "word": "day",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:41:57.834721"
+    },
+    "10bcd55c1364861f": {
+      "word": "day",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:42:25.078136"
+    },
+    "59f9fa63eded309c": {
+      "word": "day",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:42:52.239300"
+    },
+    "423d633f5216f2dd": {
+      "word": "day",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:43:23.768677"
+    },
+    "8630d2b87ffd54a7": {
+      "word": "afternoon",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:44:00.635878"
+    },
+    "5cb1409024ae1aa5": {
+      "word": "afternoon",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:44:31.457356"
+    },
+    "2ef2c6e4a28bcacf": {
+      "word": "afternoon",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:45:01.252426"
+    },
+    "7313f5e9af3f39ea": {
+      "word": "happy",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:45:36.599931"
+    },
+    "9058e649d2a22062": {
+      "word": "sad",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:46:14.619909"
+    },
+    "e76b55a55f41d7e8": {
+      "word": "sad",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:47:01.072431"
+    },
+    "cbd04b04568ef4dc": {
+      "word": "nervous",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:47:38.358196"
+    },
+    "adb2e0297a72a075": {
+      "word": "nervous",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:48:35.242305"
+    },
+    "9f34f9dd49a9530f": {
+      "word": "upset",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:49:20.396469"
+    },
+    "dee4266dc9a040f3": {
+      "word": "want",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:50:15.042665"
+    },
+    "bb0661536b5453b2": {
+      "word": "know",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:51:02.221902"
+    },
+    "bd2afac99e77ab79": {
+      "word": "know",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:51:49.326889"
+    },
+    "995e36042544b1b4": {
+      "word": "must",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:52:47.287556"
+    },
+    "ebdbdf7d112b1a50": {
+      "word": "how",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:53:46.644157"
+    },
+    "4d271f1080228b36": {
+      "word": "wow",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:54:48.035414"
+    },
+    "db897b6d97c3a425": {
+      "word": "wow",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:55:40.771340"
+    },
+    "6f17f59764cab09b": {
+      "word": "pass",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T13:56:39.145810"
+    },
+    "61db2c9f73004b42": {
+      "word": "pass",
+      "url": "https://www.youtube.com/watch?v=jQb9NL9_S6U",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:57:39.414909"
+    },
+    "89d551f53ba3c6f1": {
+      "word": "think",
+      "url": "https://www.youtube.com/watch?v=Y5q-PccHNHo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:57:57.062115"
+    },
+    "8b4316c6facc1af7": {
+      "word": "teacher",
+      "url": "https://www.youtube.com/watch?v=_HOx2QkkTsg",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:58:17.383954"
+    },
+    "08b9e0245d0dc481": {
+      "word": "teacher",
+      "url": "https://www.youtube.com/watch?v=_HOx2QkkTsg",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:58:33.091352"
+    },
+    "41565d3c4918c99f": {
+      "word": "deaf",
+      "url": "www.youtube.com/watch?v=IgT0jDp56ZM",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:58:52.733424"
+    },
+    "0cc73e3419d202c9": {
+      "word": "university",
+      "url": "https://www.youtube.com/watch?v=jrQalROeZtg",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:59:11.471351"
+    },
+    "6a81bf9fc2273955": {
+      "word": "fix",
+      "url": "https://www.youtube.com/watch?v=FL6MaUJmIkA",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:59:29.226208"
+    },
+    "f6727a7af848998c": {
+      "word": "clock",
+      "url": "https://www.youtube.com/watch?v=pAoM56DCisM",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T13:59:47.371604"
+    },
+    "6e13d76ccfcf2ff7": {
+      "word": "there",
+      "url": "https://www.youtube.com/watch?v=5WevUel4BPk",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:00:15.952892"
+    },
+    "52c92d650aa7a8d6": {
+      "word": "next week",
+      "url": "https://www.youtube.com/watch?v=I1o0fccwWSg",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:00:40.471698"
+    },
+    "d0ad5016e724e841": {
+      "word": "sick",
+      "url": "https://www.youtube.com/watch?v=NBqpHJiufXU",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:01:00.824588"
+    },
+    "824408be75ce6491": {
+      "word": "meat",
+      "url": "https://www.youtube.com/watch?v=Bn7j1v1ksl0",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:01:16.342371"
+    },
+    "426fbf1cc64ec280": {
+      "word": "important",
+      "url": "https://www.youtube.com/watch?v=V_dT923VQ70",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:01:34.927329"
+    },
+    "be6d25a7c804b781": {
+      "word": "mother",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:01:59.205406"
+    },
+    "73f13a1b9785e539": {
+      "word": "father",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:02:21.434532"
+    },
+    "3848c4c79709f924": {
+      "word": "milk",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:02:46.532455"
+    },
+    "d5fdfc9f4a050dad": {
+      "word": "eat",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:03:09.022014"
+    },
+    "87a414f3fe323ba4": {
+      "word": "drink",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=multipart: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>)",
+      "timestamp": "2026-05-06T14:03:32.622560"
+    },
+    "5e55c773fc04aab3": {
+      "word": "hot",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:03:53.537608"
+    },
+    "1b6960936ba56de2": {
+      "word": "cold",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:04:13.904290"
+    },
+    "576d8b5629369936": {
+      "word": "more",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:04:31.654555"
+    },
+    "37ed83b5b3c20a55": {
+      "word": "help",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:04:52.593777"
+    },
+    "bbfdfe9f27794463": {
+      "word": "clothes",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:05:11.415306"
+    },
+    "5646e062377bd802": {
+      "word": "you",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:05:30.146400"
+    },
+    "c6180b26db4d728e": {
+      "word": "your",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:05:49.439782"
+    },
+    "d59b2b12fa26cee1": {
+      "word": "down",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:06:09.457160"
+    },
+    "184d6f80fc2e3aec": {
+      "word": "hurt",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:06:35.281246"
+    },
+    "b05a91862a21fa8d": {
+      "word": "again",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:07:13.487239"
+    },
+    "b7075c139ce07e48": {
+      "word": "want",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:07:52.410127"
+    },
+    "a552701e2e39d13f": {
+      "word": "like",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:08:33.619042"
+    },
+    "a41a6706a8fc0f2c": {
+      "word": "not like",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:09:10.543911"
+    },
+    "bff1618fae2c39b8": {
+      "word": "mad",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:09:49.077141"
+    },
+    "5f2b61a5401b29c0": {
+      "word": "funny",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:10:28.398165"
+    },
+    "ce988ab0119aad8e": {
+      "word": "silly",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:11:07.985517"
+    },
+    "a36d6530a9682fb3": {
+      "word": "sad",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:11:49.031627"
+    },
+    "af6947be3e1e3262": {
+      "word": "hungry",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:12:25.927655"
+    },
+    "a05abc3cade711d2": {
+      "word": "full",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:12:59.703170"
+    },
+    "fac466ed6b1b965d": {
+      "word": "tired",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:13:42.025283"
+    },
+    "f8f22612c972715c": {
+      "word": "where",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:14:25.596753"
+    },
+    "804536b0dec72457": {
+      "word": "book",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:15:05.133785"
+    },
+    "6fd6a5771999df59": {
+      "word": "dirty",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:15:43.427148"
+    },
+    "52115879644ab062": {
+      "word": "play",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:16:24.605852"
+    },
+    "01ac926d8d2c2234": {
+      "word": "outside",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:17:07.211815"
+    },
+    "aca5cf36c0df0288": {
+      "word": "home",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:17:45.313558"
+    },
+    "d09026a30b280d3c": {
+      "word": "sister",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "[Errno 28] No space left on device",
+      "timestamp": "2026-05-06T14:18:41.986030"
+    },
+    "3aca8b50ef44348e": {
+      "word": "brother",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:19:29.765270"
+    },
+    "da4eb8a106683c69": {
+      "word": "grandmother",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:20:08.016000"
+    },
+    "82dcbe630b06ca91": {
+      "word": "grandfather",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:20:49.293839"
+    },
+    "5d679cdc2e28870c": {
+      "word": "aunt",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:21:29.729117"
+    },
+    "2eb695c8b5206837": {
+      "word": "uncle",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:22:13.565635"
+    },
+    "a70a6cd5dd5aa759": {
+      "word": "cousin",
+      "url": "https://www.youtube.com/watch?v=htsdwxJ-fTo",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:23:13.128832"
+    },
+    "9d26e0c9ded39c70": {
+      "word": "warm",
+      "url": "https://www.youtube.com/watch?v=3vH-22ZBt7w",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:23:51.093524"
+    },
+    "20e28bb04511a26b": {
+      "word": "warm",
+      "url": "https://www.youtube.com/watch?v=3vH-22ZBt7w",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:24:12.382299"
+    },
+    "f8633e0c8fb07f6b": {
+      "word": "stand",
+      "url": "https://www.youtube.com/watch?v=o1XWGA4KCNU",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:24:32.414612"
+    },
+    "1c473a7ecb9ba42e": {
+      "word": "wait",
+      "url": "https://www.youtube.com/watch?v=Sy1FdTFzul8",
+      "error": "404 POST https://storage.googleapis.com/upload/storage/v1/b/sign-lang-fe04e.appspot.com/o?uploadType=resumable: {\n  \"error\": {\n    \"code\": 404,\n    \"message\": \"The specified bucket does not exist.\",\n    \"errors\": [\n      {\n        \"message\": \"The specified bucket does not exist.\",\n        \"domain\": \"global\",\n        \"reason\": \"notFound\"\n      }\n    ]\n  }\n}\n: ('Request failed with status code', 404, 'Expected one of', <HTTPStatus.OK: 200>, <HTTPStatus.CREATED: 201>)",
+      "timestamp": "2026-05-06T14:24:57.099622"
+    }
+  },
+  "counts": {
+    "processed": 0,
+    "uploaded": 0,
+    "failedDownloads": 12,
+    "failedProcessing": 100
+  },
+  "lastProcessedWords": [],
+  "uploadedCount": 0,
+  "timestamp": "2026-05-06T14:24:57.109129"
+}

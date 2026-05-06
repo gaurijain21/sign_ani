@@ -1,0 +1,1940 @@
+{
+  "65884": {
+    "gloss": "hearing",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/HE/HEARING-1773.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:00:09.547606"
+  },
+  "65761": {
+    "gloss": "forget",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FO/FORGET-565.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:07:15.463459"
+  },
+  "66010": {
+    "gloss": "last",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LA/LAST-168.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:07:26.864606"
+  },
+  "65792": {
+    "gloss": "full",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FU/FULL-139.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:13:06.846895"
+  },
+  "66038": {
+    "gloss": "letter",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LE/LETTER-642.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:13:28.918134"
+  },
+  "68636": {
+    "gloss": "letter",
+    "url": "https://www.youtube.com/watch?v=Kw9nFq7HD4Y",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] Kw9nFq7HD4Y: Video unavailable",
+    "timestamp": "2026-05-06T01:13:34.382598"
+  },
+  "66111": {
+    "gloss": "medicine",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/ME/MEDICINE-1621.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:13:47.479502"
+  },
+  "68810": {
+    "gloss": "medicine",
+    "url": "https://www.youtube.com/watch?v=pupBwmtznhI",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] pupBwmtznhI: Video unavailable",
+    "timestamp": "2026-05-06T01:13:50.850193"
+  },
+  "65137": {
+    "gloss": "bar",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BA/BAR-2203.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:20:28.233473"
+  },
+  "68626": {
+    "gloss": "bar",
+    "url": "https://www.youtube.com/watch?v=kGPN_mu3qQM",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] kGPN_mu3qQM: Video unavailable",
+    "timestamp": "2026-05-06T01:20:32.889827"
+  },
+  "05103": {
+    "gloss": "bar",
+    "url": "http://www.aslsearch.com/signs/videos/bar.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:20:32.970138"
+  },
+  "65343": {
+    "gloss": "check",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CH/CHECK-1059.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:20:42.424926"
+  },
+  "66473": {
+    "gloss": "show",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SH/SHOW-254.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:21:37.361030"
+  },
+  "65290": {
+    "gloss": "call",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CA/CALL-65.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:27:10.703527"
+  },
+  "08706": {
+    "gloss": "call",
+    "url": "https://www.signingsavvy.com/signs/mp4/8/8872.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:27:11.091121"
+  },
+  "08707": {
+    "gloss": "call",
+    "url": "https://www.signingsavvy.com/signs/mp4/9/9229.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:27:11.425027"
+  },
+  "65556": {
+    "gloss": "call",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/E(/E(call)-1909.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:27:11.684574"
+  },
+  "08713": {
+    "gloss": "call",
+    "url": "http://www.aslsearch.com/signs/videos/call.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:27:11.751798"
+  },
+  "65377": {
+    "gloss": "cold",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CO/COLD-432.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:27:18.893460"
+  },
+  "11638": {
+    "gloss": "cold",
+    "url": "http://www.aslsearch.com/signs/videos/cold.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:27:18.974979"
+  },
+  "68990": {
+    "gloss": "beard",
+    "url": "https://www.youtube.com/watch?v=w73mN_0UQSI",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] w73mN_0UQSI: Video unavailable",
+    "timestamp": "2026-05-06T01:37:35.718826"
+  },
+  "68800": {
+    "gloss": "children",
+    "url": "https://www.youtube.com/watch?v=pmha1kfPwJU",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] pmha1kfPwJU: Video unavailable",
+    "timestamp": "2026-05-06T01:38:02.117374"
+  },
+  "65535": {
+    "gloss": "dress",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DR/DRESS-118.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:38:29.410262"
+  },
+  "68746": {
+    "gloss": "dress",
+    "url": "https://www.youtube.com/watch?v=nZ3ec27-AAE",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] nZ3ec27-AAE: Video unavailable",
+    "timestamp": "2026-05-06T01:38:33.455186"
+  },
+  "65544": {
+    "gloss": "drop",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DR/DROP-121.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:38:43.098741"
+  },
+  "17825": {
+    "gloss": "drop",
+    "url": "https://www.handspeak.com/word/d/drop2.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:38:43.547516"
+  },
+  "17826": {
+    "gloss": "drop",
+    "url": "https://www.handspeak.com/word/d/drop.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:38:43.836043"
+  },
+  "17827": {
+    "gloss": "drop",
+    "url": "https://www.signingsavvy.com/signs/mp4/1/1463.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:38:44.250316"
+  },
+  "17828": {
+    "gloss": "drop",
+    "url": "https://www.signingsavvy.com/signs/mp4/5/5519.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:38:44.578487"
+  },
+  "65692": {
+    "gloss": "fat",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FA/FAT-1453.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:38:49.935199"
+  },
+  "65950": {
+    "gloss": "interest",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/IN/INTEREST-1725.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:44:19.095010"
+  },
+  "66069": {
+    "gloss": "light",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LI/LIGHT-497.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:44:21.084304"
+  },
+  "66248": {
+    "gloss": "order",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/OR/ORDER_1-1020.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:44:48.397343"
+  },
+  "66261": {
+    "gloss": "pants",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PA/PANTS-871.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:45:00.923451"
+  },
+  "68380": {
+    "gloss": "past",
+    "url": "https://www.youtube.com/watch?v=cJOyCgIKyeA",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] cJOyCgIKyeA: Video unavailable",
+    "timestamp": "2026-05-06T01:49:50.529457"
+  },
+  "66478": {
+    "gloss": "sign",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SI/SIGN-256.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:50:23.256722"
+  },
+  "65531": {
+    "gloss": "draw",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DR/DRAW-444.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T01:56:02.770264"
+  },
+  "66017": {
+    "gloss": "law",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LA/LAW-1687.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:39.280228"
+  },
+  "66106": {
+    "gloss": "match",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MA/MATCH-1624.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:41.308830"
+  },
+  "35117": {
+    "gloss": "match",
+    "url": "https://www.handspeak.com/word/m/match-fire.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:41.682516"
+  },
+  "35118": {
+    "gloss": "match",
+    "url": "https://www.handspeak.com/word/m/match.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:41.930624"
+  },
+  "35119": {
+    "gloss": "match",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14474.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:42.209679"
+  },
+  "35120": {
+    "gloss": "match",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14475.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:42.458312"
+  },
+  "35121": {
+    "gloss": "match",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14476.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:42.739184"
+  },
+  "66151": {
+    "gloss": "move",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MO/MOVE-528.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:51.021500"
+  },
+  "68328": {
+    "gloss": "move",
+    "url": "https://www.youtube.com/watch?v=AJk44gGftoM",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] AJk44gGftoM: Video unavailable",
+    "timestamp": "2026-05-06T02:39:53.125313"
+  },
+  "37102": {
+    "gloss": "move",
+    "url": "http://www.aslsearch.com/signs/videos/move.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:39:53.312341"
+  },
+  "66270": {
+    "gloss": "patient",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PA/PATIENT-250.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:43:18.900595"
+  },
+  "66468": {
+    "gloss": "shop",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SH/SHOP_2-1039.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:43:27.989062"
+  },
+  "68508": {
+    "gloss": "shop",
+    "url": "https://www.youtube.com/watch?v=GVGPyPQ886A",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] GVGPyPQ886A: Video unavailable",
+    "timestamp": "2026-05-06T02:43:29.957450"
+  },
+  "68600": {
+    "gloss": "shop",
+    "url": "https://www.youtube.com/watch?v=JjR_8IzvtiA",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] JjR_8IzvtiA: Video unavailable",
+    "timestamp": "2026-05-06T02:43:31.731376"
+  },
+  "66789": {
+    "gloss": "win",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/WI/WIN-1438.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:47:01.884126"
+  },
+  "65229": {
+    "gloss": "bored",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BO/BORED-2124.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:50:03.981555"
+  },
+  "07196": {
+    "gloss": "bored",
+    "url": "https://www.signingsavvy.com/signs/mp4/22/22923.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:50:04.263710"
+  },
+  "07197": {
+    "gloss": "bored",
+    "url": "https://www.signingsavvy.com/signs/mp4/22/22924.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:50:04.520104"
+  },
+  "07198": {
+    "gloss": "bored",
+    "url": "https://www.signingsavvy.com/signs/mp4/8/8726.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:50:04.784443"
+  },
+  "07199": {
+    "gloss": "bored",
+    "url": "https://www.youtube.com/watch?v=csFsZla1UHo",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] csFsZla1UHo: Video unavailable",
+    "timestamp": "2026-05-06T02:50:06.661087"
+  },
+  "65689": {
+    "gloss": "fast",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FA/FAST-130.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:53:59.507273"
+  },
+  "65748": {
+    "gloss": "fly",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FL/FLY-1486.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:54:17.818141"
+  },
+  "22642": {
+    "gloss": "fly",
+    "url": "http://www.aslpro.com/main/f/fly.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:54:38.924382"
+  },
+  "22643": {
+    "gloss": "fly",
+    "url": "http://www.aslsearch.com/signs/videos/airplane.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:54:38.994388"
+  },
+  "22645": {
+    "gloss": "fly",
+    "url": "http://www.aslsearch.com/signs/videos/wing2.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:54:39.052792"
+  },
+  "22646": {
+    "gloss": "fly",
+    "url": "http://www.aslsearch.com/signs/videos/wing.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:54:39.126351"
+  },
+  "68404": {
+    "gloss": "hospital",
+    "url": "https://www.youtube.com/watch?v=dAzz4ooEN0U",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] dAzz4ooEN0U: Video unavailable",
+    "timestamp": "2026-05-06T02:54:57.627839"
+  },
+  "66128": {
+    "gloss": "minute",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MI/MINUTE-1606.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:58:09.863931"
+  },
+  "66131": {
+    "gloss": "miss",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MI/MISS-1603.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T02:58:11.506379"
+  },
+  "66304": {
+    "gloss": "point",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PO/POINT-910.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:02:02.391233"
+  },
+  "43460": {
+    "gloss": "point",
+    "url": "http://www.aslpro.com/main/p/point.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:02:23.431478"
+  },
+  "43461": {
+    "gloss": "point",
+    "url": "http://www.aslsearch.com/signs/videos/objective.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:02:23.510462"
+  },
+  "43462": {
+    "gloss": "point",
+    "url": "http://www.aslsearch.com/signs/videos/point.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:02:23.586712"
+  },
+  "66581": {
+    "gloss": "sunset",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SU/SUNSET-1143.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:06:32.210690"
+  },
+  "66652": {
+    "gloss": "toast",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/TO/TOAST-1247.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:06:55.449585"
+  },
+  "65091": {
+    "gloss": "area",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AR/AREA-19.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:07:41.591244"
+  },
+  "68812": {
+    "gloss": "area",
+    "url": "https://www.youtube.com/watch?v=puSQ4tKF6ns",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] puSQ4tKF6ns: Video unavailable",
+    "timestamp": "2026-05-06T03:07:44.663229"
+  },
+  "03240": {
+    "gloss": "area",
+    "url": "https://www.signingsavvy.com/signs/mp4/7/7186.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:07:45.559318"
+  },
+  "65139": {
+    "gloss": "bark",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BA/BARK-2090.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:11:11.050065"
+  },
+  "05111": {
+    "gloss": "bark",
+    "url": "https://www.handspeak.com/word/b/bark.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:11:11.278652"
+  },
+  "05113": {
+    "gloss": "bark",
+    "url": "https://www.signingsavvy.com/signs/mp4/24/24316.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:11:11.546056"
+  },
+  "05114": {
+    "gloss": "bark",
+    "url": "https://www.signingsavvy.com/signs/mp4/24/24317.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:11:11.806909"
+  },
+  "65467": {
+    "gloss": "desert",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DE/DESERT-685.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:16:17.214410"
+  },
+  "15728": {
+    "gloss": "desert",
+    "url": "https://www.signingsavvy.com/signs/mp4/23/23023.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:16:17.602892"
+  },
+  "65554": {
+    "gloss": "duty",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DU/DUTY-1283.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:16:26.133783"
+  },
+  "65864": {
+    "gloss": "guess",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/GU/GUESS-608.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:23:29.411490"
+  },
+  "66067": {
+    "gloss": "lie",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LI/LIE-847.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:27:03.480827"
+  },
+  "66090": {
+    "gloss": "lucky",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LU/LUCKY-1632.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:27:06.273150"
+  },
+  "34210": {
+    "gloss": "lucky",
+    "url": "https://www.handspeak.com/word/l/lucky.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:27:06.504502"
+  },
+  "34211": {
+    "gloss": "lucky",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14518.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:27:06.791311"
+  },
+  "66108": {
+    "gloss": "measure",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/ME/MEASURE-1623.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:27:17.525382"
+  },
+  "66325": {
+    "gloss": "present",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PR/PRESENT-226.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:27:42.872090"
+  },
+  "44351": {
+    "gloss": "present",
+    "url": "http://www.aslsearch.com/signs/videos/gift.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:27:42.931467"
+  },
+  "62458": {
+    "gloss": "watch",
+    "url": "http://www.aslsearch.com/signs/videos/watch3.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:35:21.929765"
+  },
+  "65100": {
+    "gloss": "asia",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AS/ASIA-779.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:38:44.119028"
+  },
+  "03570": {
+    "gloss": "asia",
+    "url": "http://www.aslpro.com/main/a/asia.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:39:05.179528"
+  },
+  "03571": {
+    "gloss": "asia",
+    "url": "http://www.aslsearch.com/signs/videos/asia.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:39:05.252755"
+  },
+  "65138": {
+    "gloss": "barely",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BA/BARELY-650.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:39:13.553668"
+  },
+  "05068": {
+    "gloss": "barely",
+    "url": "https://www.handspeak.com/word/b/barely.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:39:13.778733"
+  },
+  "05069": {
+    "gloss": "barely",
+    "url": "https://www.signingsavvy.com/signs/mp4/22/22528.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:39:14.049655"
+  },
+  "65394": {
+    "gloss": "conflict",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CO/CONFLICT-1123.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:42:25.741678"
+  },
+  "17588": {
+    "gloss": "drawer",
+    "url": "http://www.aslpro.com/main/d/drawer.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:43:02.005332"
+  },
+  "17589": {
+    "gloss": "drawer",
+    "url": "http://www.aslsearch.com/signs/videos/drawer-r.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:43:02.100054"
+  },
+  "65532": {
+    "gloss": "drawer",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DR/DRAWER-1276.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:43:02.303954"
+  },
+  "67590": {
+    "gloss": "drawer",
+    "url": "https://youtu.be/aX7zqGLRunU",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] aX7zqGLRunU: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T03:43:03.880278"
+  },
+  "65657": {
+    "gloss": "exercise",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/EX/EXERCISE-351.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:45:25.449561"
+  },
+  "68212": {
+    "gloss": "exercise",
+    "url": "https://www.youtube.com/watch?v=23otmQva6iU",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] 23otmQva6iU: Video unavailable",
+    "timestamp": "2026-05-06T03:45:26.947781"
+  },
+  "65865": {
+    "gloss": "guilty",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/GU/GUILTY-1851.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:48:20.049769"
+  },
+  "25967": {
+    "gloss": "guilty",
+    "url": "https://www.signingsavvy.com/signs/mp4/4/4666.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:48:20.321042"
+  },
+  "37201": {
+    "gloss": "much",
+    "url": "http://www.aslpro.com/main/m/much.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:51:51.005269"
+  },
+  "37202": {
+    "gloss": "much",
+    "url": "http://www.aslsearch.com/signs/videos/alot.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:51:51.082371"
+  },
+  "66154": {
+    "gloss": "much",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MU/MUCH-13.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:51:51.361278"
+  },
+  "67916": {
+    "gloss": "much",
+    "url": "https://youtu.be/yZvPRzEJOz8",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] yZvPRzEJOz8: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T03:51:54.674068"
+  },
+  "66267": {
+    "gloss": "pass",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PA/PASS-876.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:52:24.524571"
+  },
+  "41354": {
+    "gloss": "pass",
+    "url": "https://www.handspeak.com/word/p/pass.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:52:24.910899"
+  },
+  "41356": {
+    "gloss": "pass",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14399.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:52:25.214400"
+  },
+  "41357": {
+    "gloss": "pass",
+    "url": "https://www.signingsavvy.com/signs/mp4/9/9395.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:52:25.524935"
+  },
+  "42752": {
+    "gloss": "pillow",
+    "url": "https://www.handspeak.com/word/p/pillow.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:52:28.012425"
+  },
+  "42753": {
+    "gloss": "pillow",
+    "url": "https://www.signingsavvy.com/signs/mp4/22/22884.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:52:28.322252"
+  },
+  "42754": {
+    "gloss": "pillow",
+    "url": "https://www.signingsavvy.com/signs/mp4/22/22885.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T03:52:28.638296"
+  },
+  "66705": {
+    "gloss": "underwear",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/UN/UNDERWEAR-1358.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:05:44.711158"
+  },
+  "65050": {
+    "gloss": "allergy",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AL/ALLERGY-2881.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:11:44.393025"
+  },
+  "01962": {
+    "gloss": "allergy",
+    "url": "https://www.signingsavvy.com/signs/mp4/5/5321.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:11:44.709038"
+  },
+  "01964": {
+    "gloss": "allergy",
+    "url": "http://www.aslpro.com/main/a/allergy.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:12:05.728915"
+  },
+  "65051": {
+    "gloss": "allergy",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AL/ALLERGY-2885.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:12:05.977057"
+  },
+  "65264": {
+    "gloss": "brush",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BR/BRUSH-54.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:12:50.301175"
+  },
+  "08002": {
+    "gloss": "brush",
+    "url": "https://www.handspeak.com/word/b/brush-comb.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:12:50.551383"
+  },
+  "08005": {
+    "gloss": "brush",
+    "url": "https://www.signingsavvy.com/signs/mp4/23/23831.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:12:50.843422"
+  },
+  "08006": {
+    "gloss": "brush",
+    "url": "https://www.signingsavvy.com/signs/mp4/23/23832.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:12:51.124961"
+  },
+  "08007": {
+    "gloss": "brush",
+    "url": "http://www.aslpro.com//main/b/brush_hair.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:13:12.175316"
+  },
+  "65265": {
+    "gloss": "brush",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BR/BRUSH-55.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:13:12.417873"
+  },
+  "67447": {
+    "gloss": "brush",
+    "url": "https://youtu.be/d4wPiaT1uMI",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] d4wPiaT1uMI: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T04:13:15.321036"
+  },
+  "08012": {
+    "gloss": "brush",
+    "url": "http://www.aslsearch.com/signs/videos/brush.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:13:15.380744"
+  },
+  "65269": {
+    "gloss": "building",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BU/BUILDING-58.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:13:18.035369"
+  },
+  "65303": {
+    "gloss": "caption",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CA/CAPTION-1022.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:18:10.678200"
+  },
+  "09095": {
+    "gloss": "caption",
+    "url": "http://www.aslsearch.com/signs/videos/caption.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:18:10.750873"
+  },
+  "23708": {
+    "gloss": "fruit",
+    "url": "http://www.aslpro.com/main/f/fruit.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:28:35.531871"
+  },
+  "23709": {
+    "gloss": "fruit",
+    "url": "http://www.aslsearch.com/signs/videos/fruit.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:28:35.609635"
+  },
+  "65789": {
+    "gloss": "fruit",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FR/FRUIT-1505.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:28:35.917819"
+  },
+  "65796": {
+    "gloss": "function",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FU/FUNCTION-1507.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:28:36.941479"
+  },
+  "23811": {
+    "gloss": "function",
+    "url": "http://www.aslsearch.com/signs/videos/factory.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:28:37.022315"
+  },
+  "66020": {
+    "gloss": "lead",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LE/LEAD-683.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:34:51.214496"
+  },
+  "32540": {
+    "gloss": "lead",
+    "url": "https://www.handspeak.com/word/l/lead.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:34:51.451613"
+  },
+  "32541": {
+    "gloss": "lead",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14178.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:34:51.773844"
+  },
+  "42003": {
+    "gloss": "perfect",
+    "url": "https://www.handspeak.com/word/p/perfect.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:37:40.092448"
+  },
+  "42004": {
+    "gloss": "perfect",
+    "url": "https://www.signingsavvy.com/signs/mp4/5/5824.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:37:40.336602"
+  },
+  "42005": {
+    "gloss": "perfect",
+    "url": "https://www.signingsavvy.com/signs/mp4/5/5825.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:37:40.584557"
+  },
+  "66279": {
+    "gloss": "period",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PE/PERIOD-887.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:37:44.383558"
+  },
+  "66439": {
+    "gloss": "second",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SE/SECOND-1008.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:40:58.200683"
+  },
+  "66527": {
+    "gloss": "socks",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SO/SOCKS-1093.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:43:40.643283"
+  },
+  "53021": {
+    "gloss": "socks",
+    "url": "http://www.aslpro.com/main/s/socks.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:44:01.697930"
+  },
+  "53022": {
+    "gloss": "socks",
+    "url": "http://www.aslsearch.com/signs/videos/socks.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:44:01.791183"
+  },
+  "66552": {
+    "gloss": "stairs",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/ST/STAIRS-1112.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:44:11.513995"
+  },
+  "54302": {
+    "gloss": "stairs",
+    "url": "https://www.signingsavvy.com/signs/mp4/24/24297.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:44:11.866168"
+  },
+  "56254": {
+    "gloss": "sweater",
+    "url": "http://www.aslsearch.com/signs/videos/sweater.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:44:43.922852"
+  },
+  "66584": {
+    "gloss": "sweater",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SW/SWEATER-336.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:44:44.108881"
+  },
+  "67271": {
+    "gloss": "sweater",
+    "url": "https://youtu.be/WpZFBDjGK5U",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] WpZFBDjGK5U: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T04:44:45.771097"
+  },
+  "66642": {
+    "gloss": "tie",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/TI/TIE-1231.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T04:47:53.957412"
+  },
+  "65226": {
+    "gloss": "boots",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BO/BOOTS-45.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:03:50.399115"
+  },
+  "07169": {
+    "gloss": "boots",
+    "url": "http://www.aslpro.com//main/b/boots_baby.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:04:11.440403"
+  },
+  "07170": {
+    "gloss": "boots",
+    "url": "http://www.aslpro.com//main/b/boots_hiking.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:04:32.497848"
+  },
+  "07171": {
+    "gloss": "boots",
+    "url": "http://www.aslpro.com//main/b/boots_snow.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:04:53.560451"
+  },
+  "07172": {
+    "gloss": "boots",
+    "url": "http://www.aslpro.com/main/b/boots.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:14.614670"
+  },
+  "65256": {
+    "gloss": "breathe",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BR/BREATHE-2135.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:17.027139"
+  },
+  "65304": {
+    "gloss": "card",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CA/CARD-829.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:22.225727"
+  },
+  "09130": {
+    "gloss": "card",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14376.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:22.488978"
+  },
+  "09131": {
+    "gloss": "card",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14382.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:22.759090"
+  },
+  "09137": {
+    "gloss": "card",
+    "url": "https://www.signingsavvy.com/signs/mp4/9/9989.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:23.001360"
+  },
+  "09138": {
+    "gloss": "card",
+    "url": "http://www.aslsearch.com/signs/videos/card.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:23.077049"
+  },
+  "65323": {
+    "gloss": "cent",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CE/CENT-1047.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:29.572956"
+  },
+  "65355": {
+    "gloss": "chop",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CH/CHOP-78.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:33.123689"
+  },
+  "10652": {
+    "gloss": "chop",
+    "url": "https://www.signingsavvy.com/signs/mp4/7/7992.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:33.358782"
+  },
+  "65359": {
+    "gloss": "cigarette",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CI/CIGARETTE-2522.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:35.714226"
+  },
+  "65374": {
+    "gloss": "coconut",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CO/COCONUT-2525.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:05:44.380565"
+  },
+  "65433": {
+    "gloss": "daily",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DA/DAILY-1203.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:08:56.200797"
+  },
+  "16330": {
+    "gloss": "dinner",
+    "url": "http://www.aslsearch.com/signs/videos/dinner2.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:09:04.035351"
+  },
+  "65489": {
+    "gloss": "disconnect",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DI/DISCONNECT-1259.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:09:07.945140"
+  },
+  "65488": {
+    "gloss": "disconnect",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DI/DISCONNECT-956.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:09:08.152648"
+  },
+  "65518": {
+    "gloss": "don't want",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DO/DON'T-WANT-442.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:09:09.883806"
+  },
+  "68860": {
+    "gloss": "hide",
+    "url": "https://www.youtube.com/watch?v=RfSWy6P34Wc",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] RfSWy6P34Wc: Video unavailable",
+    "timestamp": "2026-05-06T05:15:13.107335"
+  },
+  "65895": {
+    "gloss": "hockey",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/HO/HOCKEY-1765.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:15:15.062357"
+  },
+  "65939": {
+    "gloss": "influence",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/IN/INFLUENCE-649.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:15:23.052671"
+  },
+  "68308": {
+    "gloss": "interesting",
+    "url": "https://www.youtube.com/watch?v=8wwNxl6AbgU",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] 8wwNxl6AbgU: Video unavailable",
+    "timestamp": "2026-05-06T05:15:25.729754"
+  },
+  "30177": {
+    "gloss": "interesting",
+    "url": "https://www.handspeak.com/word/i/interesting.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:15:26.212048"
+  },
+  "65989": {
+    "gloss": "key",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/KE/KEY-491.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:15:32.974121"
+  },
+  "31571": {
+    "gloss": "key",
+    "url": "http://www.aslpro.com/main/k/key.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:15:54.045346"
+  },
+  "31572": {
+    "gloss": "key",
+    "url": "http://www.aslsearch.com/signs/videos/key.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:15:54.136968"
+  },
+  "67813": {
+    "gloss": "key",
+    "url": "https://youtu.be/15Uu0aG1_Nc",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] 15Uu0aG1_Nc: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T05:15:55.786211"
+  },
+  "66028": {
+    "gloss": "left",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LE/LEFT-1683.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:16:00.012509"
+  },
+  "66123": {
+    "gloss": "mind",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MI/MIND-2132.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:19:10.884078"
+  },
+  "67895": {
+    "gloss": "mind",
+    "url": "https://youtu.be/EdQ7Gb9vGRg",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] EdQ7Gb9vGRg: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T05:19:12.496943"
+  },
+  "66341": {
+    "gloss": "proof",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PR/PROOF-753.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:22:05.512618"
+  },
+  "48378": {
+    "gloss": "rock",
+    "url": "http://www.aslsearch.com/signs/videos/stone.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:25:04.955276"
+  },
+  "66411": {
+    "gloss": "rock",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/RO/ROCK-241.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:25:05.153461"
+  },
+  "51737": {
+    "gloss": "similar",
+    "url": "http://www.aslpro.com/main/s/similar.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:25:45.526976"
+  },
+  "51738": {
+    "gloss": "similar",
+    "url": "http://www.aslsearch.com/signs/videos/alike.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:25:45.604775"
+  },
+  "66507": {
+    "gloss": "slip",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SL/SLIP-1075.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:28:55.478659"
+  },
+  "66577": {
+    "gloss": "subtract",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SU/SUBTRACT-1236.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:29:10.521097"
+  },
+  "55542": {
+    "gloss": "subtract",
+    "url": "http://www.aslpro.com/main/s/subtract.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T05:29:31.579920"
+  },
+  "65011": {
+    "gloss": "accountant",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AC/ACCOUNTANT-2439.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:38:32.737236"
+  },
+  "65015": {
+    "gloss": "action",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AC/ACTION-2440.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:38:33.492459"
+  },
+  "65063": {
+    "gloss": "amazing",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AM/AMAZING-325.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:38:41.546377"
+  },
+  "65082": {
+    "gloss": "apostrophe",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AP/APOSTROPHE-731.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:38:44.268997"
+  },
+  "03380": {
+    "gloss": "around",
+    "url": "https://www.handspeak.com/word/a/around-env.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:41:16.296464"
+  },
+  "03382": {
+    "gloss": "around",
+    "url": "https://www.signingsavvy.com/signs/mp4/6/6073.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:41:16.634074"
+  },
+  "66040": {
+    "gloss": "b",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LE/LETTER-B-1674.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:41:30.231838"
+  },
+  "06146": {
+    "gloss": "bible",
+    "url": "http://www.aslsearch.com/signs/videos/bible.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:41:36.780541"
+  },
+  "65267": {
+    "gloss": "bug",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BU/BUG-422.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:41:44.494818"
+  },
+  "08114": {
+    "gloss": "bug",
+    "url": "http://www.aslsearch.com/signs/videos/bug.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:41:44.551032"
+  },
+  "67448": {
+    "gloss": "bug",
+    "url": "https://youtu.be/zO5858E1Dd8",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] zO5858E1Dd8: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T08:41:46.170646"
+  },
+  "65293": {
+    "gloss": "camping",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CA/CAMPING-2148.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:44:43.105863"
+  },
+  "65558": {
+    "gloss": "come here",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/E(/E(come-here)-1907.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:44:50.019832"
+  },
+  "12217": {
+    "gloss": "complete",
+    "url": "https://www.signingsavvy.com/signs/mp4/6/6062.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:44:54.686945"
+  },
+  "12219": {
+    "gloss": "complete",
+    "url": "http://www.aslpro.com//main/c/complete_1.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:45:16.062474"
+  },
+  "12221": {
+    "gloss": "complete",
+    "url": "http://www.aslsearch.com/signs/videos/conclude.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:45:16.137072"
+  },
+  "65395": {
+    "gloss": "confused",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CO/CONFUSED-1124.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:45:21.429548"
+  },
+  "65396": {
+    "gloss": "confused",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CO/CONFUSED-2320.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:45:21.611999"
+  },
+  "65442": {
+    "gloss": "date",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DA/DATE-370.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:48:24.392952"
+  },
+  "14734": {
+    "gloss": "date",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14219.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:48:24.670007"
+  },
+  "65614": {
+    "gloss": "eighteen",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/EI/EIGHTEEN-2512.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:51:44.017287"
+  },
+  "65633": {
+    "gloss": "engage",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/EN/ENGAGE-1309.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:51:45.031837"
+  },
+  "65667": {
+    "gloss": "eyes",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/EY/EYES-1374.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:51:53.075714"
+  },
+  "65760": {
+    "gloss": "forever",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FO/FOREVER-1493.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:52:02.564711"
+  },
+  "65802": {
+    "gloss": "gas",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/GA/GAS-843.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:54:43.797133"
+  },
+  "24127": {
+    "gloss": "gas",
+    "url": "http://www.aslsearch.com/signs/videos/gas.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:54:43.852475"
+  },
+  "65962": {
+    "gloss": "involve",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/IN/INVOLVE-1717.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:57:40.041875"
+  },
+  "35769": {
+    "gloss": "message",
+    "url": "http://www.aslpro.com/main/m/message.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:58:22.207132"
+  },
+  "35770": {
+    "gloss": "message",
+    "url": "http://www.aslsearch.com/signs/videos/comment.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T08:58:22.287031"
+  },
+  "66133": {
+    "gloss": "mix",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MI/MIX-1601.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:00:58.105102"
+  },
+  "36460": {
+    "gloss": "mix",
+    "url": "https://www.signingsavvy.com/signs/mp4/9/9714.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:00:58.357765"
+  },
+  "36461": {
+    "gloss": "mix",
+    "url": "http://www.aslpro.com/main/m/mix.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:01:19.400028"
+  },
+  "66177": {
+    "gloss": "nineteen",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/NI/NINETEEN-1567.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:01:30.091419"
+  },
+  "66178": {
+    "gloss": "nineteen",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/NI/NINETEEN-1568.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:01:30.275189"
+  },
+  "66283": {
+    "gloss": "pet",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PE/PET-891.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:01:48.150820"
+  },
+  "66331": {
+    "gloss": "principal",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PR/PRINCIPAL-932.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:05:03.138392"
+  },
+  "66340": {
+    "gloss": "promote",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PR/PROMOTE-2051.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:05:09.624420"
+  },
+  "66376": {
+    "gloss": "recent",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/RE/RECENT-235.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:08:32.240799"
+  },
+  "66377": {
+    "gloss": "recent",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/RE/RECENT-236.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:08:32.432651"
+  },
+  "51160": {
+    "gloss": "shoot",
+    "url": "https://www.signingsavvy.com/signs/mp4/14/14627.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:08:59.136724"
+  },
+  "51163": {
+    "gloss": "shoot",
+    "url": "http://www.aslpro.com/main/s/shoot.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:09:20.170734"
+  },
+  "51165": {
+    "gloss": "shoot",
+    "url": "http://www.aslsearch.com/signs/videos/shoot.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T09:09:20.262319"
+  },
+  "51725": {
+    "gloss": "silver",
+    "url": "http://www.aslpro.com/main/s/silver.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:01.067824"
+  },
+  "66487": {
+    "gloss": "siren",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SI/SIREN-1070.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:03.500669"
+  },
+  "66486": {
+    "gloss": "siren",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SI/SIREN-405.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:03.706810"
+  },
+  "66520": {
+    "gloss": "snowman",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SN/SNOWMAN-1083.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:15.619441"
+  },
+  "66521": {
+    "gloss": "snowman",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SN/SNOWMAN-1084.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:15.800458"
+  },
+  "66541": {
+    "gloss": "spanish",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SP/SPANISH-1099.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:23.697694"
+  },
+  "68750": {
+    "gloss": "spanish",
+    "url": "https://www.youtube.com/watch?v=o4vJbo7BYtg",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] o4vJbo7BYtg: Video unavailable",
+    "timestamp": "2026-05-06T10:40:25.398362"
+  },
+  "53564": {
+    "gloss": "spanish",
+    "url": "https://www.signingsavvy.com/signs/mp4/23/23031.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:25.651591"
+  },
+  "53565": {
+    "gloss": "spanish",
+    "url": "https://www.signingsavvy.com/signs/mp4/23/23031.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:25.885227"
+  },
+  "53566": {
+    "gloss": "spanish",
+    "url": "https://www.signingsavvy.com/signs/mp4/7/7082.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:40:26.147981"
+  },
+  "54787": {
+    "gloss": "still",
+    "url": "https://www.signingsavvy.com/signs/mp4/9/9735.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:44:06.668800"
+  },
+  "68438": {
+    "gloss": "twin",
+    "url": "https://www.youtube.com/watch?v=eRJROI0rMIw",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] eRJROI0rMIw: Video unavailable",
+    "timestamp": "2026-05-06T10:48:19.269776"
+  },
+  "60164": {
+    "gloss": "twin",
+    "url": "http://www.aslsearch.com/signs/videos/twin.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:19.452677"
+  },
+  "66745": {
+    "gloss": "wallet",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/WA/WALLET-359.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:31.558980"
+  },
+  "67037": {
+    "gloss": "wander",
+    "url": "https://youtu.be/A5pKgtt-d5E",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] A5pKgtt-d5E: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T10:48:33.555508"
+  },
+  "66748": {
+    "gloss": "wash face",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/WA/WASH-FACE-1412.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:34.754994"
+  },
+  "62343": {
+    "gloss": "wash face",
+    "url": "https://www.handspeak.com/word/w/wash-face2.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:35.098770"
+  },
+  "62344": {
+    "gloss": "wash face",
+    "url": "https://www.handspeak.com/word/w/wash-face3.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:35.310649"
+  },
+  "62345": {
+    "gloss": "wash face",
+    "url": "https://www.handspeak.com/word/w/wash-face4.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:35.536820"
+  },
+  "62346": {
+    "gloss": "wash face",
+    "url": "https://www.handspeak.com/word/w/wash-face.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:35.745215"
+  },
+  "62347": {
+    "gloss": "wash face",
+    "url": "https://www.youtube.com/watch?v=A6gU1E6dA70",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] A6gU1E6dA70: Video unavailable",
+    "timestamp": "2026-05-06T10:48:37.336315"
+  },
+  "62348": {
+    "gloss": "wash face",
+    "url": "https://www.youtube.com/watch?v=YvXAHfXxiEM",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] YvXAHfXxiEM: Video unavailable",
+    "timestamp": "2026-05-06T10:48:39.128948"
+  },
+  "62349": {
+    "gloss": "wash face",
+    "url": "http://www.aslsearch.com/signs/videos/wash-face.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:39.188137"
+  },
+  "65014": {
+    "gloss": "act",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AC/ACT-5.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:48:57.035076"
+  },
+  "65020": {
+    "gloss": "admire",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AD/ADMIRE-777.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:49:00.894673"
+  },
+  "65021": {
+    "gloss": "admit",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AD/ADMIT-1970.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:49:01.808460"
+  },
+  "65037": {
+    "gloss": "agreement",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/AG/AGREEMENT-2056.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:52:21.358243"
+  },
+  "65149": {
+    "gloss": "battery",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/BA/BATTERY-345.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:52:55.275657"
+  },
+  "65301": {
+    "gloss": "cannot",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CA/CANNOT-427.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T10:56:51.024509"
+  },
+  "11292": {
+    "gloss": "closet",
+    "url": "http://www.aslpro.com//main/c/closet_wardrobe.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:00:36.270490"
+  },
+  "11293": {
+    "gloss": "closet",
+    "url": "http://www.aslsearch.com/signs/videos/closet.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:00:36.338914"
+  },
+  "65382": {
+    "gloss": "comment",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CO/COMMENT-1088.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:00:42.765757"
+  },
+  "65398": {
+    "gloss": "consume",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CO/CONSUME-1133.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:00:53.341869"
+  },
+  "12863": {
+    "gloss": "consume",
+    "url": "http://www.aslsearch.com/signs/videos/consume.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:00:53.409487"
+  },
+  "65420": {
+    "gloss": "crave",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CR/CRAVE-1181.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:04:32.503904"
+  },
+  "67541": {
+    "gloss": "create",
+    "url": "https://youtu.be/Jx_UZR3Ccfw",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] Jx_UZR3Ccfw: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T11:04:34.919916"
+  },
+  "65425": {
+    "gloss": "crocodile",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/CR/CROCODILE-403.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:04:36.088919"
+  },
+  "66042": {
+    "gloss": "d",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/LE/LETTER-D-494.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:04:49.079749"
+  },
+  "65438": {
+    "gloss": "dangerous",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DA/DANGEROUS-2474.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:04:53.504993"
+  },
+  "65437": {
+    "gloss": "dangerous",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DA/DANGEROUS-591.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:04:53.693597"
+  },
+  "65478": {
+    "gloss": "dice",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DI/DICE-2740.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:08:27.246240"
+  },
+  "16117": {
+    "gloss": "dice",
+    "url": "http://www.aslsearch.com/signs/videos/dice.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:08:27.300534"
+  },
+  "67569": {
+    "gloss": "dice",
+    "url": "https://youtu.be/qNH3OR0iBI8",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] qNH3OR0iBI8: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T11:08:29.034159"
+  },
+  "65492": {
+    "gloss": "disgusted",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/DI/DISGUSTED-1261.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:08:34.445911"
+  },
+  "22015": {
+    "gloss": "fire",
+    "url": "https://www.signingsavvy.com/signs/mp4/23/23494.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:12:38.093464"
+  },
+  "65726": {
+    "gloss": "firefighter",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FI/FIREFIGHTER-133.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:12:42.938676"
+  },
+  "65754": {
+    "gloss": "fool",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/FO/FOOL-1491.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:12:46.494179"
+  },
+  "22780": {
+    "gloss": "fool",
+    "url": "https://www.signingsavvy.com/signs/mp4/23/23337.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:12:46.762839"
+  },
+  "65804": {
+    "gloss": "gay",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/GA/GAY-1511.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:16:17.685870"
+  },
+  "65814": {
+    "gloss": "get up",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/GE/GET-UP-143.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:16:21.904678"
+  },
+  "68502": {
+    "gloss": "grey",
+    "url": "https://www.youtube.com/watch?v=gtI2Ha3fKX8",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] gtI2Ha3fKX8: Video unavailable",
+    "timestamp": "2026-05-06T11:16:27.826716"
+  },
+  "65877": {
+    "gloss": "hang up",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/HA/HANG-UP-1841.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:16:35.575324"
+  },
+  "26472": {
+    "gloss": "hang up",
+    "url": "http://www.aslsearch.com/signs/videos/hang-up.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:16:35.647491"
+  },
+  "65883": {
+    "gloss": "heap",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/HE/HEAP-1774.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:16:38.595086"
+  },
+  "28823": {
+    "gloss": "ill",
+    "url": "https://www.handspeak.com/word/i/ill-sick.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:16:53.579690"
+  },
+  "65925": {
+    "gloss": "impact",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/IM/IMPACT-149.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:38:56.980947"
+  },
+  "65943": {
+    "gloss": "inspire",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/IN/INSPIRE-1732.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:39:03.092786"
+  },
+  "65964": {
+    "gloss": "iron",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/IR/IRON-366.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:39:05.943842"
+  },
+  "30603": {
+    "gloss": "iron",
+    "url": "http://www.aslsearch.com/signs/videos/ironing.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:39:06.022275"
+  },
+  "65991": {
+    "gloss": "kid",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/KI/KID-163.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:39:15.031599"
+  },
+  "31621": {
+    "gloss": "kid",
+    "url": "http://www.aslsearch.com/signs/videos/kid.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:39:15.150242"
+  },
+  "32575": {
+    "gloss": "leak",
+    "url": "https://www.signingsavvy.com/signs/mp4/1/1915.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:39:23.111839"
+  },
+  "35994": {
+    "gloss": "midnight",
+    "url": "http://www.aslpro.com/main/m/midnight.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:43:02.495603"
+  },
+  "66148": {
+    "gloss": "motivate",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/MO/MOTIVATE-1589.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:43:12.505744"
+  },
+  "66173": {
+    "gloss": "nine",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/NI/NINE-1570.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:45:58.560092"
+  },
+  "66193": {
+    "gloss": "notice",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/NO/NOTICE-1555.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:46:01.844045"
+  },
+  "66221": {
+    "gloss": "obsess",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/OB/OBSESS-1552.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:46:07.664795"
+  },
+  "66258": {
+    "gloss": "pack",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PA/PACK-1521.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:46:15.682628"
+  },
+  "41559": {
+    "gloss": "pause",
+    "url": "https://www.signingsavvy.com/signs/mp4/7/7373.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:46:21.527722"
+  },
+  "66311": {
+    "gloss": "poop",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/PO/POOP-916.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:49:36.217766"
+  },
+  "45672": {
+    "gloss": "quarter",
+    "url": "http://www.aslpro.com/main/q/quarter.swf",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:53:54.415765"
+  },
+  "66383": {
+    "gloss": "regular",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/RE/REGULAR-955.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:54:02.976193"
+  },
+  "66417": {
+    "gloss": "roommate",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/RO/ROOMMATE-983.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:57:20.282372"
+  },
+  "49411": {
+    "gloss": "saw",
+    "url": "https://www.signingsavvy.com/signs/mp4/8/8672.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:57:37.873253"
+  },
+  "67166": {
+    "gloss": "scan",
+    "url": "https://youtu.be/Kee4MAgmLXg",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] Kee4MAgmLXg: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T11:57:42.452108"
+  },
+  "66494": {
+    "gloss": "sixteen",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SI/SIXTEEN-3096.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T11:57:55.038303"
+  },
+  "66549": {
+    "gloss": "spread",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/SP/SPREAD-1104.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:01:26.305424"
+  },
+  "57584": {
+    "gloss": "text",
+    "url": "https://www.signingsavvy.com/signs/mp4/5/5228.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:05:21.582682"
+  },
+  "66595": {
+    "gloss": "text",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/TE/TEXT-1196.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:05:21.778132"
+  },
+  "66596": {
+    "gloss": "text",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/TE/TEXT-1519.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:05:21.988135"
+  },
+  "67291": {
+    "gloss": "text",
+    "url": "https://youtu.be/SgG0wrwDMtQ",
+    "error": "WARNING: [youtube] No supported JavaScript runtime could be found. Only deno is enabled by default; to use another runtime add  --js-runtimes RUNTIME[:PATH]  to your command/config. YouTube extraction without a JS runtime has been deprecated, and some formats may be missing. See  https://github.com/yt-dlp/yt-dlp/wiki/EJS  for details on installing one\nERROR: [youtube] SgG0wrwDMtQ: Private video. Sign in if you've been granted access to this video. Use --cookies-from-browser or --cookies for the authentication. See  https://github.com/yt-dlp/yt-dlp/wiki/FAQ#how-do-i-pass-cookies-to-yt-dlp  for how to manually pass cookies. Also see  https://github.com/yt-dlp/yt-dlp/wiki/Extractors#exporting-youtube-cookies  for tips on effectively exporting YouTube cookies",
+    "timestamp": "2026-05-06T12:05:23.642633"
+  },
+  "59672": {
+    "gloss": "trip",
+    "url": "http://www.aslsearch.com/signs/videos/journey.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:05:33.633755"
+  },
+  "59673": {
+    "gloss": "trip",
+    "url": "http://www.aslsearch.com/signs/videos/journey.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:05:33.692897"
+  },
+  "66718": {
+    "gloss": "vampire",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/VA/VAMPIRE-1371.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:08:35.122481"
+  },
+  "66734": {
+    "gloss": "vlog",
+    "url": "https://aslsignbank.haskins.yale.edu/dictionary/protected_media/glossvideo/ASL/VL/VLOG-1399.mp4",
+    "error": "download failed or produced an invalid video",
+    "timestamp": "2026-05-06T12:08:42.919758"
+  }
+}

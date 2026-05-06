@@ -1,0 +1,154 @@
+{
+  "processedVideoKeys": [
+    "wlasl-test-05727",
+    "wlasl-test-11311",
+    "wlasl-test-12320",
+    "wlasl-test-17713",
+    "wlasl-test-63226",
+    "wlasl-train-05728",
+    "wlasl-train-05729",
+    "wlasl-train-05730",
+    "wlasl-train-05731",
+    "wlasl-train-05732",
+    "wlasl-train-05733",
+    "wlasl-train-05734",
+    "wlasl-train-07068",
+    "wlasl-train-07069",
+    "wlasl-train-07070",
+    "wlasl-train-09848",
+    "wlasl-train-09849",
+    "wlasl-train-09850",
+    "wlasl-train-11309",
+    "wlasl-train-11310",
+    "wlasl-train-12311",
+    "wlasl-train-12313",
+    "wlasl-train-12314",
+    "wlasl-train-12316",
+    "wlasl-train-12317",
+    "wlasl-train-12318",
+    "wlasl-train-12319",
+    "wlasl-train-17709",
+    "wlasl-train-17710",
+    "wlasl-train-17711",
+    "wlasl-train-17712",
+    "wlasl-train-24940",
+    "wlasl-train-24941",
+    "wlasl-train-24943",
+    "wlasl-train-24947",
+    "wlasl-train-63227",
+    "wlasl-train-63228",
+    "wlasl-train-69241",
+    "wlasl-train-69534",
+    "wlasl-val-09851",
+    "wlasl-val-12312",
+    "wlasl-val-12315",
+    "wlasl-val-24946",
+    "wlasl-val-63229",
+    "wlasl-val-63230",
+    "wlasl-val-69302",
+    "wlasl-val-69345"
+  ],
+  "failedUrls": {},
+  "failedProcessing": {
+    "wlasl-val-07099": {
+      "word": "book",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\07099.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T13:41:41.507417"
+    },
+    "wlasl-train-17733": {
+      "word": "drink",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\17733.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T13:42:00.631695"
+    },
+    "wlasl-val-17734": {
+      "word": "drink",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\17734.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T13:42:00.722420"
+    },
+    "wlasl-train-12338": {
+      "word": "computer",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\12338.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T13:43:09.163545"
+    },
+    "wlasl-train-05749": {
+      "word": "before",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\05749.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T13:54:27.664777"
+    },
+    "wlasl-val-05750": {
+      "word": "before",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\05750.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T13:54:27.765277"
+    },
+    "wlasl-train-09869": {
+      "word": "chair",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\09869.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T13:59:59.886634"
+    },
+    "wlasl-train-24973": {
+      "word": "go",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\24973.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T14:01:43.087637"
+    },
+    "wlasl-train-11330": {
+      "word": "clothes",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\11330.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T14:03:28.377753"
+    },
+    "wlasl-train-63242": {
+      "word": "who",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\63242.mp4",
+      "error": "MediaPipe Holistic produced no frames",
+      "timestamp": "2026-05-06T14:04:29.702434"
+    },
+    "wlasl-train-63231": {
+      "word": "who",
+      "videoPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos\\63231.mp4",
+      "error": "[Errno 28] No space left on device",
+      "timestamp": "2026-05-06T14:19:03.741074"
+    }
+  },
+  "counts": {
+    "processed": 47,
+    "uploaded": 47,
+    "failedProcessing": 11
+  },
+  "lastProcessedWords": [
+    "before",
+    "before",
+    "before",
+    "before",
+    "before",
+    "before",
+    "chair",
+    "chair",
+    "chair",
+    "chair",
+    "go",
+    "go",
+    "go",
+    "go",
+    "go",
+    "go",
+    "clothes",
+    "clothes",
+    "clothes",
+    "who",
+    "who",
+    "who",
+    "who",
+    "who",
+    "who"
+  ],
+  "uploadedCount": 47,
+  "timestamp": "2026-05-06T14:19:07.657862"
+}

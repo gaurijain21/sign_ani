@@ -1,0 +1,13 @@
+{
+  "totalWlaslGlosses": 2000,
+  "processedSigns": 1999,
+  "uploadedSigns": 1718,
+  "failedDownloads": 323,
+  "failedProcessing": 0,
+  "currentCycle": 10,
+  "lastProcessedWords": [],
+  "videoStorageGb": 0.4271,
+  "stopReason": "no downloadable videos",
+  "timestamp": "2026-05-06T12:10:55.645281",
+  "consecutiveFailureCycles": 0
+}

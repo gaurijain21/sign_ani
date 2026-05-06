@@ -1,0 +1,208 @@
+"use client"
+
+import { useState, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+import { RefreshCw, AlertCircle, Loader2, Video, Database } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { AvatarCanvas } from "./AvatarCanvas"
+import type { SignData, SignStatus } from "@/lib/types"
+
+interface AvatarDisplayProps {
+  signData: SignData | null
+  isLoading: boolean
+  error: string | null
+  searchedWord: string | null
+  signStatus?: SignStatus | null
+  onPlaybackComplete?: () => void
+  playbackKey?: string | number
+}
+
+export function AvatarDisplay({ 
+  signData, 
+  isLoading, 
+  error, 
+  searchedWord,
+  signStatus,
+  onPlaybackComplete,
+  playbackKey,
+}: AvatarDisplayProps) {
+  const [isPlaying, setIsPlaying] = useState(true)
+  const [playCount, setPlayCount] = useState(0)
+
+  const handleReplay = useCallback(() => {
+    setIsPlaying(false)
+    setTimeout(() => {
+      setIsPlaying(true)
+      setPlayCount(prev => prev + 1)
+    }, 50)
+  }, [])
+
+  const handlePlaybackComplete = useCallback(() => {
+    onPlaybackComplete?.()
+  }, [onPlaybackComplete])
+
+  const playableSignData = signData?.frames?.length ? signData : null
+
+  // Get appropriate error message based on status
+  const getErrorContent = () => {
+    if (signStatus === "needs_processing") {
+      return {
+        icon: <Video className="w-8 h-8 text-yellow-500" />,
+        iconBg: "bg-yellow-100 dark:bg-yellow-900/30",
+        title: "Processing Required",
+        message: "This sign exists in WLASL but needs preprocessing.",
+        hint: "Run scripts/extract_landmarks.py to generate the animation data.",
+      }
+    }
+    
+    if (signStatus === "not_downloaded") {
+      return {
+        icon: <Database className="w-8 h-8 text-blue-500" />,
+        iconBg: "bg-blue-100 dark:bg-blue-900/30",
+        title: "Processing Required",
+        message: "This sign exists in WLASL but needs preprocessing.",
+        hint: "Run the WLASL downloader/preprocess flow, then rebuild the manifest.",
+      }
+    }
+    
+    if (signStatus === "not_in_wlasl") {
+      return {
+        icon: <AlertCircle className="w-8 h-8 text-destructive" />,
+        iconBg: "bg-destructive/10",
+        title: "Not in WLASL",
+        message: "This word is not available in the current WLASL dataset.",
+        hint: "Try a different word or check the WLASL glossary.",
+      }
+    }
+    
+    // Default error
+    return {
+      icon: <AlertCircle className="w-8 h-8 text-destructive" />,
+      iconBg: "bg-destructive/10",
+      title: "Sign Not Found",
+      message: error || `The sign for "${searchedWord}" is not available.`,
+      hint: 'Try a common word like "hello" or "thank you"',
+    }
+  }
+
+  return (
+    <div className="relative w-full h-full flex flex-col">
+      {/* Header */}
+      <div className="flex items-center justify-between p-4 border-b border-border">
+        <div>
+          <AnimatePresence mode="wait">
+            {playableSignData ? (
+              <motion.h2
+                key={playableSignData.word}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                className="text-2xl font-bold text-foreground capitalize"
+              >
+                {playableSignData.word}
+              </motion.h2>
+            ) : searchedWord && !isLoading ? (
+              <motion.h2
+                key="not-found"
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-xl font-medium text-muted-foreground"
+              >
+                {error ? "Sign not available" : "Ready to sign"}
+              </motion.h2>
+            ) : (
+              <motion.h2
+                key="idle"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-xl font-medium text-muted-foreground"
+              >
+                {isLoading ? "Loading..." : "Enter a word to see the sign"}
+              </motion.h2>
+            )}
+          </AnimatePresence>
+          {playableSignData && (
+            <p className="text-sm text-muted-foreground">
+              {playableSignData.frames.length} frames at {playableSignData.fps} FPS
+            </p>
+          )}
+        </div>
+        
+        {playableSignData && (
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={handleReplay}
+            className="rounded-full"
+            aria-label="Replay sign animation"
+          >
+            <RefreshCw className="w-4 h-4" />
+          </Button>
+        )}
+      </div>
+
+      {/* Canvas area */}
+      <div className="flex-1 relative bg-gradient-to-b from-secondary/30 to-secondary/10 rounded-b-2xl overflow-hidden min-h-[400px]">
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <motion.div
+              key="loading"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              <div className="text-center space-y-4">
+                <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto" />
+                <p className="text-muted-foreground">Loading sign data...</p>
+              </div>
+            </motion.div>
+          ) : error && searchedWord && !playableSignData ? (
+            <motion.div
+              key="error"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="absolute inset-0 flex items-center justify-center"
+            >
+              {(() => {
+                const errorContent = getErrorContent()
+                return (
+                  <div className="text-center space-y-4 p-8 max-w-sm">
+                    <div className={`w-16 h-16 rounded-full ${errorContent.iconBg} flex items-center justify-center mx-auto`}>
+                      {errorContent.icon}
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground">{errorContent.title}</h3>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        {errorContent.message}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-3 p-2 bg-muted/50 rounded-lg">
+                        {errorContent.hint}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })()}
+            </motion.div>
+          ) : (
+            <motion.div
+              key={`avatar-${playbackKey ?? ""}-${playCount}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 flex items-center justify-center p-4"
+            >
+              <AvatarCanvas
+                signData={playableSignData}
+                isPlaying={isPlaying}
+                onPlaybackComplete={handlePlaybackComplete}
+                showIdle={true}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
+  )
+}

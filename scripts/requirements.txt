@@ -1,0 +1,13 @@
+# Python dependencies for ASL landmark extraction
+# Install with: pip install -r requirements.txt
+
+# Computer Vision
+opencv-contrib-python==4.11.0.86
+mediapipe==0.10.21
+
+# Utilities
+numpy==1.26.4
+requests>=2.28.0
+tqdm>=4.65.0
+firebase-admin>=6.5.0
+yt-dlp>=2024.8.6
