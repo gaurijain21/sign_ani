@@ -29,6 +29,7 @@ data/videos/
 data/landmarks/
 data/generated/
 data/cache/
+data/wlasl_mouth_temp/
 
 # Large datasets
 WLASL/

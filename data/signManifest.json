@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-05-06T12:10:55.312904",
+  "generatedAt": "2026-05-07T01:30:00.601265",
   "wlaslPath": "C:\\Gauri\\sign_ani\\WLASL",
   "metadataPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\WLASL_v0.3.json",
   "videosPath": "C:\\Gauri\\sign_ani\\WLASL\\start_kit\\videos",
   "stats": {
     "totalWlaslWords": 2000,
-    "videosDownloaded": 281,
+    "videosDownloaded": 282,
     "landmarksGenerated": 1999
   },
   "entries": {
@@ -9800,11 +9800,13 @@
     "hello": {
       "word": "hello",
       "gloss": "hello",
-      "videoPath": null,
-      "videoPaths": [],
+      "videoPath": "start_kit/videos/27172.mp4",
+      "videoPaths": [
+        "start_kit/videos/27172.mp4"
+      ],
       "jsonPath": "/data/signs/hello.json",
-      "available": false,
-      "videoAvailable": false,
+      "available": true,
+      "videoAvailable": true,
       "landmarksAvailable": true,
       "instanceCount": 13
     },

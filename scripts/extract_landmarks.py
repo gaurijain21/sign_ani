@@ -3,8 +3,9 @@
 ASL Video Landmark Extraction Script
 
 This script processes ASL video files and extracts hand and pose landmarks
-using MediaPipe. The extracted landmarks are saved as JSON files that can
-be used by the frontend avatar animation system.
+plus face and mouth landmarks using MediaPipe Holistic. The extracted
+landmarks are saved as JSON files that can be used by the frontend avatar
+animation system.
 
 This script can work with the WLASL manifest or process videos directly.
 
@@ -38,6 +39,14 @@ import numpy as np
 # MediaPipe setup
 mp_hands = mp.solutions.hands
 mp_pose = mp.solutions.pose
+mp_holistic = mp.solutions.holistic
+
+MOUTH_LANDMARK_INDICES = sorted({
+    0, 13, 14, 17, 37, 39, 40, 61, 78, 80, 81, 82, 84, 87, 88, 91,
+    95, 146, 178, 181, 185, 191, 267, 269, 270, 291, 308, 310, 311,
+    312, 314, 317, 318, 321, 324, 375, 402, 405, 409, 415,
+})
+OUTER_LIP_COUNT = 21
 
 
 def normalize_word(value: str) -> str:
@@ -184,6 +193,113 @@ def normalize_landmarks(landmarks: list, image_width: int, image_height: int) ->
     return normalized
 
 
+def extract_mouth_landmarks(face_landmarks: list | None) -> list | None:
+    if not face_landmarks:
+        return None
+    return [
+        face_landmarks[index]
+        for index in MOUTH_LANDMARK_INDICES
+        if index < len(face_landmarks)
+    ]
+
+
+def clone_frame(frame: list | None) -> list | None:
+    if frame is None:
+        return None
+    return [
+        None if point is None else {"x": point["x"], "y": point["y"], "z": point.get("z", 0)}
+        for point in frame
+    ]
+
+
+def fill_missing_mouth_frames(mouth_frames: list) -> tuple[list, int, int]:
+    """Fill gaps using nearby frames, preferring interpolation then carry-forward."""
+    if not mouth_frames:
+        return mouth_frames, 0, 0
+
+    result = [clone_frame(frame) for frame in mouth_frames]
+    interpolated = 0
+
+    for index, frame in enumerate(result):
+        if frame is not None:
+            continue
+
+        prev_index = index - 1
+        while prev_index >= 0 and result[prev_index] is None:
+            prev_index -= 1
+
+        next_index = index + 1
+        while next_index < len(result) and result[next_index] is None:
+            next_index += 1
+
+        prev_frame = result[prev_index] if prev_index >= 0 else None
+        next_frame = result[next_index] if next_index < len(result) else None
+
+        if prev_frame is not None and next_frame is not None:
+            t = (index - prev_index) / max(1, next_index - prev_index)
+            filled = []
+            for landmark_index in range(len(prev_frame)):
+                prev_point = prev_frame[landmark_index]
+                next_point = next_frame[landmark_index] if landmark_index < len(next_frame) else None
+                if prev_point is None and next_point is None:
+                    filled.append(None)
+                elif prev_point is None:
+                    filled.append(next_point)
+                elif next_point is None:
+                    filled.append(prev_point)
+                else:
+                    filled.append({
+                        "x": prev_point["x"] + (next_point["x"] - prev_point["x"]) * t,
+                        "y": prev_point["y"] + (next_point["y"] - prev_point["y"]) * t,
+                        "z": prev_point.get("z", 0) + (next_point.get("z", 0) - prev_point.get("z", 0)) * t,
+                    })
+            result[index] = filled
+            interpolated += 1
+        elif prev_frame is not None:
+            result[index] = clone_frame(prev_frame)
+            interpolated += 1
+        elif next_frame is not None:
+            result[index] = clone_frame(next_frame)
+            interpolated += 1
+
+    missing = sum(1 for frame in result if frame is None)
+    return result, interpolated, missing
+
+
+def compute_mouth_movement_score(mouth_frames: list) -> float:
+    valid_frames = [frame for frame in mouth_frames if frame]
+    if len(valid_frames) < 2:
+        return 0.0
+
+    widths = []
+    heights = []
+    centers = []
+    for frame in valid_frames:
+        xs = [point["x"] for point in frame if point is not None]
+        ys = [point["y"] for point in frame if point is not None]
+        if not xs or not ys:
+            continue
+        min_x = min(xs)
+        max_x = max(xs)
+        min_y = min(ys)
+        max_y = max(ys)
+        widths.append(max_x - min_x)
+        heights.append(max_y - min_y)
+        centers.append(((min_x + max_x) / 2, (min_y + max_y) / 2))
+
+    if len(widths) < 2 or len(heights) < 2:
+        return 0.0
+
+    width_range = max(widths) - min(widths)
+    height_range = max(heights) - min(heights)
+    center_motion = 0.0
+    for previous, current in zip(centers, centers[1:]):
+        center_motion += abs(current[0] - previous[0]) + abs(current[1] - previous[1])
+    center_motion /= max(1, len(centers) - 1)
+
+    return round(width_range * 1200 + height_range * 1800 + center_motion * 600, 4)
+
+
 def extract_landmarks_from_video(
     video_path: str,
     word: Optional[str] = None,
@@ -192,7 +308,7 @@ def extract_landmarks_from_video(
     min_tracking_confidence: float = 0.5
 ) -> Optional[dict]:
     """
-    Extract hand and pose landmarks from a video file.
+    Extract hand, pose, face, and mouth landmarks from a video file.
     
     Args:
         video_path: Path to the video file
@@ -225,24 +341,24 @@ def extract_landmarks_from_video(
     print(f"  Original: {frame_count} frames at {original_fps:.1f} FPS")
     print(f"  Target: ~{frame_count // frame_interval} frames at {target_fps} FPS")
     
-    # Initialize landmark sequences
+    # Initialize landmark sequences. Keep pose/hand keys unchanged for the
+    # existing Version 1 animation, and store only the mouth layer from face
+    # detection so sign JSON stays smaller than full Face Mesh output.
     left_hand_frames = []
     right_hand_frames = []
     pose_frames = []
+    mouth_frames = []
     
-    # Process video with MediaPipe
-    with mp_hands.Hands(
-        static_image_mode=False,
-        max_num_hands=2,
-        min_detection_confidence=min_detection_confidence,
-        min_tracking_confidence=min_tracking_confidence
-    ) as hands, mp_pose.Pose(
+    # Process video with MediaPipe Holistic so face and mouth data are sampled
+    # in the same frame loop as the existing pose/hand landmarks.
+    with mp_holistic.Holistic(
         static_image_mode=False,
         model_complexity=1,
+        smooth_landmarks=True,
+        refine_face_landmarks=True,
         min_detection_confidence=min_detection_confidence,
         min_tracking_confidence=min_tracking_confidence
-    ) as pose:
-        
+    ) as holistic:
         frame_idx = 0
         processed_count = 0
         
@@ -255,44 +371,43 @@ def extract_landmarks_from_video(
             if frame_idx % frame_interval == 0:
                 # Convert BGR to RGB
                 rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                results = holistic.process(rgb_frame)
                 
-                # Process hands
-                hand_results = hands.process(rgb_frame)
-                
-                left_hand = None
-                right_hand = None
-                
-                if hand_results.multi_hand_landmarks:
-                    for hand_landmarks, handedness in zip(
-                        hand_results.multi_hand_landmarks,
-                        hand_results.multi_handedness
-                    ):
-                        hand_label = handedness.classification[0].label
-                        landmarks = normalize_landmarks(hand_landmarks.landmark, width, height)
-                        
-                        # Note: MediaPipe labels are from the camera's perspective
-                        # So "Left" in MediaPipe is actually the right hand of the person
-                        if hand_label == "Left":
-                            right_hand = landmarks
-                        else:
-                            left_hand = landmarks
+                left_hand = normalize_landmarks(
+                    results.left_hand_landmarks.landmark,
+                    width,
+                    height,
+                ) if results.left_hand_landmarks else None
+                right_hand = normalize_landmarks(
+                    results.right_hand_landmarks.landmark,
+                    width,
+                    height,
+                ) if results.right_hand_landmarks else None
                 
                 left_hand_frames.append(left_hand)
                 right_hand_frames.append(right_hand)
                 
                 # Process pose
-                pose_results = pose.process(rgb_frame)
-                
-                if pose_results.pose_landmarks:
+                if results.pose_landmarks:
                     # Extract upper body landmarks (indices 0-16 are relevant)
                     pose_landmarks = normalize_landmarks(
-                        pose_results.pose_landmarks.landmark[:17], 
+                        results.pose_landmarks.landmark[:17], 
                         width, 
                         height
                     )
                     pose_frames.append(pose_landmarks)
                 else:
                     pose_frames.append(None)
+
+                if results.face_landmarks:
+                    face_landmarks = normalize_landmarks(
+                        results.face_landmarks.landmark,
+                        width,
+                        height,
+                    )
+                    mouth_frames.append(extract_mouth_landmarks(face_landmarks))
+                else:
+                    mouth_frames.append(None)
                 
                 processed_count += 1
             
@@ -306,15 +421,20 @@ def extract_landmarks_from_video(
     
     print(f"  Processed: {processed_count} frames")
     
+    mouth_frames_detected = sum(1 for frame in mouth_frames if frame is not None)
+
     # Apply smoothing
     left_hand_frames = smooth_landmarks(left_hand_frames)
     right_hand_frames = smooth_landmarks(right_hand_frames)
     pose_frames = smooth_landmarks(pose_frames)
+    mouth_frames = smooth_landmarks(mouth_frames)
     
     # Interpolate missing detections
     left_hand_frames = interpolate_missing(left_hand_frames)
     right_hand_frames = interpolate_missing(right_hand_frames)
     pose_frames = interpolate_missing(pose_frames)
+    mouth_frames, mouth_frames_interpolated, mouth_frames_missing = fill_missing_mouth_frames(mouth_frames)
+    mouth_movement_score = compute_mouth_movement_score(mouth_frames)
     
     # Build output frames
     frames = []
@@ -322,7 +442,8 @@ def extract_landmarks_from_video(
         frame_data = {
             'leftHand': left_hand_frames[i] if i < len(left_hand_frames) else None,
             'rightHand': right_hand_frames[i] if i < len(right_hand_frames) else None,
-            'pose': pose_frames[i] if i < len(pose_frames) else None
+            'pose': pose_frames[i] if i < len(pose_frames) else None,
+            'mouthLandmarks': mouth_frames[i] if i < len(mouth_frames) else None,
         }
         frames.append(frame_data)
     
@@ -339,12 +460,22 @@ def extract_landmarks_from_video(
         'fps': target_fps,
         'frames': frames,
         'source': 'wlasl',
+        'hasMouth': any(frame is not None for frame in mouth_frames),
+        'mouthLandmarkIndices': MOUTH_LANDMARK_INDICES,
+        'mouthFramesDetected': mouth_frames_detected,
+        'mouthFramesInterpolated': mouth_frames_interpolated,
+        'mouthFramesMissing': mouth_frames_missing,
+        'mouthMovementScore': mouth_movement_score,
         'metadata': {
             'original_fps': original_fps,
             'original_frame_count': frame_count,
             'processed_frame_count': processed_count,
             'width': width,
-            'height': height
+            'height': height,
+            'mouthFramesDetected': mouth_frames_detected,
+            'mouthFramesInterpolated': mouth_frames_interpolated,
+            'mouthFramesMissing': mouth_frames_missing,
+            'mouthMovementScore': mouth_movement_score,
         }
     }
 

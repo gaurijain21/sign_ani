@@ -1,0 +1,57 @@
+{
+  "wash face": {
+    "status": "missing_existing_sign_json",
+    "globalIndex": 1923,
+    "updatedAt": "2026-05-08T00:06:30Z"
+  },
+  "bye": {
+    "status": "low_quality/no_mouth_detected",
+    "globalIndex": 224,
+    "videoFailures": [
+      {
+        "videoId": "08510",
+        "status": "failed_download",
+        "error": "could not extract a valid mp4 clip"
+      },
+      {
+        "videoId": "08511",
+        "status": "failed_download",
+        "error": "download failed or produced an invalid video"
+      },
+      {
+        "videoId": "08512",
+        "status": "failed_download",
+        "error": "download failed or produced an invalid video"
+      },
+      {
+        "videoId": "08514",
+        "status": "failed_download",
+        "error": "download failed or produced an invalid video"
+      },
+      {
+        "videoId": "08515",
+        "status": "failed_download",
+        "error": "download failed or produced an invalid video"
+      },
+      {
+        "videoId": "08516",
+        "status": "failed_download",
+        "error": "download failed or produced an invalid video"
+      },
+      {
+        "videoId": "08517",
+        "status": "failed_download",
+        "error": "download failed or produced an invalid video"
+      }
+    ],
+    "tempFilesKept": [],
+    "updatedAt": "2026-05-07T18:08:29Z"
+  },
+  "depend": {
+    "status": "Expecting value: line 1 column 1 (char 0)",
+    "globalIndex": 497,
+    "videoFailures": [],
+    "tempFilesKept": [],
+    "updatedAt": "2026-05-07T19:33:08Z"
+  }
+}

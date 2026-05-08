@@ -86,6 +86,7 @@ def select_candidates(
     limit: int | None,
     requested_words: list[str],
     retry_failed: bool,
+    force: bool,
 ) -> tuple[list[tuple[str, dict[str, Any]]], dict[str, int]]:
     requested = set(requested_words)
     candidates: list[tuple[str, dict[str, Any]]] = []
@@ -106,7 +107,7 @@ def select_candidates(
 
     for gloss, entry in iterable:
         output_file = output_file_for(signs_dir, gloss)
-        if output_file.exists() or entry.get("landmarksAvailable"):
+        if not force and (output_file.exists() or entry.get("landmarksAvailable")):
             counts["already_processed"] += 1
             continue
         if not entry.get("videoAvailable"):
@@ -165,6 +166,7 @@ def main() -> None:
     parser.add_argument("--cleanup", action="store_true", help="Delete source video samples after successful JSON generation.")
     parser.add_argument("--dry-run", action="store_true", help="Preview the batch without extracting, uploading, or cleanup.")
     parser.add_argument("--retry-failed", action="store_true", help="Retry signs whose videos failed in an earlier batch.")
+    parser.add_argument("--force", action="store_true", help="Overwrite existing JSONs for explicitly selected words.")
     parser.add_argument("--wlasl-path", type=Path, default=project_root / "WLASL")
     parser.add_argument("--manifest", type=Path, default=project_root / "data" / "signManifest.json")
     parser.add_argument("--signs-dir", type=Path, default=project_root / "data" / "signs")
@@ -199,6 +201,7 @@ def main() -> None:
         limit=args.limit,
         requested_words=requested_words,
         retry_failed=args.retry_failed,
+        force=args.force,
     )
 
     total_glosses = len(manifest.get("entries", {}))
@@ -250,7 +253,7 @@ def main() -> None:
         output_file = output_file_for(signs_dir, gloss)
         print(f"\n[{batch_index}/{len(candidates)}] {gloss}")
 
-        if output_file.exists():
+        if output_file.exists() and not args.force:
             skipped += 1
             print(f"  skipped: already exists at {output_file}")
             continue

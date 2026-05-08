@@ -12,6 +12,7 @@ interface AvatarDisplayProps {
   isLoading: boolean
   error: string | null
   searchedWord: string | null
+  isPlaybackActive?: boolean
   signStatus?: SignStatus | null
   onPlaybackComplete?: () => void
   playbackKey?: string | number
@@ -22,6 +23,7 @@ export function AvatarDisplay({
   isLoading, 
   error, 
   searchedWord,
+  isPlaybackActive = true,
   signStatus,
   onPlaybackComplete,
   playbackKey,
@@ -142,7 +144,7 @@ export function AvatarDisplay({
       </div>
 
       {/* Canvas area */}
-      <div className="flex-1 relative bg-gradient-to-b from-secondary/30 to-secondary/10 rounded-b-2xl overflow-hidden min-h-[400px]">
+      <div className="flex-1 relative bg-gradient-to-b from-secondary/30 to-secondary/10 rounded-b-2xl overflow-hidden min-h-[300px] md:min-h-[400px]">
         <AnimatePresence mode="wait">
           {isLoading ? (
             <motion.div
@@ -191,11 +193,11 @@ export function AvatarDisplay({
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="absolute inset-0 flex items-center justify-center p-4"
+              className="absolute inset-0 flex items-start justify-center p-3 md:items-center md:p-4"
             >
               <AvatarCanvas
                 signData={playableSignData}
-                isPlaying={isPlaying}
+                isPlaying={isPlaying && isPlaybackActive}
                 onPlaybackComplete={handlePlaybackComplete}
                 showIdle={true}
               />

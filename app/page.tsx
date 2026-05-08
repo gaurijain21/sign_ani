@@ -223,10 +223,10 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid xl:grid-cols-[minmax(0,1fr)_560px] gap-8">
-          <div className="space-y-6">
-            <section className="space-y-4">
+      <main className="container mx-auto px-4 py-4 md:py-8">
+        <div className="grid gap-4 md:gap-6 xl:grid-cols-[minmax(0,1fr)_560px] xl:gap-8">
+          <div className="contents xl:block xl:space-y-6">
+            <section className="order-1 space-y-4">
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-foreground text-balance">
                   Visualize a sentence as sequential signs
@@ -256,7 +256,7 @@ export default function Home() {
               </div>
             </section>
 
-            <section className="space-y-3">
+            <section className="order-3 space-y-3">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-semibold text-foreground">Parsed playback queue</h3>
                 <span className="text-xs text-muted-foreground">{playableQueue.length} playable signs</span>
@@ -287,7 +287,7 @@ export default function Home() {
               )}
             </section>
 
-            <section className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <section className="order-4 grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="text-center p-3 rounded-xl bg-secondary/50">
                 <div className="text-xl font-bold text-primary">{stats.total.toLocaleString()}</div>
                 <div className="text-xs text-muted-foreground">Dictionary Signs</div>
@@ -313,7 +313,7 @@ export default function Home() {
               </div>
             )}
 
-            <section className="space-y-3">
+            <section className="order-5 space-y-3">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-semibold text-foreground flex items-center gap-2">
                   <BookOpen className="w-4 h-4" />
@@ -350,14 +350,15 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="xl:sticky xl:top-24 h-fit"
+            className="order-2 h-fit xl:sticky xl:top-24"
           >
-            <div className="bg-card border-2 border-border rounded-3xl overflow-hidden shadow-lg min-h-[600px]">
+            <div className="bg-card border-2 border-border rounded-3xl overflow-hidden shadow-lg min-h-[430px] md:min-h-[560px] xl:min-h-[600px]">
               <AvatarDisplay
                 signData={currentSignData}
                 isLoading={isSignLoading}
                 error={playbackError}
                 searchedWord={currentDisplayWord}
+                isPlaybackActive={isPlaying}
                 signStatus={playbackError ? null : currentSignData ? "available" : null}
                 onPlaybackComplete={goToNext}
                 playbackKey={currentItem?.id}
