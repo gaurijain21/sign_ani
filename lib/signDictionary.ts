@@ -3,7 +3,7 @@
 import { collection, getDocs, orderBy, query } from "firebase/firestore"
 import { getDownloadURL, ref } from "firebase/storage"
 import { getFirebaseDb, getFirebaseStorage, hasFirebaseConfig } from "./firebase"
-import type { PlaybackQueueItem, SignData, SignDictionaryEntry } from "./types"
+import type { MissingWordReplacement, PlaybackQueueItem, SignData, SignDictionaryEntry } from "./types"
 
 const FILLER_WORDS = new Set(["a", "an", "the", "is", "am", "are", "to", "of"])
 const animationCache = new Map<string, SignData>()
@@ -146,6 +146,99 @@ export function parseSentenceToQueue(
   }
 
   return queue
+}
+
+export type ResolveSentenceResult = {
+  queue: PlaybackQueueItem[]
+  replacements: MissingWordReplacement[]
+  unresolved: string[]
+  aiUnavailable: boolean
+}
+
+export async function resolveSentenceWithAI(
+  input: string,
+  dictionary: SignDictionaryEntry[],
+  showSkippedWords: boolean,
+): Promise<ResolveSentenceResult> {
+  const queue = parseSentenceToQueue(input, dictionary, showSkippedWords)
+  const missingWords = Array.from(
+    new Set(
+      queue
+        .filter((item) => item.status === "unavailable" && !item.entry)
+        .map((item) => item.text),
+    ),
+  )
+
+  if (!missingWords.length) {
+    return { queue, replacements: [], unresolved: [], aiUnavailable: false }
+  }
+
+  const availableEntries = dictionary.filter((entry) => entry.available)
+  const entryLookup = new Map<string, SignDictionaryEntry>()
+  availableEntries.forEach((entry) => {
+    entryLookup.set(entry.gloss, entry)
+  })
+
+  const dictionaryWords = Array.from(entryLookup.keys())
+  if (!dictionaryWords.length) {
+    return { queue, replacements: [], unresolved: missingWords, aiUnavailable: true }
+  }
+
+  try {
+    const response = await fetch("/api/resolve-missing-words", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        sentence: input,
+        missingWords,
+        dictionaryWords,
+      }),
+    })
+
+    if (!response.ok) {
+      return { queue, replacements: [], unresolved: missingWords, aiUnavailable: true }
+    }
+
+    const data = (await response.json()) as {
+      replacements?: MissingWordReplacement[]
+      unresolved?: string[]
+    }
+
+    const replacements = (data.replacements || []).filter((replacement) =>
+      entryLookup.has(replacement.replacementWord),
+    )
+    const replacementLookup = new Map(replacements.map((replacement) => [replacement.originalWord, replacement]))
+
+    const resolvedQueue = queue.map((item) => {
+      const replacement = replacementLookup.get(item.text)
+      const entry = replacement ? entryLookup.get(replacement.replacementWord) : undefined
+      if (!replacement || !entry) return item
+
+      return {
+        ...item,
+        gloss: entry.gloss,
+        type: entry.type,
+        status: "available" as const,
+        entry,
+        reason: replacement.reason,
+        replacement,
+      }
+    })
+
+    const resolvedWords = new Set(replacements.map((replacement) => replacement.originalWord))
+    const unresolved = Array.from(
+      new Set([...(data.unresolved || []), ...missingWords.filter((word) => !resolvedWords.has(word))]),
+    )
+
+    return {
+      queue: resolvedQueue,
+      replacements,
+      unresolved,
+      aiUnavailable: false,
+    }
+  } catch {
+    return { queue, replacements: [], unresolved: missingWords, aiUnavailable: true }
+  }
 }
 
 export async function fetchSignAnimation(entry: SignDictionaryEntry): Promise<SignData> {

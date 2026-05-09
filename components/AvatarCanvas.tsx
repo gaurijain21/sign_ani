@@ -12,6 +12,7 @@ interface AvatarCanvasProps {
   signData: SignData | null
   isPlaying: boolean
   onPlaybackComplete?: () => void
+  onFrameChange?: (frameIndex: number) => void
   showIdle?: boolean
 }
 
@@ -456,6 +457,7 @@ export function AvatarCanvas({
   signData,
   isPlaying,
   onPlaybackComplete,
+  onFrameChange,
   showIdle = true,
 }: AvatarCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -469,7 +471,7 @@ export function AvatarCanvas({
     inner: null,
   })
   const lastMouthDebugRef = useRef<string | null>(null)
-  const [currentFrame, setCurrentFrame] = useState(0)
+  const [, setCurrentFrame] = useState(0)
   const demoFrames = useRef(generateDemoFrames())
 
   useEffect(() => {
@@ -477,7 +479,8 @@ export function AvatarCanvas({
     lastFrameTimeRef.current = 0
     previousMouthBoundaryRef.current = { outer: null, inner: null }
     setCurrentFrame(0)
-  }, [signData])
+    onFrameChange?.(0)
+  }, [onFrameChange, signData])
 
   useEffect(() => {
     if (!signData) return
@@ -573,22 +576,41 @@ export function AvatarCanvas({
     ctx.fillRect(0, 0, width, height)
 
     const poseLandmarks = (frame?.pose || []).filter(isLandmark)
-    const points = poseLandmarks.length >= 2 ? poseLandmarks : collectLandmarks(frame)
+    const points = collectLandmarks(frame)
     const bounds = computeBounds(points)
     if (!frame || !bounds) return
 
     const floatY = Math.sin(idleOffset * 0.02) * 2
-    const sourceWidth = Math.max(bounds.maxX - bounds.minX, 0.12)
-    const sourceHeight = Math.max(bounds.maxY - bounds.minY, 0.12)
-    const scale = Math.min((width * 0.86) / sourceWidth, (height * 0.9) / sourceHeight)
-    const sourceCenterX = (bounds.minX + bounds.maxX) / 2
-    const sourceCenterY = (bounds.minY + bounds.maxY) / 2
-    const canvasCenterX = width / 2
-    const canvasCenterY = height * 0.46 + floatY
+    const sourceFitBounds = { ...bounds }
+    const sourceLeftShoulder = poseLandmarks[11]
+    const sourceRightShoulder = poseLandmarks[12]
+    if (sourceLeftShoulder && sourceRightShoulder) {
+      const sourceShoulderDistance = Math.hypot(
+        sourceRightShoulder.x - sourceLeftShoulder.x,
+        sourceRightShoulder.y - sourceLeftShoulder.y,
+      )
+      const sourceShoulderCenter = pointBetween(sourceLeftShoulder, sourceRightShoulder, 0.5)
+      const sourceHeadRadius = sourceShoulderDistance * 0.42
+      const sourceHeadCenterY = sourceShoulderCenter.y - sourceShoulderDistance * 0.85
+      sourceFitBounds.minX = Math.min(sourceFitBounds.minX, sourceShoulderCenter.x - sourceHeadRadius)
+      sourceFitBounds.maxX = Math.max(sourceFitBounds.maxX, sourceShoulderCenter.x + sourceHeadRadius)
+      sourceFitBounds.minY = Math.min(sourceFitBounds.minY, sourceHeadCenterY - sourceHeadRadius)
+      sourceFitBounds.maxY = Math.max(sourceFitBounds.maxY, sourceHeadCenterY + sourceHeadRadius)
+    }
+
+    const paddingX = 44
+    const paddingTop = 74
+    const paddingBottom = 42
+    const drawableWidth = width - paddingX * 2
+    const drawableHeight = height - paddingTop - paddingBottom
+    const sourceWidth = Math.max(sourceFitBounds.maxX - sourceFitBounds.minX, 0.12)
+    const sourceHeight = Math.max(sourceFitBounds.maxY - sourceFitBounds.minY, 0.12)
+    const scale = Math.min(drawableWidth / sourceWidth, drawableHeight / sourceHeight)
+    const drawLeft = paddingX + Math.max(0, (drawableWidth - sourceWidth * scale) / 2)
 
     const transform = (point: Landmark): CanvasPoint => ({
-      x: canvasCenterX + (point.x - sourceCenterX) * scale,
-      y: canvasCenterY + (point.y - sourceCenterY) * scale,
+      x: drawLeft + (point.x - sourceFitBounds.minX) * scale,
+      y: paddingTop + (point.y - sourceFitBounds.minY) * scale + floatY,
     })
 
     const pose = mapLandmarks(frame.pose, transform)
@@ -608,7 +630,7 @@ export function AvatarCanvas({
       : Math.min(width, height) * 0.24
     const shoulderCenter = hasShoulders
       ? pointBetween(leftShoulder!, rightShoulder!, 0.5)
-      : { x: canvasCenterX, y: canvasCenterY + shoulderDistance * 0.2 }
+      : { x: width / 2, y: paddingTop + drawableHeight / 2 + floatY + shoulderDistance * 0.2 }
     const headCenter = { x: shoulderCenter.x, y: shoulderCenter.y - shoulderDistance * 0.85 }
     const headRadius = Math.max(28, Math.min(58, shoulderDistance * 0.38))
     const outlineColor = "#d64545"
@@ -705,10 +727,13 @@ export function AvatarCanvas({
           }
 
           setCurrentFrame(frameIndexRef.current)
+          onFrameChange?.(frameIndexRef.current)
         }
 
         const currentIdx = frameIndexRef.current
-        const nextIdx = (currentIdx + 1) % framesToUse.length
+        const nextIdx = hasValidSignData
+          ? Math.min(currentIdx + 1, framesToUse.length - 1)
+          : (currentIdx + 1) % framesToUse.length
         const progress = (timestamp - lastFrameTimeRef.current) / frameDuration
         const currentFrameData = framesToUse[currentIdx]
         const nextFrameData = framesToUse[nextIdx]
@@ -749,7 +774,7 @@ export function AvatarCanvas({
     return () => {
       if (animationRef.current) cancelAnimationFrame(animationRef.current)
     }
-  }, [signData, isPlaying, showIdle, drawAvatar, interpolateFrames, onPlaybackComplete])
+  }, [signData, isPlaying, showIdle, drawAvatar, interpolateFrames, onFrameChange, onPlaybackComplete])
 
   return (
     <motion.div
@@ -771,20 +796,6 @@ export function AvatarCanvas({
         aria-label={signData ? `Avatar performing sign for: ${signData.word}` : "Avatar idle"}
         role="img"
       />
-      {signData && isPlaying && (
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1">
-          {signData.frames.slice(0, Math.min(signData.frames.length, 20)).map((_, idx) => (
-            <div
-              key={idx}
-              className={`h-2 w-2 rounded-full transition-colors ${
-                Math.floor(currentFrame / Math.ceil(signData.frames.length / 20)) === idx
-                  ? "bg-primary"
-                  : "bg-muted-foreground/30"
-              }`}
-            />
-          ))}
-        </div>
-      )}
     </motion.div>
   )
 }

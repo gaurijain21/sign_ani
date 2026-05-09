@@ -5,14 +5,12 @@ import { motion, AnimatePresence } from "framer-motion"
 import {
   AlertCircle,
   BookOpen,
-  Database,
   Github,
   Hand,
   Info,
   Loader2,
   Pause,
   Play,
-  RotateCcw,
   Search,
   SkipBack,
   SkipForward,
@@ -25,9 +23,10 @@ import { Textarea } from "@/components/ui/textarea"
 import {
   fetchSignAnimation,
   loadSignDictionary,
-  parseSentenceToQueue,
+  resolveSentenceWithAI,
 } from "@/lib/signDictionary"
-import type { PlaybackQueueItem, SignData, SignDictionaryEntry } from "@/lib/types"
+import { buildSentenceAnimation, type SentenceAnimationResult } from "@/lib/sentenceAnimation"
+import type { MissingWordReplacement, PlaybackQueueItem, SignData, SignDictionaryEntry } from "@/lib/types"
 
 const DEFAULT_SENTENCE = "book drink computer"
 
@@ -46,24 +45,27 @@ function chipClass(status: PlaybackQueueItem["status"], active: boolean) {
 export default function Home() {
   const [sentence, setSentence] = useState(DEFAULT_SENTENCE)
   const [dictionary, setDictionary] = useState<SignDictionaryEntry[]>([])
-  const [dictionarySource, setDictionarySource] = useState<"firebase" | "local">("local")
   const [dictionaryLoading, setDictionaryLoading] = useState(true)
   const [dictionaryError, setDictionaryError] = useState<string | null>(null)
   const [queue, setQueue] = useState<PlaybackQueueItem[]>([])
-  const [currentIndex, setCurrentIndex] = useState(0)
   const [currentSignData, setCurrentSignData] = useState<SignData | null>(null)
+  const [sentenceAnimation, setSentenceAnimation] = useState<SentenceAnimationResult | null>(null)
   const [isPlaying, setIsPlaying] = useState(false)
   const [isSignLoading, setIsSignLoading] = useState(false)
+  const [isResolvingWords, setIsResolvingWords] = useState(false)
   const [playbackError, setPlaybackError] = useState<string | null>(null)
+  const [playbackVersion, setPlaybackVersion] = useState(0)
   const [showSkippedWords, setShowSkippedWords] = useState(false)
   const [showInfo, setShowInfo] = useState(false)
   const [dictionarySearch, setDictionarySearch] = useState("")
+  const [aiReplacements, setAiReplacements] = useState<MissingWordReplacement[]>([])
+  const [aiUnresolved, setAiUnresolved] = useState<string[]>([])
+  const [aiUnavailable, setAiUnavailable] = useState(false)
 
   useEffect(() => {
     loadSignDictionary()
-      .then(({ entries, source }) => {
+      .then(({ entries }) => {
         setDictionary(entries)
-        setDictionarySource(source)
       })
       .catch((error) => {
         setDictionaryError(error instanceof Error ? error.message : "Unable to load sign dictionary.")
@@ -73,10 +75,8 @@ export default function Home() {
 
   const stats = useMemo(() => {
     const total = dictionary.length
-    const available = dictionary.filter((entry) => entry.available).length
-    const phrases = dictionary.filter((entry) => entry.type === "phrase").length
     const categories = new Set(dictionary.map((entry) => entry.category).filter(Boolean)).size
-    return { total, available, phrases, categories }
+    return { total, categories }
   }, [dictionary])
 
   const filteredDictionary = useMemo(() => {
@@ -99,38 +99,89 @@ export default function Home() {
     [queue],
   )
 
-  const currentItem = playableQueue[currentIndex] || null
+  const buildQueue = useCallback(async () => {
+    setIsResolvingWords(true)
+    setAiReplacements([])
+    setAiUnresolved([])
+    setAiUnavailable(false)
 
-  const buildQueue = useCallback(() => {
-    const parsed = parseSentenceToQueue(sentence, dictionary, showSkippedWords)
-    setQueue(parsed)
-    setCurrentIndex(0)
+    const resolved = await resolveSentenceWithAI(sentence, dictionary, showSkippedWords)
+    setQueue(resolved.queue)
+    setAiReplacements(resolved.replacements)
+    setAiUnresolved(resolved.unresolved)
+    setAiUnavailable(resolved.aiUnavailable)
     setCurrentSignData(null)
+    setSentenceAnimation(null)
     setPlaybackError(null)
-    setIsPlaying(parsed.some((item) => item.status === "available"))
+    setPlaybackVersion((version) => version + 1)
+    setIsPlaying(resolved.queue.some((item) => item.status === "available"))
+    setIsResolvingWords(false)
   }, [sentence, dictionary, showSkippedWords])
 
   useEffect(() => {
     if (dictionary.length && queue.length === 0) {
-      buildQueue()
+      void buildQueue()
     }
   }, [buildQueue, dictionary.length, queue.length])
 
   useEffect(() => {
-    if (!isPlaying || !currentItem?.entry) return
+    if (!isPlaying) return
+    if (currentSignData?.frames.length && sentenceAnimation) return
+    if (playableQueue.length === 0) {
+      setCurrentSignData(null)
+      setSentenceAnimation(null)
+      return
+    }
 
     let cancelled = false
     setIsSignLoading(true)
     setPlaybackError(null)
 
-    fetchSignAnimation(currentItem.entry)
-      .then((data) => {
-        if (!cancelled) setCurrentSignData(data)
+    Promise.allSettled(playableQueue.map((item) => fetchSignAnimation(item.entry!)))
+      .then((results) => {
+        if (cancelled) return
+
+        const animationMap = new Map<string, SignData>()
+        const failedWords: string[] = []
+
+        results.forEach((result, index) => {
+          const word = playableQueue[index].gloss
+          if (result.status === "fulfilled") {
+            animationMap.set(word, result.value)
+          } else {
+            failedWords.push(word)
+          }
+        })
+
+        const words = playableQueue.map((item) => item.gloss)
+        const built = buildSentenceAnimation(words, animationMap, { debug: true })
+        const missingWords = [...built.missingWords, ...failedWords.filter((word) => !built.missingWords.includes(word))]
+        const firstLoadedAnimation = results.find(
+          (result): result is PromiseFulfilledResult<SignData> => result.status === "fulfilled",
+        )?.value
+
+        setSentenceAnimation({ ...built, missingWords })
+        if (!built.frames.length) {
+          setCurrentSignData(null)
+          setPlaybackError("Unable to build a playable sentence animation.")
+          setIsPlaying(false)
+          return
+        }
+
+        setCurrentSignData({
+          word: sentence.trim() || words.join(" "),
+          fps: firstLoadedAnimation?.fps || 30,
+          frames: built.frames,
+          source: "wlasl",
+          wordTimeline: built.wordTimeline,
+        })
       })
       .catch((error) => {
         if (!cancelled) {
           setCurrentSignData(null)
-          setPlaybackError(error instanceof Error ? error.message : `Unable to load ${currentItem.gloss}.`)
+          setSentenceAnimation(null)
+          setPlaybackError(error instanceof Error ? error.message : "Unable to load sentence animation.")
+          setIsPlaying(false)
         }
       })
       .finally(() => {
@@ -140,31 +191,23 @@ export default function Home() {
     return () => {
       cancelled = true
     }
-  }, [currentItem, isPlaying])
+  }, [currentSignData, isPlaying, playableQueue, sentence, sentenceAnimation])
 
   const goToNext = useCallback(() => {
-    setCurrentIndex((index) => {
-      if (index >= playableQueue.length - 1) {
-        setIsPlaying(false)
-        return index
-      }
-      return index + 1
-    })
-  }, [playableQueue.length])
+    setIsPlaying(false)
+  }, [])
 
   const goToPrevious = useCallback(() => {
-    setCurrentIndex((index) => Math.max(0, index - 1))
+    setPlaybackVersion((version) => version + 1)
     setIsPlaying(true)
   }, [])
 
-  const replaySentence = useCallback(() => {
-    setCurrentIndex(0)
-    setCurrentSignData(null)
-    setPlaybackError(null)
+  const handleSentenceComplete = useCallback(() => {
+    setPlaybackVersion((version) => version + 1)
     setIsPlaying(playableQueue.length > 0)
   }, [playableQueue.length])
 
-  const currentDisplayWord = currentItem?.gloss || sentence
+  const currentDisplayWord = currentSignData?.word || sentence
 
   return (
     <div className="min-h-screen bg-background">
@@ -229,10 +272,10 @@ export default function Home() {
             <section className="order-1 space-y-4">
               <div>
                 <h2 className="text-3xl lg:text-4xl font-bold text-foreground text-balance">
-                  Visualize a sentence as sequential signs
+                  Visualize a sentence as one blended sign timeline
                 </h2>
                 <p className="text-muted-foreground mt-2">
-                  Longest phrases are matched first, then individual words. Missing signs are shown clearly.
+                  Longest phrases are matched first, then word animations are trimmed and stitched into one continuous playback.
                 </p>
               </div>
 
@@ -244,8 +287,8 @@ export default function Home() {
                   className="min-h-28 text-base"
                 />
                 <div className="flex flex-wrap items-center gap-3">
-                  <Button onClick={buildQueue} disabled={dictionaryLoading || !sentence.trim()}>
-                    {dictionaryLoading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
+                  <Button onClick={() => void buildQueue()} disabled={dictionaryLoading || isResolvingWords || !sentence.trim()}>
+                    {dictionaryLoading || isResolvingWords ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
                     Translate / Visualize Sentence
                   </Button>
                   <label className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -259,23 +302,38 @@ export default function Home() {
             <section className="order-3 space-y-3">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-semibold text-foreground">Parsed playback queue</h3>
-                <span className="text-xs text-muted-foreground">{playableQueue.length} playable signs</span>
+                <span className="text-xs text-muted-foreground">{playableQueue.length} signs in timeline</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {queue.length === 0 ? (
                   <p className="text-sm text-muted-foreground">Enter a sentence to build a playback queue.</p>
                 ) : (
                   queue.map((item) => {
-                    const active = currentItem?.id === item.id
+                    const active = Boolean(sentenceAnimation?.wordsUsed.includes(item.gloss))
+                    const label = item.replacement ? `${item.text} -> ${item.gloss}` : item.gloss
                     return (
                       <span key={item.id} className={chipClass(item.status, active)} title={item.reason}>
-                        {item.gloss}
+                        {label}
                         <span className="ml-1 opacity-70">({item.type})</span>
                       </span>
                     )
                   })
                 )}
               </div>
+              {aiReplacements.length ? (
+                <div className="space-y-1 text-sm text-green-700 dark:text-green-300">
+                  {aiReplacements.map((replacement) => (
+                    <p key={`${replacement.originalWord}-${replacement.replacementWord}`}>
+                      AI dictionary fallback: {replacement.originalWord}{" -> "}{replacement.replacementWord}
+                    </p>
+                  ))}
+                </div>
+              ) : null}
+              {aiUnavailable && aiUnresolved.length ? (
+                <p className="text-sm text-muted-foreground">
+                  AI fallback unavailable; missing words use the standard unavailable state.
+                </p>
+              ) : null}
               {queue.some((item) => item.status === "unavailable") && (
                 <div className="space-y-1 text-sm text-red-600 dark:text-red-400">
                   {queue
@@ -291,18 +349,6 @@ export default function Home() {
               <div className="text-center p-3 rounded-xl bg-secondary/50">
                 <div className="text-xl font-bold text-primary">{stats.total.toLocaleString()}</div>
                 <div className="text-xs text-muted-foreground">Dictionary Signs</div>
-              </div>
-              <div className="text-center p-3 rounded-xl bg-secondary/50">
-                <div className="text-xl font-bold text-primary">{stats.available.toLocaleString()}</div>
-                <div className="text-xs text-muted-foreground">Processed</div>
-              </div>
-              <div className="text-center p-3 rounded-xl bg-secondary/50">
-                <div className="text-xl font-bold text-primary">{stats.phrases.toLocaleString()}</div>
-                <div className="text-xs text-muted-foreground">Phrases</div>
-              </div>
-              <div className="text-center p-3 rounded-xl bg-secondary/50">
-                <div className="text-xl font-bold text-primary capitalize">{dictionarySource}</div>
-                <div className="text-xs text-muted-foreground">Dictionary Source</div>
               </div>
             </section>
 
@@ -360,34 +406,28 @@ export default function Home() {
                 searchedWord={currentDisplayWord}
                 isPlaybackActive={isPlaying}
                 signStatus={playbackError ? null : currentSignData ? "available" : null}
-                onPlaybackComplete={goToNext}
-                playbackKey={currentItem?.id}
+                onPlaybackComplete={handleSentenceComplete}
+                playbackKey={`${playbackVersion}-${currentSignData?.frames.length || 0}`}
               />
             </div>
 
             <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-              <Button variant="outline" size="icon" onClick={goToPrevious} disabled={currentIndex === 0}>
+              <Button variant="outline" size="icon" onClick={goToPrevious} disabled={playableQueue.length === 0}>
                 <SkipBack className="w-4 h-4" />
               </Button>
               <Button variant="outline" onClick={() => setIsPlaying((value) => !value)} disabled={playableQueue.length === 0}>
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                 {isPlaying ? "Pause" : "Play"}
               </Button>
-              <Button variant="outline" size="icon" onClick={goToNext} disabled={currentIndex >= playableQueue.length - 1}>
+              <Button variant="outline" size="icon" onClick={goToNext} disabled={!isPlaying}>
                 <SkipForward className="w-4 h-4" />
               </Button>
-              <Button variant="outline" onClick={replaySentence} disabled={playableQueue.length === 0}>
-                <RotateCcw className="w-4 h-4" />
-                Replay sentence
-              </Button>
             </div>
-
-            <div className="mt-3 flex items-center justify-center gap-2 text-sm text-muted-foreground">
-              <Database className="w-4 h-4" />
-              <span>
-                Current sign: {currentItem?.gloss || "none"} {currentItem ? `(${currentIndex + 1}/${playableQueue.length})` : ""}
-              </span>
-            </div>
+            {sentenceAnimation?.missingWords.length ? (
+              <div className="mt-2 text-center text-sm text-red-600 dark:text-red-400">
+                Missing from sentence timeline: {sentenceAnimation.missingWords.join(", ")}
+              </div>
+            ) : null}
           </motion.div>
         </div>
       </main>

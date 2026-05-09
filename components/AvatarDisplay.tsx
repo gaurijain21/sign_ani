@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { RefreshCw, AlertCircle, Loader2, Video, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -30,9 +30,18 @@ export function AvatarDisplay({
 }: AvatarDisplayProps) {
   const [isPlaying, setIsPlaying] = useState(true)
   const [playCount, setPlayCount] = useState(0)
+  const [currentFrame, setCurrentFrame] = useState(0)
+  const [isComplete, setIsComplete] = useState(false)
+
+  useEffect(() => {
+    setCurrentFrame(0)
+    setIsComplete(false)
+  }, [playbackKey, signData])
 
   const handleReplay = useCallback(() => {
     setIsPlaying(false)
+    setCurrentFrame(0)
+    setIsComplete(false)
     setTimeout(() => {
       setIsPlaying(true)
       setPlayCount(prev => prev + 1)
@@ -40,10 +49,23 @@ export function AvatarDisplay({
   }, [])
 
   const handlePlaybackComplete = useCallback(() => {
+    setIsComplete(true)
     onPlaybackComplete?.()
   }, [onPlaybackComplete])
 
   const playableSignData = signData?.frames?.length ? signData : null
+  const activeDisplayWord = useMemo(() => {
+    if (!playableSignData) return null
+    if (isComplete) return ""
+
+    const timeline = playableSignData.wordTimeline || []
+    if (!timeline.length) return playableSignData.word
+
+    const activeWord = timeline.find(
+      (item) => currentFrame >= item.startFrame && currentFrame <= item.endFrame,
+    )
+    return activeWord?.displayWord || timeline[0]?.displayWord || playableSignData.word
+  }, [currentFrame, isComplete, playableSignData])
 
   // Get appropriate error message based on status
   const getErrorContent = () => {
@@ -94,15 +116,19 @@ export function AvatarDisplay({
         <div>
           <AnimatePresence mode="wait">
             {playableSignData ? (
-              <motion.h2
-                key={playableSignData.word}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                className="text-2xl font-bold text-foreground capitalize"
-              >
-                {playableSignData.word}
-              </motion.h2>
+              activeDisplayWord ? (
+                <motion.div
+                  key={activeDisplayWord}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                >
+                  <p className="text-sm font-medium text-muted-foreground">Translating:</p>
+                  <h2 className="text-2xl font-bold text-foreground capitalize">
+                    {activeDisplayWord}
+                  </h2>
+                </motion.div>
+              ) : null
             ) : searchedWord && !isLoading ? (
               <motion.h2
                 key="not-found"
@@ -123,11 +149,6 @@ export function AvatarDisplay({
               </motion.h2>
             )}
           </AnimatePresence>
-          {playableSignData && (
-            <p className="text-sm text-muted-foreground">
-              {playableSignData.frames.length} frames at {playableSignData.fps} FPS
-            </p>
-          )}
         </div>
         
         {playableSignData && (
@@ -199,6 +220,7 @@ export function AvatarDisplay({
                 signData={playableSignData}
                 isPlaying={isPlaying && isPlaybackActive}
                 onPlaybackComplete={handlePlaybackComplete}
+                onFrameChange={setCurrentFrame}
                 showIdle={true}
               />
             </motion.div>

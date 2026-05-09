@@ -15,6 +15,23 @@ export interface SignData {
   fps: number
   frames: Frame[]
   source?: "wlasl" | "mock"
+  wordTimeline?: WordTimelineItem[]
+}
+
+export interface WordTimelineItem {
+  word: string
+  displayWord: string
+  startFrame: number
+  endFrame: number
+}
+
+export type MissingWordConfidence = "low" | "medium" | "high"
+
+export interface MissingWordReplacement {
+  originalWord: string
+  replacementWord: string
+  confidence: MissingWordConfidence
+  reason: string
 }
 
 export type DictionaryEntryType = "word" | "phrase"
@@ -42,6 +59,7 @@ export interface PlaybackQueueItem {
   status: PlaybackQueueItemStatus
   entry?: SignDictionaryEntry
   reason?: string
+  replacement?: MissingWordReplacement
 }
 
 export interface SignMetadata {
