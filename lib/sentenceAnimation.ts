@@ -346,6 +346,41 @@ function toDisplayWord(word: string): string {
     .join(" ")
 }
 
+function appendWordTimeline(
+  wordTimeline: WordTimelineItem[],
+  animation: SignData,
+  word: string,
+  startFrame: number,
+  endFrame: number,
+  trim: TrimResult,
+) {
+  if (animation.source === "fingerspelling" && animation.wordTimeline?.length) {
+    animation.wordTimeline.forEach((item) => {
+      const clippedStart = Math.max(item.startFrame, trim.startIndex)
+      const clippedEnd = Math.min(item.endFrame, trim.endIndex)
+      if (clippedEnd < clippedStart) return
+
+      wordTimeline.push({
+        word: item.word,
+        // Fingerspelling animations carry an inner letter timeline. Preserve it
+        // so the header can show G -> A -> U instead of one long "Gauri" label.
+        displayWord: item.displayWord,
+        startFrame: startFrame + clippedStart - trim.startIndex,
+        endFrame: startFrame + clippedEnd - trim.startIndex,
+      })
+    })
+
+    return
+  }
+
+  wordTimeline.push({
+    word,
+    displayWord: toDisplayWord(word),
+    startFrame,
+    endFrame,
+  })
+}
+
 export function buildSentenceAnimation(
   words: string[],
   wordAnimationMap: Record<string, SignData | undefined> | Map<string, SignData>,
@@ -369,7 +404,19 @@ export function buildSentenceAnimation(
       return
     }
 
-    const trim = trimIdleFrames(animation.frames, resolved)
+    const trim = animation.source === "fingerspelling"
+      ? {
+          frames: animation.frames.map(cloneFrame),
+          startIndex: 0,
+          endIndex: Math.max(0, animation.frames.length - 1),
+          originalFrameCount: animation.frames.length,
+          trimmedFrameCount: animation.frames.length,
+          trimApplied: false,
+          confidence: "low" as const,
+          averageMotion: 0,
+          maxMotion: 0,
+        }
+      : trimIdleFrames(animation.frames, resolved)
     trimSummary[word] = trim
     if (resolved.debug) logTrim(word, trim)
 
@@ -395,12 +442,7 @@ export function buildSentenceAnimation(
 
     const startFrame = frames.length
     frames.push(...trim.frames.map(cloneFrame))
-    wordTimeline.push({
-      word,
-      displayWord: toDisplayWord(word),
-      startFrame,
-      endFrame: Math.max(startFrame, frames.length - 1),
-    })
+    appendWordTimeline(wordTimeline, animation, word, startFrame, Math.max(startFrame, frames.length - 1), trim)
     wordsUsed.push(word)
   })
 

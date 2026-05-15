@@ -4,14 +4,12 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import {
   AlertCircle,
-  BookOpen,
   Github,
   Hand,
   Info,
   Loader2,
   Pause,
   Play,
-  Search,
   SkipBack,
   SkipForward,
 } from "lucide-react"
@@ -21,6 +19,7 @@ import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import {
+  fetchFingerspellingAnimation,
   fetchSignAnimation,
   loadSignDictionary,
   resolveSentenceWithAI,
@@ -28,7 +27,7 @@ import {
 import { buildSentenceAnimation, type SentenceAnimationResult } from "@/lib/sentenceAnimation"
 import type { MissingWordReplacement, PlaybackQueueItem, SignData, SignDictionaryEntry } from "@/lib/types"
 
-const DEFAULT_SENTENCE = "book drink computer"
+const DEFAULT_SENTENCE = "Type a word here"
 
 function chipClass(status: PlaybackQueueItem["status"], active: boolean) {
   const base = "rounded-full border px-3 py-1 text-xs font-medium transition-colors"
@@ -57,7 +56,6 @@ export default function Home() {
   const [playbackVersion, setPlaybackVersion] = useState(0)
   const [showSkippedWords, setShowSkippedWords] = useState(false)
   const [showInfo, setShowInfo] = useState(false)
-  const [dictionarySearch, setDictionarySearch] = useState("")
   const [aiReplacements, setAiReplacements] = useState<MissingWordReplacement[]>([])
   const [aiUnresolved, setAiUnresolved] = useState<string[]>([])
   const [aiUnavailable, setAiUnavailable] = useState(false)
@@ -73,29 +71,8 @@ export default function Home() {
       .finally(() => setDictionaryLoading(false))
   }, [])
 
-  const stats = useMemo(() => {
-    const total = dictionary.length
-    const categories = new Set(dictionary.map((entry) => entry.category).filter(Boolean)).size
-    return { total, categories }
-  }, [dictionary])
-
-  const filteredDictionary = useMemo(() => {
-    const query = dictionarySearch.toLowerCase().trim()
-    return dictionary
-      .filter((entry) => {
-        if (!query) return true
-        return (
-          entry.gloss.includes(query) ||
-          entry.type.includes(query) ||
-          entry.source.toLowerCase().includes(query) ||
-          (entry.category || "").toLowerCase().includes(query)
-        )
-      })
-      .slice(0, 80)
-  }, [dictionary, dictionarySearch])
-
   const playableQueue = useMemo(
-    () => queue.filter((item) => item.status === "available" && item.entry),
+    () => queue.filter((item) => item.status === "available" && (item.entry || item.type === "fingerspell")),
     [queue],
   )
 
@@ -137,7 +114,13 @@ export default function Home() {
     setIsSignLoading(true)
     setPlaybackError(null)
 
-    Promise.allSettled(playableQueue.map((item) => fetchSignAnimation(item.entry!)))
+    Promise.allSettled(
+      playableQueue.map((item) =>
+        item.type === "fingerspell"
+          ? fetchFingerspellingAnimation(item.text, item.fingerspellLetters || [])
+          : fetchSignAnimation(item.entry!),
+      ),
+    )
       .then((results) => {
         if (cancelled) return
 
@@ -174,6 +157,11 @@ export default function Home() {
           frames: built.frames,
           source: "wlasl",
           wordTimeline: built.wordTimeline,
+          metadata: {
+            fingerspelledWords: playableQueue
+              .filter((item) => item.type === "fingerspell")
+              .map((item) => item.text),
+          },
         })
       })
       .catch((error) => {
@@ -223,8 +211,8 @@ export default function Home() {
                 <Hand className="w-5 h-5 text-primary-foreground" />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-foreground">SignViz</h1>
-                <p className="text-xs text-muted-foreground">Sentence-to-Sign Visualization</p>
+                <h1 className="text-xl font-bold text-foreground">SignWiz</h1>
+                <p className="text-xs text-muted-foreground">Learn and understand sign language effortlessly.</p>
               </div>
             </motion.div>
 
@@ -275,7 +263,7 @@ export default function Home() {
                   Visualize a sentence as one blended sign timeline
                 </h2>
                 <p className="text-muted-foreground mt-2">
-                  Longest phrases are matched first, then word animations are trimmed and stitched into one continuous playback.
+                  A simple and accessible platform helping kids, schools, and communities learn sign language through guided tutorials and live animated gestures.
                 </p>
               </div>
 
@@ -289,17 +277,17 @@ export default function Home() {
                 <div className="flex flex-wrap items-center gap-3">
                   <Button onClick={() => void buildQueue()} disabled={dictionaryLoading || isResolvingWords || !sentence.trim()}>
                     {dictionaryLoading || isResolvingWords ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
-                    Translate / Visualize Sentence
+                    Translate
                   </Button>
-                  <label className="flex items-center gap-2 text-sm text-muted-foreground">
+                  {/* <label className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Switch checked={showSkippedWords} onCheckedChange={setShowSkippedWords} />
                     Show skipped words
-                  </label>
+                  </label> */}
                 </div>
               </div>
             </section>
 
-            <section className="order-3 space-y-3">
+            {/* <section className="order-3 space-y-3">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="font-semibold text-foreground">Parsed playback queue</h3>
                 <span className="text-xs text-muted-foreground">{playableQueue.length} signs in timeline</span>
@@ -343,54 +331,22 @@ export default function Home() {
                     ))}
                 </div>
               )}
-            </section>
+            </section> */}
 
-            <section className="order-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+            {/* <section className="order-4 grid grid-cols-2 md:grid-cols-4 gap-3">
               <div className="text-center p-3 rounded-xl bg-secondary/50">
                 <div className="text-xl font-bold text-primary">{stats.total.toLocaleString()}</div>
                 <div className="text-xs text-muted-foreground">Dictionary Signs</div>
               </div>
-            </section>
+            </section> */}
 
-            {dictionaryError && (
+            {/* {dictionaryError && (
               <div className="flex items-start gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm">
                 <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
                 <p className="text-red-700 dark:text-red-300">{dictionaryError}</p>
               </div>
-            )}
+            )} */}
 
-            <section className="order-5 space-y-3">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="font-semibold text-foreground flex items-center gap-2">
-                  <BookOpen className="w-4 h-4" />
-                  Sign Dictionary
-                </h3>
-                <span className="text-xs text-muted-foreground">{stats.categories || 1} categories</span>
-              </div>
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input
-                  value={dictionarySearch}
-                  onChange={(event) => setDictionarySearch(event.target.value)}
-                  placeholder="Search signs, source, category..."
-                  className="w-full rounded-md border border-input bg-background py-2 pl-9 pr-3 text-sm"
-                />
-              </div>
-              <div className="max-h-72 overflow-auto rounded-xl border border-border">
-                {filteredDictionary.map((entry) => (
-                  <div key={`${entry.type}-${entry.gloss}`} className="grid grid-cols-[1fr_auto_auto] gap-3 border-b border-border px-3 py-2 text-sm last:border-b-0">
-                    <div>
-                      <p className="font-medium text-foreground">{entry.gloss}</p>
-                      <p className="text-xs text-muted-foreground">{entry.category || "uncategorized"} · {entry.source}</p>
-                    </div>
-                    <span className="text-xs text-muted-foreground self-center">{entry.type}</span>
-                    <span className={entry.available ? "text-xs text-green-600 self-center" : "text-xs text-red-600 self-center"}>
-                      {entry.available ? "processed" : "not processed"}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </section>
           </div>
 
           <motion.div
@@ -431,6 +387,9 @@ export default function Home() {
           </motion.div>
         </div>
       </main>
+      <footer className="px-4 pb-6 text-center text-xs text-muted-foreground">
+        AI can make mistakes. Please verify important information.
+      </footer>
     </div>
   )
 }

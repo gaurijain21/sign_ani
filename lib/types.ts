@@ -14,8 +14,9 @@ export interface SignData {
   word: string
   fps: number
   frames: Frame[]
-  source?: "wlasl" | "mock"
+  source?: "wlasl" | "mock" | "fingerspelling"
   wordTimeline?: WordTimelineItem[]
+  metadata?: Record<string, unknown>
 }
 
 export interface WordTimelineItem {
@@ -50,16 +51,20 @@ export interface SignDictionaryEntry {
 }
 
 export type PlaybackQueueItemStatus = "available" | "skipped" | "unavailable"
+export type PlaybackQueueItemType = DictionaryEntryType | "filler" | "fingerspell"
+export type PlaybackResolutionType = "exact" | "synonym" | "ai" | "fingerspell"
 
 export interface PlaybackQueueItem {
   id: string
   text: string
   gloss: string
-  type: DictionaryEntryType | "filler"
+  type: PlaybackQueueItemType
   status: PlaybackQueueItemStatus
   entry?: SignDictionaryEntry
   reason?: string
   replacement?: MissingWordReplacement
+  resolutionType?: PlaybackResolutionType
+  fingerspellLetters?: string[]
 }
 
 export interface SignMetadata {

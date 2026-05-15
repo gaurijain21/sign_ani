@@ -38,3 +38,4 @@ MSASL/
 # Logs
 *.log
 .vercel
+.env.local

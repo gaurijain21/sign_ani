@@ -7,9 +7,9 @@ import './globals.css'
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: 'SignViz - ASL Word Visualization',
-  description: 'A research demo for visualizing American Sign Language signs using landmark-based animation. Educational purposes only.',
-  generator: 'v0.app',
+  title: 'SignWiz - Learn and understand sign language effortlessly.',
+  description: 'A simple and accessible platform helping kids, schools, and communities learn sign language through guided tutorials and live animated gestures.',
+  generator: '',
   icons: {
     icon: [
       {

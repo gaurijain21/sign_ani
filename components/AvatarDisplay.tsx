@@ -54,17 +54,25 @@ export function AvatarDisplay({
   }, [onPlaybackComplete])
 
   const playableSignData = signData?.frames?.length ? signData : null
-  const activeDisplayWord = useMemo(() => {
+  const activeDisplay = useMemo(() => {
     if (!playableSignData) return null
-    if (isComplete) return ""
+    if (isComplete) return { primary: "", subtitle: "" }
 
     const timeline = playableSignData.wordTimeline || []
-    if (!timeline.length) return playableSignData.word
+    if (!timeline.length) return { primary: playableSignData.word, subtitle: "" }
 
+    // Fingerspelling playback preserves a per-letter timeline, so this header
+    // can show the active letter while regular signs continue to show the word.
     const activeWord = timeline.find(
       (item) => currentFrame >= item.startFrame && currentFrame <= item.endFrame,
     )
-    return activeWord?.displayWord || timeline[0]?.displayWord || playableSignData.word
+    const primary = activeWord?.displayWord || timeline[0]?.displayWord || playableSignData.word
+    const fingerspelledWords = playableSignData.metadata?.fingerspelledWords
+    const subtitle = Array.isArray(fingerspelledWords) && primary.length === 1
+      ? `Fingerspelling: ${fingerspelledWords.join(", ")}`
+      : ""
+
+    return { primary, subtitle }
   }, [currentFrame, isComplete, playableSignData])
 
   // Get appropriate error message based on status
@@ -116,17 +124,20 @@ export function AvatarDisplay({
         <div>
           <AnimatePresence mode="wait">
             {playableSignData ? (
-              activeDisplayWord ? (
+              activeDisplay?.primary ? (
                 <motion.div
-                  key={activeDisplayWord}
+                  key={activeDisplay.primary}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
                 >
                   <p className="text-sm font-medium text-muted-foreground">Translating:</p>
                   <h2 className="text-2xl font-bold text-foreground capitalize">
-                    {activeDisplayWord}
+                    {activeDisplay.primary}
                   </h2>
+                  {activeDisplay.subtitle ? (
+                    <p className="text-xs text-muted-foreground">{activeDisplay.subtitle}</p>
+                  ) : null}
                 </motion.div>
               ) : null
             ) : searchedWord && !isLoading ? (
