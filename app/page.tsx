@@ -509,7 +509,7 @@ export default function Home() {
             <section className="order-2 space-y-4 md:order-1">
               <div>
                 <h2 className="hidden text-3xl font-bold text-foreground text-balance md:block lg:text-4xl">
-                  Visualize a sentence as one blended sign timeline
+                  Learn and understand sign language effortlessly.
                 </h2>
                 <p className="mt-2 hidden text-muted-foreground md:block">
                   A simple and accessible platform helping kids, schools, and communities learn sign language through guided tutorials and live animated gestures.
