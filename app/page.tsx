@@ -28,6 +28,7 @@ import { buildSentenceAnimation, type SentenceAnimationResult } from "@/lib/sent
 import type { MissingWordReplacement, PlaybackQueueItem, SignData, SignDictionaryEntry } from "@/lib/types"
 
 const DEFAULT_SENTENCE = "Type a word here"
+type TranslationMode = "live" | "learning"
 
 function chipClass(status: PlaybackQueueItem["status"], active: boolean) {
   const base = "rounded-full border px-3 py-1 text-xs font-medium transition-colors"
@@ -43,6 +44,10 @@ function chipClass(status: PlaybackQueueItem["status"], active: boolean) {
 
 export default function Home() {
   const [sentence, setSentence] = useState(DEFAULT_SENTENCE)
+  const [mode, setMode] = useState<TranslationMode>("live")
+  const [currentLearningWords, setCurrentLearningWords] = useState<string[]>([])
+  const [learningHistory, setLearningHistory] = useState<string[][]>([])
+  const [learningHistoryIndex, setLearningHistoryIndex] = useState(-1)
   const [dictionary, setDictionary] = useState<SignDictionaryEntry[]>([])
   const [dictionaryLoading, setDictionaryLoading] = useState(true)
   const [dictionaryError, setDictionaryError] = useState<string | null>(null)
@@ -76,13 +81,39 @@ export default function Home() {
     [queue],
   )
 
-  const buildQueue = useCallback(async () => {
+  const originalDictionaryWords = useMemo(
+    () =>
+      dictionary
+        .filter((entry) =>
+          entry.available &&
+          entry.source === "WLASL" &&
+          entry.gloss.trim() &&
+          !entry.jsonPath.includes("/fingerspelling/"),
+        )
+        .map((entry) => entry.gloss),
+    [dictionary],
+  )
+
+  const pickRandomLearningWords = useCallback(() => {
+    const candidates = [...new Set(originalDictionaryWords)]
+    const selected: string[] = []
+
+    while (selected.length < 3 && candidates.length) {
+      const randomIndex = Math.floor(Math.random() * candidates.length)
+      const [word] = candidates.splice(randomIndex, 1)
+      if (word) selected.push(word)
+    }
+
+    return selected
+  }, [originalDictionaryWords])
+
+  const buildQueueForSentence = useCallback(async (input: string) => {
     setIsResolvingWords(true)
     setAiReplacements([])
     setAiUnresolved([])
     setAiUnavailable(false)
 
-    const resolved = await resolveSentenceWithAI(sentence, dictionary, showSkippedWords)
+    const resolved = await resolveSentenceWithAI(input, dictionary, showSkippedWords)
     setQueue(resolved.queue)
     setAiReplacements(resolved.replacements)
     setAiUnresolved(resolved.unresolved)
@@ -93,7 +124,48 @@ export default function Home() {
     setPlaybackVersion((version) => version + 1)
     setIsPlaying(resolved.queue.some((item) => item.status === "available"))
     setIsResolvingWords(false)
-  }, [sentence, dictionary, showSkippedWords])
+  }, [dictionary, showSkippedWords])
+
+  const buildQueue = useCallback(async () => {
+    await buildQueueForSentence(sentence)
+  }, [buildQueueForSentence, sentence])
+
+  const playLearningWords = useCallback(async (words: string[]) => {
+    const learningSentence = words.join(" ")
+    setCurrentLearningWords(words)
+    setSentence(learningSentence)
+    await buildQueueForSentence(learningSentence)
+  }, [buildQueueForSentence])
+
+  const startLearningMode = useCallback(async () => {
+    const words = pickRandomLearningWords()
+    if (!words.length) return
+
+    setMode("learning")
+    setLearningHistory([words])
+    setLearningHistoryIndex(0)
+    await playLearningWords(words)
+  }, [pickRandomLearningWords, playLearningWords])
+
+  const showNextLearningSet = useCallback(async () => {
+    const words = pickRandomLearningWords()
+    if (!words.length) return
+
+    const nextHistory = learningHistory.slice(0, learningHistoryIndex + 1)
+    nextHistory.push(words)
+    setLearningHistory(nextHistory)
+    setLearningHistoryIndex(nextHistory.length - 1)
+    await playLearningWords(words)
+  }, [learningHistory, learningHistoryIndex, pickRandomLearningWords, playLearningWords])
+
+  const showPreviousLearningSet = useCallback(async () => {
+    const previousIndex = learningHistoryIndex - 1
+    const words = learningHistory[previousIndex]
+    if (!words) return
+
+    setLearningHistoryIndex(previousIndex)
+    await playLearningWords(words)
+  }, [learningHistory, learningHistoryIndex, playLearningWords])
 
   useEffect(() => {
     if (dictionary.length && queue.length === 0) {
@@ -265,6 +337,19 @@ export default function Home() {
                 <p className="text-muted-foreground mt-2">
                   A simple and accessible platform helping kids, schools, and communities learn sign language through guided tutorials and live animated gestures.
                 </p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <Button variant={mode === "live" ? "default" : "outline"} onClick={() => setMode("live")}>
+                    Live Translation
+                  </Button>
+                  <Button
+                    variant={mode === "learning" ? "default" : "outline"}
+                    onClick={() => void startLearningMode()}
+                    disabled={dictionaryLoading || isResolvingWords || originalDictionaryWords.length === 0}
+                  >
+                    {dictionaryLoading || isResolvingWords ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
+                    Start Learning
+                  </Button>
+                </div>
               </div>
 
               <div className="space-y-3">
@@ -275,10 +360,29 @@ export default function Home() {
                   className="min-h-28 text-base"
                 />
                 <div className="flex flex-wrap items-center gap-3">
-                  <Button onClick={() => void buildQueue()} disabled={dictionaryLoading || isResolvingWords || !sentence.trim()}>
-                    {dictionaryLoading || isResolvingWords ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
-                    Translate
-                  </Button>
+                  {mode === "live" ? (
+                    <Button onClick={() => void buildQueue()} disabled={dictionaryLoading || isResolvingWords || !sentence.trim()}>
+                      {dictionaryLoading || isResolvingWords ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
+                      Translate
+                    </Button>
+                  ) : (
+                    <>
+                      <Button
+                        variant="outline"
+                        onClick={() => void showPreviousLearningSet()}
+                        disabled={dictionaryLoading || isResolvingWords || learningHistoryIndex <= 0}
+                      >
+                        Back
+                      </Button>
+                      <Button
+                        onClick={() => void showNextLearningSet()}
+                        disabled={dictionaryLoading || isResolvingWords || originalDictionaryWords.length === 0}
+                      >
+                        {isResolvingWords ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
+                        Next
+                      </Button>
+                    </>
+                  )}
                   {/* <label className="flex items-center gap-2 text-sm text-muted-foreground">
                     <Switch checked={showSkippedWords} onCheckedChange={setShowSkippedWords} />
                     Show skipped words
