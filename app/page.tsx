@@ -562,7 +562,7 @@ export default function Home() {
                 <p className="mt-2 hidden text-muted-foreground md:block">
                   A simple and accessible platform helping kids, schools, and communities learn sign language through guided tutorials and live animated gestures.
                 </p>
-                <div className="flex flex-wrap gap-3 md:mt-4">
+                <div className="flex flex-wrap gap-3 md:mt-6 lg:mt-8">
                   <Button variant={mode === "live" ? "default" : "outline"} onClick={handleLiveTranslationClick}>
                     Live Translation
                   </Button>
@@ -577,7 +577,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="space-y-3">
+              <div className="space-y-3 md:mt-6 lg:mt-8">
                 <div className="relative">
                   <Textarea
                     value={sentence}
