@@ -23,7 +23,7 @@ import {
   loadSignDictionary,
   resolveSentenceWithAI,
 } from "@/lib/signDictionary"
-import { getFirebaseDb } from "@/lib/firebase"
+import { getFirebaseDb, logFirebaseAnalyticsEvent } from "@/lib/firebase"
 import { buildSentenceAnimation, type SentenceAnimationResult } from "@/lib/sentenceAnimation"
 import type { MissingWordReplacement, PlaybackQueueItem, SignData, SignDictionaryEntry } from "@/lib/types"
 
@@ -50,14 +50,6 @@ type FeedbackDocument = {
   itemIndex: number
   signSource: string | null
   createdAt: ReturnType<typeof serverTimestamp>
-}
-type AnalyticsEventDocument = {
-  eventType: string
-  eventName: string
-  page: string
-  createdAt: ReturnType<typeof serverTimestamp>
-  sessionId: string
-  metadata: Record<string, unknown>
 }
 
 const PROTECTED_PHRASE_WORDS = new Set(["thank you", "no way", "don't know", "i love you", "good bye"])
@@ -137,31 +129,6 @@ function saveFeedbackToLocalStorage(feedbackDocument: FeedbackDocument) {
   window.localStorage.setItem(fallbackKey, JSON.stringify(feedbackRecords))
 }
 
-function getAnalyticsSessionId() {
-  if (typeof window === "undefined") return "server"
-
-  const sessionKey = "signwiz_session_id"
-  const existing = window.localStorage.getItem(sessionKey)
-  if (existing) return existing
-
-  const sessionId = crypto.randomUUID()
-  window.localStorage.setItem(sessionKey, sessionId)
-  return sessionId
-}
-
-function saveAnalyticsToLocalStorage(eventDocument: AnalyticsEventDocument) {
-  if (typeof window === "undefined") return
-
-  const fallbackKey = "signwiz_analytics_fallback"
-  const { createdAt: _serverCreatedAt, ...serializableEvent } = eventDocument
-  const analyticsRecords = getStoredRecords(fallbackKey)
-  analyticsRecords.push({
-    ...serializableEvent,
-    createdAt: new Date().toISOString(),
-  })
-  window.localStorage.setItem(fallbackKey, JSON.stringify(analyticsRecords))
-}
-
 export default function Home() {
   const [sentence, setSentence] = useState(DEFAULT_SENTENCE)
   const [mode, setMode] = useState<TranslationMode>("live")
@@ -187,33 +154,18 @@ export default function Home() {
   const [feedbackByItem, setFeedbackByItem] = useState<Record<string, FeedbackType>>({})
   const [activeSignedItem, setActiveSignedItem] = useState<ActiveSignedItem | null>(null)
 
-  const trackAnalyticsEvent = useCallback(async (
+  const trackAnalyticsEvent = useCallback((
     eventName: string,
-    metadata: Record<string, unknown> = {},
+    metadata: Record<string, string | number | boolean | null | undefined> = {},
     eventType = "interaction",
   ) => {
-    const eventDocument: AnalyticsEventDocument = {
-      eventType,
+    void logFirebaseAnalyticsEvent(eventName, {
+      event_type: eventType,
+      page_path: "/",
+      page_title: "SignWiz",
       eventName,
-      page: "/",
-      createdAt: serverTimestamp(),
-      sessionId: getAnalyticsSessionId(),
-      metadata,
-    }
-
-    try {
-      const db = getFirebaseDb()
-      if (!db) {
-        console.warn("[analytics] Firestore unavailable, saved locally")
-        saveAnalyticsToLocalStorage(eventDocument)
-        return
-      }
-
-      await addDoc(collection(db, "analyticsEvents"), eventDocument)
-    } catch (error) {
-      console.warn("[analytics] Firestore write failed, saved locally", error)
-      saveAnalyticsToLocalStorage(eventDocument)
-    }
+      ...metadata,
+    })
   }, [])
 
   useEffect(() => {
