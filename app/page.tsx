@@ -4,20 +4,18 @@ import { useCallback, useEffect, useMemo, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import {
-  AlertCircle,
   Github,
   Hand,
   Info,
   Loader2,
   Pause,
   Play,
-  SkipBack,
-  SkipForward,
+  ThumbsDown,
+  ThumbsUp,
 } from "lucide-react"
-import { AvatarDisplay, type FeedbackType, type SignedItemFeedback } from "@/components/AvatarDisplay"
+import { AvatarDisplay, type ActiveSignedItem, type FeedbackType, type SignedItemFeedback } from "@/components/AvatarDisplay"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
 import {
   fetchFingerspellingAnimation,
@@ -53,20 +51,16 @@ type FeedbackDocument = {
   signSource: string | null
   createdAt: ReturnType<typeof serverTimestamp>
 }
+type AnalyticsEventDocument = {
+  eventType: string
+  eventName: string
+  page: string
+  createdAt: ReturnType<typeof serverTimestamp>
+  sessionId: string
+  metadata: Record<string, unknown>
+}
 
 const PROTECTED_PHRASE_WORDS = new Set(["thank you", "no way", "don't know", "i love you", "good bye"])
-
-function chipClass(status: PlaybackQueueItem["status"], active: boolean) {
-  const base = "rounded-full border px-3 py-1 text-xs font-medium transition-colors"
-  const activeClass = active ? " ring-2 ring-primary ring-offset-2 ring-offset-background" : ""
-  if (status === "available") {
-    return `${base} bg-green-50 text-green-700 border-green-200 dark:bg-green-900/20 dark:text-green-300 dark:border-green-800${activeClass}`
-  }
-  if (status === "skipped") {
-    return `${base} bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-300 dark:border-yellow-800${activeClass}`
-  }
-  return `${base} bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800${activeClass}`
-}
 
 function getPlaybackType(item: PlaybackQueueItem): PlaybackFeedbackType {
   if (item.type === "fingerspell") return "fingerspell_letter"
@@ -120,23 +114,52 @@ function buildPlaybackFeedbackItems(
   return items
 }
 
+function getStoredRecords(key: string) {
+  if (typeof window === "undefined") return []
+  const existing = window.localStorage.getItem(key)
+  try {
+    return existing ? JSON.parse(existing) as unknown[] : []
+  } catch {
+    return []
+  }
+}
+
 function saveFeedbackToLocalStorage(feedbackDocument: FeedbackDocument) {
   if (typeof window === "undefined") return
 
   const fallbackKey = "signwiz_feedback_fallback"
   const { createdAt: _serverCreatedAt, ...serializableFeedback } = feedbackDocument
-  const existing = window.localStorage.getItem(fallbackKey)
-  let feedbackRecords: unknown[] = []
-  try {
-    feedbackRecords = existing ? JSON.parse(existing) as unknown[] : []
-  } catch {
-    feedbackRecords = []
-  }
+  const feedbackRecords = getStoredRecords(fallbackKey)
   feedbackRecords.push({
     ...serializableFeedback,
     createdAt: new Date().toISOString(),
   })
   window.localStorage.setItem(fallbackKey, JSON.stringify(feedbackRecords))
+}
+
+function getAnalyticsSessionId() {
+  if (typeof window === "undefined") return "server"
+
+  const sessionKey = "signwiz_session_id"
+  const existing = window.localStorage.getItem(sessionKey)
+  if (existing) return existing
+
+  const sessionId = crypto.randomUUID()
+  window.localStorage.setItem(sessionKey, sessionId)
+  return sessionId
+}
+
+function saveAnalyticsToLocalStorage(eventDocument: AnalyticsEventDocument) {
+  if (typeof window === "undefined") return
+
+  const fallbackKey = "signwiz_analytics_fallback"
+  const { createdAt: _serverCreatedAt, ...serializableEvent } = eventDocument
+  const analyticsRecords = getStoredRecords(fallbackKey)
+  analyticsRecords.push({
+    ...serializableEvent,
+    createdAt: new Date().toISOString(),
+  })
+  window.localStorage.setItem(fallbackKey, JSON.stringify(analyticsRecords))
 }
 
 export default function Home() {
@@ -156,12 +179,46 @@ export default function Home() {
   const [isResolvingWords, setIsResolvingWords] = useState(false)
   const [playbackError, setPlaybackError] = useState<string | null>(null)
   const [playbackVersion, setPlaybackVersion] = useState(0)
-  const [showSkippedWords, setShowSkippedWords] = useState(false)
+  const [showSkippedWords] = useState(false)
   const [showInfo, setShowInfo] = useState(false)
   const [aiReplacements, setAiReplacements] = useState<MissingWordReplacement[]>([])
   const [aiUnresolved, setAiUnresolved] = useState<string[]>([])
   const [aiUnavailable, setAiUnavailable] = useState(false)
   const [feedbackByItem, setFeedbackByItem] = useState<Record<string, FeedbackType>>({})
+  const [activeSignedItem, setActiveSignedItem] = useState<ActiveSignedItem | null>(null)
+
+  const trackAnalyticsEvent = useCallback(async (
+    eventName: string,
+    metadata: Record<string, unknown> = {},
+    eventType = "interaction",
+  ) => {
+    const eventDocument: AnalyticsEventDocument = {
+      eventType,
+      eventName,
+      page: "/",
+      createdAt: serverTimestamp(),
+      sessionId: getAnalyticsSessionId(),
+      metadata,
+    }
+
+    try {
+      const db = getFirebaseDb()
+      if (!db) {
+        console.warn("[analytics] Firestore unavailable, saved locally")
+        saveAnalyticsToLocalStorage(eventDocument)
+        return
+      }
+
+      await addDoc(collection(db, "analyticsEvents"), eventDocument)
+    } catch (error) {
+      console.warn("[analytics] Firestore write failed, saved locally", error)
+      saveAnalyticsToLocalStorage(eventDocument)
+    }
+  }, [])
+
+  useEffect(() => {
+    void trackAnalyticsEvent("page_view", {}, "page_view")
+  }, [trackAnalyticsEvent])
 
   useEffect(() => {
     loadSignDictionary()
@@ -236,6 +293,7 @@ export default function Home() {
   }, [buildQueueForSentence])
 
   const startLearningMode = useCallback(async () => {
+    void trackAnalyticsEvent("click_start_learning")
     const words = pickRandomLearningWords()
     if (!words.length) return
 
@@ -243,9 +301,10 @@ export default function Home() {
     setLearningHistory([words])
     setLearningHistoryIndex(0)
     await playLearningWords(words)
-  }, [pickRandomLearningWords, playLearningWords])
+  }, [pickRandomLearningWords, playLearningWords, trackAnalyticsEvent])
 
   const showNextLearningSet = useCallback(async () => {
+    void trackAnalyticsEvent("click_learning_next")
     const words = pickRandomLearningWords()
     if (!words.length) return
 
@@ -254,16 +313,17 @@ export default function Home() {
     setLearningHistory(nextHistory)
     setLearningHistoryIndex(nextHistory.length - 1)
     await playLearningWords(words)
-  }, [learningHistory, learningHistoryIndex, pickRandomLearningWords, playLearningWords])
+  }, [learningHistory, learningHistoryIndex, pickRandomLearningWords, playLearningWords, trackAnalyticsEvent])
 
   const showPreviousLearningSet = useCallback(async () => {
+    void trackAnalyticsEvent("click_learning_back")
     const previousIndex = learningHistoryIndex - 1
     const words = learningHistory[previousIndex]
     if (!words) return
 
     setLearningHistoryIndex(previousIndex)
     await playLearningWords(words)
-  }, [learningHistory, learningHistoryIndex, playLearningWords])
+  }, [learningHistory, learningHistoryIndex, playLearningWords, trackAnalyticsEvent])
 
   useEffect(() => {
     if (dictionary.length && queue.length === 0 && sentence.trim()) {
@@ -353,24 +413,34 @@ export default function Home() {
     }
   }, [currentSignData, isPlaying, playableQueue, sentence, sentenceAnimation])
 
-  const goToNext = useCallback(() => {
-    setPlaybackVersion((version) => version + 1)
-    setIsPlaying(true)
-  }, [])
-
-  const goToPrevious = useCallback(() => {
-    setPlaybackVersion((version) => version + 1)
-    setIsPlaying(true)
-  }, [])
-
   const handleSentenceComplete = useCallback(() => {
     setPlaybackVersion((version) => version + 1)
     setIsPlaying(playableQueue.length > 0)
   }, [playableQueue.length])
 
   const currentDisplayWord = currentSignData?.word || sentence
+  const activeFeedback = activeSignedItem?.feedbackKey ? feedbackByItem[activeSignedItem.feedbackKey] : undefined
+
+  const handlePlaybackToggle = useCallback(() => {
+    void trackAnalyticsEvent(isPlaying ? "click_pause" : "click_play")
+    setIsPlaying((value) => !value)
+  }, [isPlaying, trackAnalyticsEvent])
+
+  const handleLiveTranslationClick = useCallback(() => {
+    void trackAnalyticsEvent("click_live_translation")
+    setMode("live")
+  }, [trackAnalyticsEvent])
+
+  const handleTranslateClick = useCallback(() => {
+    void trackAnalyticsEvent("click_translate")
+    void buildQueue()
+  }, [buildQueue, trackAnalyticsEvent])
 
   const handleSignedItemFeedback = useCallback(async (feedback: SignedItemFeedback) => {
+    void trackAnalyticsEvent(feedback.feedbackType === "thumbs_up" ? "click_feedback_up" : "click_feedback_down", {
+      signedItem: feedback.signedItem,
+      itemIndex: feedback.itemIndex,
+    })
     const originalFullSentence = currentSignData?.word || sentence
     const playbackFeedbackItems = currentSignData?.metadata?.playbackFeedbackItems
     const playbackItem = Array.isArray(playbackFeedbackItems)
@@ -412,7 +482,17 @@ export default function Home() {
       console.warn("[feedback] Firestore unavailable, saved locally")
       saveFeedbackToLocalStorage(feedbackDocument)
     }
-  }, [currentSignData?.word, sentence])
+  }, [currentSignData?.metadata?.playbackFeedbackItems, currentSignData?.word, sentence, trackAnalyticsEvent])
+
+  const handleFeedbackButtonClick = useCallback((feedbackType: FeedbackType) => {
+    if (!activeSignedItem) return
+    void handleSignedItemFeedback({
+      signedItem: activeSignedItem.signedItem,
+      itemIndex: activeSignedItem.itemIndex,
+      feedbackKey: activeSignedItem.feedbackKey,
+      feedbackType,
+    })
+  }, [activeSignedItem, handleSignedItemFeedback])
 
   return (
     <div className="min-h-screen bg-background">
@@ -483,7 +563,7 @@ export default function Home() {
                   A simple and accessible platform helping kids, schools, and communities learn sign language through guided tutorials and live animated gestures.
                 </p>
                 <div className="mt-4 flex flex-wrap gap-3">
-                  <Button variant={mode === "live" ? "default" : "outline"} onClick={() => setMode("live")}>
+                  <Button variant={mode === "live" ? "default" : "outline"} onClick={handleLiveTranslationClick}>
                     Live Translation
                   </Button>
                   <Button
@@ -512,7 +592,7 @@ export default function Home() {
                 </div>
                 <div className="flex flex-wrap items-center gap-3">
                   {mode === "live" ? (
-                    <Button onClick={() => void buildQueue()} disabled={dictionaryLoading || isResolvingWords || !sentence.trim()}>
+                    <Button onClick={handleTranslateClick} disabled={dictionaryLoading || isResolvingWords || !sentence.trim()}>
                       {dictionaryLoading || isResolvingWords ? <Loader2 className="w-4 h-4 animate-spin" /> : <Play className="w-4 h-4" />}
                       Translate
                     </Button>
@@ -534,74 +614,13 @@ export default function Home() {
                       </Button>
                     </>
                   )}
-                  {/* <label className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <Switch checked={showSkippedWords} onCheckedChange={setShowSkippedWords} />
-                    Show skipped words
-                  </label> */}
                 </div>
               </div>
             </section>
 
-            {/* <section className="order-3 space-y-3">
-              <div className="flex items-center justify-between gap-3">
-                <h3 className="font-semibold text-foreground">Parsed playback queue</h3>
-                <span className="text-xs text-muted-foreground">{playableQueue.length} signs in timeline</span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {queue.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">Enter a sentence to build a playback queue.</p>
-                ) : (
-                  queue.map((item) => {
-                    const active = Boolean(sentenceAnimation?.wordsUsed.includes(item.gloss))
-                    const label = item.replacement ? `${item.text} -> ${item.gloss}` : item.gloss
-                    return (
-                      <span key={item.id} className={chipClass(item.status, active)} title={item.reason}>
-                        {label}
-                        <span className="ml-1 opacity-70">({item.type})</span>
-                      </span>
-                    )
-                  })
-                )}
-              </div>
-              {aiReplacements.length ? (
-                <div className="space-y-1 text-sm text-green-700 dark:text-green-300">
-                  {aiReplacements.map((replacement) => (
-                    <p key={`${replacement.originalWord}-${replacement.replacementWord}`}>
-                      AI dictionary fallback: {replacement.originalWord}{" -> "}{replacement.replacementWord}
-                    </p>
-                  ))}
-                </div>
-              ) : null}
-              {aiUnavailable && aiUnresolved.length ? (
-                <p className="text-sm text-muted-foreground">
-                  AI fallback unavailable; missing words use the standard unavailable state.
-                </p>
-              ) : null}
-              {queue.some((item) => item.status === "unavailable") && (
-                <div className="space-y-1 text-sm text-red-600 dark:text-red-400">
-                  {queue
-                    .filter((item) => item.status === "unavailable")
-                    .map((item) => (
-                      <p key={item.id}>Sign unavailable: {item.text}</p>
-                    ))}
-                </div>
-              )}
-            </section> */}
-
-            {/* <section className="order-4 grid grid-cols-2 md:grid-cols-4 gap-3">
-              <div className="text-center p-3 rounded-xl bg-secondary/50">
-                <div className="text-xl font-bold text-primary">{stats.total.toLocaleString()}</div>
-                <div className="text-xs text-muted-foreground">Dictionary Signs</div>
-              </div>
-            </section> */}
-
-            {/* {dictionaryError && (
-              <div className="flex items-start gap-3 p-4 rounded-xl bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-sm">
-                <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
-                <p className="text-red-700 dark:text-red-300">{dictionaryError}</p>
-              </div>
-            )} */}
-
+            {dictionaryError ? (
+              <div className="text-sm text-red-600 dark:text-red-400">{dictionaryError}</div>
+            ) : null}
           </div>
 
           <motion.div
@@ -619,22 +638,37 @@ export default function Home() {
                 signStatus={playbackError ? null : currentSignData ? "available" : null}
                 onPlaybackComplete={handleSentenceComplete}
                 playbackKey={`${playbackVersion}-${currentSignData?.frames.length || 0}`}
-                feedbackByItem={feedbackByItem}
-                onFeedback={handleSignedItemFeedback}
+                onActiveItemChange={setActiveSignedItem}
               />
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-              <Button variant="outline" size="icon" onClick={goToPrevious} disabled={playableQueue.length === 0}>
-                <SkipBack className="w-4 h-4" />
-              </Button>
-              <Button variant="outline" onClick={() => setIsPlaying((value) => !value)} disabled={playableQueue.length === 0}>
+            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+              <Button variant="outline" onClick={handlePlaybackToggle} disabled={playableQueue.length === 0}>
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                 {isPlaying ? "Pause" : "Play"}
               </Button>
-              <Button variant="outline" size="icon" onClick={goToNext} disabled={!isPlaying}>
-                <SkipForward className="w-4 h-4" />
-              </Button>
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => handleFeedbackButtonClick("thumbs_up")}
+                  disabled={!activeSignedItem}
+                  aria-label="Mark current signed item as correct"
+                  className={activeFeedback === "thumbs_up" ? "text-green-600 hover:text-green-700" : "text-muted-foreground"}
+                >
+                  <ThumbsUp className={`w-5 h-5 ${activeFeedback === "thumbs_up" ? "fill-current" : ""}`} />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => handleFeedbackButtonClick("thumbs_down")}
+                  disabled={!activeSignedItem}
+                  aria-label="Mark current signed item as incorrect"
+                  className={activeFeedback === "thumbs_down" ? "text-red-600 hover:text-red-700" : "text-muted-foreground"}
+                >
+                  <ThumbsDown className={`w-5 h-5 ${activeFeedback === "thumbs_down" ? "fill-current" : ""}`} />
+                </Button>
+              </div>
             </div>
             {sentenceAnimation?.missingWords.length ? (
               <div className="mt-2 text-center text-sm text-red-600 dark:text-red-400">

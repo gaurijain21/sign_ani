@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { RefreshCw, AlertCircle, Loader2, Video, Database, ThumbsDown, ThumbsUp } from "lucide-react"
+import { RefreshCw, AlertCircle, Loader2, Video, Database } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AvatarCanvas } from "./AvatarCanvas"
 import type { SignData, SignStatus } from "@/lib/types"
@@ -12,6 +12,11 @@ export type SignedItemFeedback = {
   signedItem: string
   itemIndex: number
   feedbackType: FeedbackType
+  feedbackKey: string
+}
+export type ActiveSignedItem = {
+  signedItem: string
+  itemIndex: number
   feedbackKey: string
 }
 
@@ -24,8 +29,7 @@ interface AvatarDisplayProps {
   signStatus?: SignStatus | null
   onPlaybackComplete?: () => void
   playbackKey?: string | number
-  feedbackByItem?: Record<string, FeedbackType>
-  onFeedback?: (feedback: SignedItemFeedback) => void
+  onActiveItemChange?: (item: ActiveSignedItem | null) => void
 }
 
 export function AvatarDisplay({ 
@@ -37,8 +41,7 @@ export function AvatarDisplay({
   signStatus,
   onPlaybackComplete,
   playbackKey,
-  feedbackByItem = {},
-  onFeedback,
+  onActiveItemChange,
 }: AvatarDisplayProps) {
   const [isPlaying, setIsPlaying] = useState(true)
   const [playCount, setPlayCount] = useState(0)
@@ -100,17 +103,18 @@ export function AvatarDisplay({
     }
   }, [currentFrame, isComplete, playableSignData])
 
-  const activeFeedback = activeDisplay?.feedbackKey ? feedbackByItem[activeDisplay.feedbackKey] : undefined
+  useEffect(() => {
+    if (!activeDisplay?.primary || activeDisplay.itemIndex < 0) {
+      onActiveItemChange?.(null)
+      return
+    }
 
-  const handleFeedback = useCallback((feedbackType: FeedbackType) => {
-    if (!activeDisplay?.primary || activeDisplay.itemIndex < 0) return
-    onFeedback?.({
+    onActiveItemChange?.({
       signedItem: activeDisplay.primary,
       itemIndex: activeDisplay.itemIndex,
-      feedbackType,
       feedbackKey: activeDisplay.feedbackKey,
     })
-  }, [activeDisplay, onFeedback])
+  }, [activeDisplay, onActiveItemChange])
 
   // Get appropriate error message based on status
   const getErrorContent = () => {
@@ -276,30 +280,6 @@ export function AvatarDisplay({
         </AnimatePresence>
       </div>
 
-      {playableSignData ? (
-        <div className="flex items-center justify-center gap-2 border-t border-border bg-card/80 px-4 py-3">
-          <Button
-            variant={activeFeedback === "thumbs_up" ? "default" : "outline"}
-            size="icon"
-            onClick={() => handleFeedback("thumbs_up")}
-            disabled={!activeDisplay?.primary}
-            aria-label="Mark current signed item as correct"
-            className="rounded-full"
-          >
-            <ThumbsUp className="w-4 h-4" />
-          </Button>
-          <Button
-            variant={activeFeedback === "thumbs_down" ? "default" : "outline"}
-            size="icon"
-            onClick={() => handleFeedback("thumbs_down")}
-            disabled={!activeDisplay?.primary}
-            aria-label="Mark current signed item as incorrect"
-            className="rounded-full"
-          >
-            <ThumbsDown className="w-4 h-4" />
-          </Button>
-        </div>
-      ) : null}
     </div>
   )
 }
