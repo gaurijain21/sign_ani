@@ -98,10 +98,28 @@ function cloneLandmarks(landmarks: Landmark[] | null | undefined): Landmark[] | 
 }
 
 function cloneFrame(frame: SignData["frames"][number]): SignData["frames"][number] {
+  const frameWithMouth = frame as SignData["frames"][number] & {
+    mouth?: Landmark[] | null
+    mouthLandmarks?: Landmark[] | null
+    mouth_landmarks?: Landmark[] | null
+  }
+
   return {
     leftHand: cloneLandmarks(frame.leftHand),
     rightHand: cloneLandmarks(frame.rightHand),
     pose: cloneLandmarks(frame.pose),
+    ...(frameWithMouth.mouth
+      ? { mouth: cloneLandmarks(frameWithMouth.mouth) }
+      : {},
+    ),
+    ...(frameWithMouth.mouthLandmarks
+      ? { mouthLandmarks: cloneLandmarks(frameWithMouth.mouthLandmarks) }
+      : {},
+    ),
+    ...(frameWithMouth.mouth_landmarks
+      ? { mouth_landmarks: cloneLandmarks(frameWithMouth.mouth_landmarks) }
+      : {},
+    ),
   }
 }
 
@@ -154,6 +172,127 @@ function stretchFramesToDuration(
 
 function makePoint(x: number, y: number, z = 0): Landmark {
   return { x, y, z }
+}
+
+function averageLandmark(landmarks: Landmark[] | null | undefined): Landmark | null {
+  if (!landmarks?.length) return null
+  const total = landmarks.reduce(
+    (sum, point) => ({
+      x: sum.x + point.x,
+      y: sum.y + point.y,
+      z: sum.z + (point.z || 0),
+    }),
+    { x: 0, y: 0, z: 0 },
+  )
+
+  return {
+    x: total.x / landmarks.length,
+    y: total.y / landmarks.length,
+    z: total.z / landmarks.length,
+  }
+}
+
+function getFrameMouthLandmarks(frame: SignData["frames"][number]): Landmark[] | null {
+  const frameWithMouth = frame as SignData["frames"][number] & {
+    mouth?: Landmark[] | null
+    mouthLandmarks?: Landmark[] | null
+    mouth_landmarks?: Landmark[] | null
+  }
+  return frameWithMouth.mouthLandmarks || frameWithMouth.mouth_landmarks || frameWithMouth.mouth || null
+}
+
+function isThankYouSign(word: string): boolean {
+  return normalizeGloss(word) === "thank you"
+}
+
+function correctThankYouLandmarks(data: SignData): SignData {
+  if (!isThankYouSign(data.word)) return data
+
+  console.log("[playback] applying sign-specific correction: thank you hand path near mouth/chin")
+  const frameCount = Math.max(1, data.frames.length - 1)
+
+  return {
+    ...data,
+    frames: data.frames.map((frame, index) => {
+      const rightHand = cloneLandmarks(frame.rightHand)
+      const pose = cloneLandmarks(frame.pose)
+      const mouthCenter = averageLandmark(getFrameMouthLandmarks(frame))
+      const handCenter = averageLandmark(rightHand)
+      if (!rightHand?.length || !mouthCenter || !handCenter) {
+        return cloneFrame(frame)
+      }
+
+      const progress = index / frameCount
+      const targetCenter = {
+        // ASL THANK-YOU starts by the mouth/chin and moves outward. The bundled
+        // JSON drifts toward the chest, so this narrow correction only moves
+        // this sign's hand path while preserving the local hand shape.
+        x: mouthCenter.x + 0.03 + progress * 0.18,
+        y: mouthCenter.y + 0.07 + progress * 0.05,
+        z: handCenter.z,
+      }
+      const offset = {
+        x: targetCenter.x - handCenter.x,
+        y: targetCenter.y - handCenter.y,
+        z: (targetCenter.z || 0) - (handCenter.z || 0),
+      }
+      const correctedRightHand = rightHand.map((point) => ({
+        x: point.x + offset.x,
+        y: point.y + offset.y,
+        z: point.z !== undefined ? point.z + offset.z : undefined,
+      }))
+
+      if (pose?.[12] && correctedRightHand[0]) {
+        const shoulder = pose[12]
+        const wrist = correctedRightHand[0]
+        pose[16] = { ...wrist }
+        pose[14] = {
+          x: shoulder.x + 0.55 * (wrist.x - shoulder.x),
+          y: shoulder.y + 0.55 * (wrist.y - shoulder.y) + 0.02,
+          z: wrist.z,
+        }
+      }
+
+      return {
+        ...cloneFrame(frame),
+        rightHand: correctedRightHand,
+        pose,
+      }
+    }),
+    metadata: {
+      ...(data.metadata || {}),
+      signSpecificCorrection: "thank_you_mouth_start",
+    },
+  }
+}
+
+function formatPoint(point: Landmark | null | undefined): string {
+  if (!point) return "missing"
+  return `x=${point.x.toFixed(4)}, y=${point.y.toFixed(4)}, z=${(point.z || 0).toFixed(4)}`
+}
+
+function logPlaybackSignDiagnostics(entry: SignDictionaryEntry, url: string, data: SignData) {
+  const firstFrame = data.frames[0]
+  const rightWrist = firstFrame?.rightHand?.[0]
+  const leftWrist = firstFrame?.leftHand?.[0]
+  const mouthCenter = firstFrame ? averageLandmark(getFrameMouthLandmarks(firstFrame)) : null
+  const leftShoulder = firstFrame?.pose?.[11]
+  const rightShoulder = firstFrame?.pose?.[12]
+  const chestCenter = leftShoulder && rightShoulder
+    ? {
+        x: (leftShoulder.x + rightShoulder.x) / 2,
+        y: (leftShoulder.y + rightShoulder.y) / 2,
+        z: ((leftShoulder.z || 0) + (rightShoulder.z || 0)) / 2,
+      }
+    : null
+
+  console.log(`[playback] requested phrase: ${entry.gloss}`)
+  console.log(`[playback] resolved signs: ${data.word || entry.gloss}`)
+  console.log(`[playback] loaded file path: ${url}`)
+  console.log(`[playback] frame count: ${data.frames.length}`)
+  console.log(`[playback] first wrist position: right=${formatPoint(rightWrist)}, left=${formatPoint(leftWrist)}`)
+  console.log(`[playback] first face/mouth/chin landmarks if available: mouth=${formatPoint(mouthCenter)}`)
+  console.log(`[playback] first shoulder/chest landmarks if available: chest=${formatPoint(chestCenter)}`)
 }
 
 function makeFingerspellPose(wrist: Landmark): Landmark[] {
@@ -232,6 +371,7 @@ function placeFingerspellHand(
 }
 
 function normalizeFingerspellingLetterAnimation(data: SignData, letter: string): SignData {
+  console.log("[renderer] sign type: fingerspell_letter, applying side placement")
   const firstHandFrame = data.frames.find((frame) => getPrimaryFingerspellHand(frame))
   const baseWrist = isFingerspellMotionLetter(data) && firstHandFrame
     ? getPrimaryFingerspellHand(firstHandFrame)?.[0]
@@ -617,17 +757,20 @@ export async function fetchSignAnimation(entry: SignDictionaryEntry): Promise<Si
     throw new Error(`Unable to load animation for ${entry.gloss}.`)
   }
 
-  const data = (await response.json()) as SignData
+  const rawData = (await response.json()) as SignData
+  const data = {
+    ...rawData,
+    word: rawData.word || entry.gloss,
+    fps: rawData.fps || entry.fps || 30,
+    source: "wlasl" as const,
+  }
   if (!data.frames?.length) {
     throw new Error(`Animation file for ${entry.gloss} is empty or invalid.`)
   }
 
-  const animation = {
-    ...data,
-    word: data.word || entry.gloss,
-    fps: data.fps || entry.fps || 30,
-    source: "wlasl" as const,
-  }
+  logPlaybackSignDiagnostics(entry, url, data)
+  console.log("[renderer] sign type: regular_sign, preserving original landmarks")
+  const animation = correctThankYouLandmarks(data)
   animationCache.set(key, animation)
   return animation
 }

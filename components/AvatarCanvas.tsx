@@ -29,6 +29,7 @@ type FrameWithMouth = Frame & {
   mouthLandmarks?: Landmark[] | null
   mouth_landmarks?: Landmark[] | null
 }
+type RendererSignType = "fingerspell_letter" | "regular_sign"
 export type MouthState = "closed" | "smallOpen" | "ahOpen" | "ohRound" | "eeWide" | "lipsClosed" | "smile"
 type MouthPose = { state: MouthState; intensity: number }
 
@@ -103,6 +104,27 @@ function collectLandmarks(frame: Frame | null): Landmark[] {
     ...(frame.leftHand || []),
     ...(frame.rightHand || []),
   ].filter(isLandmark)
+}
+
+function getRendererSignType(signData: SignData | null): RendererSignType {
+  if (!signData) return "regular_sign"
+
+  const metadata = signData.metadata || {}
+  const metadataType = typeof metadata.type === "string" ? metadata.type : ""
+  const metadataSource = typeof metadata.source === "string" ? metadata.source : ""
+  const fingerspelledWords = metadata.fingerspelledWords
+
+  if (
+    signData.source === "fingerspelling" ||
+    metadataType === "fingerspell_letter" ||
+    metadataType === "fingerspell_word" ||
+    metadataSource.includes("kaggle_asl_alphabet") ||
+    (Array.isArray(fingerspelledWords) && fingerspelledWords.length > 0)
+  ) {
+    return "fingerspell_letter"
+  }
+
+  return "regular_sign"
 }
 
 function computeBounds(points: Landmark[]): Bounds | null {
@@ -471,6 +493,7 @@ export function AvatarCanvas({
     inner: null,
   })
   const lastMouthDebugRef = useRef<string | null>(null)
+  const lastRendererDebugRef = useRef<string | null>(null)
   const [, setCurrentFrame] = useState(0)
   const demoFrames = useRef(generateDemoFrames())
 
@@ -484,6 +507,17 @@ export function AvatarCanvas({
 
   useEffect(() => {
     if (!signData) return
+    const rendererSignType = getRendererSignType(signData)
+    const rendererDebugSignature = `${signData.word}:${signData.source || "unknown"}:${rendererSignType}`
+    if (lastRendererDebugRef.current !== rendererDebugSignature) {
+      console.log(
+        rendererSignType === "fingerspell_letter"
+          ? "[renderer] sign type: fingerspell_letter, applying side placement"
+          : "[renderer] sign type: regular_sign, preserving original landmarks",
+      )
+      lastRendererDebugRef.current = rendererDebugSignature
+    }
+
     const mouthMeta = signData as SignData & MouthMetadata & { hasMouth?: boolean; metadata?: MouthMetadata }
     const framesWithMouth = signData.frames.filter((frame) => {
       const mouth = getMouthLandmarks(frame)
