@@ -2,8 +2,7 @@
 
 import { useState, useCallback, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { RefreshCw, AlertCircle, Loader2, Video, Database } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { AlertCircle, Loader2, Video, Database } from "lucide-react"
 import { AvatarCanvas } from "./AvatarCanvas"
 import type { SignData, SignStatus } from "@/lib/types"
 
@@ -43,8 +42,6 @@ export function AvatarDisplay({
   playbackKey,
   onActiveItemChange,
 }: AvatarDisplayProps) {
-  const [isPlaying, setIsPlaying] = useState(true)
-  const [playCount, setPlayCount] = useState(0)
   const [currentFrame, setCurrentFrame] = useState(0)
   const [isComplete, setIsComplete] = useState(false)
 
@@ -52,16 +49,6 @@ export function AvatarDisplay({
     setCurrentFrame(0)
     setIsComplete(false)
   }, [playbackKey, signData])
-
-  const handleReplay = useCallback(() => {
-    setIsPlaying(false)
-    setCurrentFrame(0)
-    setIsComplete(false)
-    setTimeout(() => {
-      setIsPlaying(true)
-      setPlayCount(prev => prev + 1)
-    }, 50)
-  }, [])
 
   const handlePlaybackComplete = useCallback(() => {
     setIsComplete(true)
@@ -161,7 +148,7 @@ export function AvatarDisplay({
   return (
     <div className="relative w-full h-full flex flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-border">
+      <div className="hidden items-center justify-between border-b border-border p-4 md:flex">
         <div>
           <AnimatePresence mode="wait">
             {playableSignData ? (
@@ -202,18 +189,6 @@ export function AvatarDisplay({
             )}
           </AnimatePresence>
         </div>
-        
-        {playableSignData && (
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={handleReplay}
-            className="rounded-full"
-            aria-label="Replay sign animation"
-          >
-            <RefreshCw className="w-4 h-4" />
-          </Button>
-        )}
       </div>
 
       {/* Canvas area */}
@@ -262,7 +237,7 @@ export function AvatarDisplay({
             </motion.div>
           ) : (
             <motion.div
-              key={`avatar-${playbackKey ?? ""}-${playCount}`}
+              key={`avatar-${playbackKey ?? ""}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -270,7 +245,7 @@ export function AvatarDisplay({
             >
               <AvatarCanvas
                 signData={playableSignData}
-                isPlaying={isPlaying && isPlaybackActive}
+                isPlaying={isPlaybackActive}
                 onPlaybackComplete={handlePlaybackComplete}
                 onFrameChange={setCurrentFrame}
                 showIdle={true}

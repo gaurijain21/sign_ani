@@ -496,7 +496,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background">
-      <header className="border-b border-border bg-card/50 backdrop-blur-sm sticky top-0 z-50">
+      <header className="sticky top-0 z-50 hidden border-b border-border bg-card/50 backdrop-blur-sm md:block">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <motion.div
@@ -529,7 +529,7 @@ export default function Home() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="bg-primary/10 border-b border-primary/20"
+            className="hidden border-b border-primary/20 bg-primary/10 md:block"
           >
             <div className="container mx-auto px-4 py-4 text-sm text-muted-foreground">
               <p className="font-medium text-foreground">Educational research demo</p>
@@ -554,15 +554,15 @@ export default function Home() {
       <main className="container mx-auto px-4 py-4 md:py-8">
         <div className="grid gap-4 md:gap-6 xl:grid-cols-[minmax(0,1fr)_560px] xl:gap-8">
           <div className="contents xl:block xl:space-y-6">
-            <section className="order-1 space-y-4">
+            <section className="order-2 space-y-4 md:order-1">
               <div>
-                <h2 className="text-3xl lg:text-4xl font-bold text-foreground text-balance">
+                <h2 className="hidden text-3xl font-bold text-foreground text-balance md:block lg:text-4xl">
                   Visualize a sentence as one blended sign timeline
                 </h2>
-                <p className="text-muted-foreground mt-2">
+                <p className="mt-2 hidden text-muted-foreground md:block">
                   A simple and accessible platform helping kids, schools, and communities learn sign language through guided tutorials and live animated gestures.
                 </p>
-                <div className="mt-4 flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-3 md:mt-4">
                   <Button variant={mode === "live" ? "default" : "outline"} onClick={handleLiveTranslationClick}>
                     Live Translation
                   </Button>
@@ -626,9 +626,9 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="order-2 h-fit xl:sticky xl:top-24"
+            className="order-1 h-fit md:order-2 xl:sticky xl:top-24"
           >
-            <div className="bg-card border-2 border-border rounded-3xl overflow-hidden shadow-lg min-h-[430px] md:min-h-[560px] xl:min-h-[600px]">
+            <div className="overflow-hidden rounded-3xl border-2 border-border bg-card shadow-lg">
               <AvatarDisplay
                 signData={currentSignData}
                 isLoading={isSignLoading}
@@ -642,7 +642,7 @@ export default function Home() {
               />
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="mt-2 hidden flex-wrap items-center justify-between gap-3 md:flex">
               <Button variant="outline" onClick={handlePlaybackToggle} disabled={playableQueue.length === 0}>
                 {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
                 {isPlaying ? "Pause" : "Play"}
@@ -678,7 +678,7 @@ export default function Home() {
           </motion.div>
         </div>
       </main>
-      <footer className="px-4 pb-6 text-center text-xs text-muted-foreground">
+      <footer className="hidden px-4 pb-6 text-center text-xs text-muted-foreground md:block">
         AI-generated signs can make mistakes. Check important translations.
       </footer>
     </div>
