@@ -18,6 +18,7 @@ type GeminiResponse = {
 
 const GEMINI_MODEL = "gemini-2.5-flash"
 const PROTECTED_PHRASES: Array<[RegExp, string]> = [
+  [/\btype\s+a\s+word\s+here\b/gi, "type word here"],
   [/\bthank\s*you\b/gi, "thank you"],
   [/\bthankyou\b/gi, "thank you"],
   [/\bthanks\b/gi, "thank you"],
@@ -88,7 +89,12 @@ async function normalizeSentenceForSigning(inputText: string) {
 
   const prompt = [
     "You rewrite English into a short sign-friendly English/gloss-like phrase for an ASL learning app.",
-    "Return ONLY valid JSON. No markdown. No explanation. No prose before or after JSON.",
+    'Return ONLY this minified JSON object: {"normalizedText":"...","reason":"..."}',
+    "No markdown.",
+    "No explanation.",
+    "No leading text.",
+    "Do not write \"Here is\".",
+    "No prose before or after JSON.",
     "",
     "Rules:",
     "- Preserve the original meaning.",
@@ -100,7 +106,7 @@ async function normalizeSentenceForSigning(inputText: string) {
     "- Keep names, brands, acronyms, usernames, and places unchanged so they can be fingerspelled later.",
     "- For generic phrases like \"you did that\", use \"you do that\".",
     "- Do not rewrite generic did/do into make unless the input clearly means create/build.",
-    "- Return ONLY valid JSON.",
+    "- Return ONLY valid minified JSON.",
     "",
     "Examples:",
     '{"input":"noway you just did that","normalizedText":"no way you do that","reason":"Converted slang and simplified verb form"}',
@@ -108,7 +114,7 @@ async function normalizeSentenceForSigning(inputText: string) {
     '{"input":"gauri went to ucsc","normalizedText":"gauri go ucsc","reason":"Simplified verb form and kept names/acronym"}',
     '{"input":"i just bought a car","normalizedText":"i buy car","reason":"Removed filler and simplified verb form"}',
     "",
-    "Return this JSON shape only:",
+    "Return this JSON shape only, minified:",
     '{"normalizedText":"no way you do that","reason":"Converted slang and simplified verb form"}',
     "",
     JSON.stringify({ input: inputText }),
@@ -132,7 +138,7 @@ async function normalizeSentenceForSigning(inputText: string) {
         ],
         generationConfig: {
           temperature: 0,
-          maxOutputTokens: 180,
+          maxOutputTokens: 256,
           responseMimeType: "application/json",
         },
       }),

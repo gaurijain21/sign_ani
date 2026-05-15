@@ -20,6 +20,7 @@ const FINGERSPELL_MOTION_LETTER_DURATION_MS = 1300
 const FINGERSPELL_LETTER_PAUSE_MS = 150
 const FINGERSPELL_TRANSITION_MS = 120
 const FINGERSPELL_MOTION_PATH_SCALE = 0.45
+const USE_FIRESTORE_SIGNS = process.env.NEXT_PUBLIC_USE_FIRESTORE_SIGNS === "true"
 const animationCache = new Map<string, SignData>()
 const synonymMapCache = {
   loaded: false,
@@ -460,12 +461,44 @@ export async function loadSignDictionary(): Promise<{
   entries: SignDictionaryEntry[]
   source: "firebase" | "local"
 }> {
+  const loadLocalDictionary = async () => {
+    const response = await fetch("/api/sign-dictionary")
+    if (!response.ok) {
+      throw new Error("Unable to load sign dictionary.")
+    }
+    const data = await response.json()
+    const entries = (data.entries || []) as SignDictionaryEntry[]
+    console.log(`[signDictionary] loaded local dictionary count: ${entries.length}`)
+    ;["type", "word", "here"].forEach((word) => {
+      const entry = entries.find((item) => entryKey(item.gloss) === word)
+      console.log(`[signDictionary] local entry for ${word}: ${entry ? "found" : "missing"}`)
+    })
+    return {
+      entries,
+      source: "local" as const,
+    }
+  }
+
+  const localDictionary = await loadLocalDictionary()
+  console.log("[signDictionary] using local dictionary as source of truth")
+
+  if (!USE_FIRESTORE_SIGNS) {
+    console.log("[signDictionary] firestore signs disabled; set NEXT_PUBLIC_USE_FIRESTORE_SIGNS=true to enable optional metadata loading")
+    return localDictionary
+  }
+
   if (hasFirebaseConfig()) {
     const db = getFirebaseDb()
     if (db) {
-      const snapshot = await getDocs(query(collection(db, "signs"), orderBy("gloss")))
-      return {
-        entries: snapshot.docs.map((doc) => {
+      try {
+        const snapshot = await getDocs(query(collection(db, "signs"), orderBy("gloss")))
+        console.log(`[signDictionary] firestore signs count: ${snapshot.size}`)
+        if (snapshot.empty) {
+          console.warn("[signDictionary] Firestore signs collection is empty; continuing with local dictionary.")
+          return localDictionary
+        }
+
+        const firestoreEntries = snapshot.docs.map((doc) => {
           const data = doc.data() as SignDictionaryEntry
           return {
             ...data,
@@ -473,21 +506,24 @@ export async function loadSignDictionary(): Promise<{
             aliases: data.aliases || [],
             available: Boolean(data.available),
           }
-        }),
-        source: "firebase",
+        })
+
+        if (!firestoreEntries.some((entry) => entry.available)) {
+          console.warn("[signDictionary] Firestore signs collection has no available signs; continuing with local dictionary.")
+          return localDictionary
+        }
+
+        console.log("[signDictionary] Firestore signs loaded, but local dictionary remains source of truth.")
+        return localDictionary
+      } catch (error) {
+        console.warn("[signDictionary] Firestore signs unavailable; continuing with local dictionary.", error)
+        return localDictionary
       }
     }
   }
 
-  const response = await fetch("/api/sign-dictionary")
-  if (!response.ok) {
-    throw new Error("Unable to load sign dictionary.")
-  }
-  const data = await response.json()
-  return {
-    entries: data.entries || [],
-    source: "local",
-  }
+  console.warn("[signDictionary] Firebase unavailable for optional Firestore signs; continuing with local dictionary.")
+  return localDictionary
 }
 
 export function parseSentenceToQueue(
@@ -742,7 +778,7 @@ export async function fetchSignAnimation(entry: SignDictionaryEntry): Promise<Si
 
   let url = entry.jsonUrl
   const storage = getFirebaseStorage()
-  if (!url && storage && entry.jsonPath) {
+  if (!url && storage && entry.jsonPath && !entry.jsonPath.startsWith("/")) {
     url = await getDownloadURL(ref(storage, entry.jsonPath))
   }
 
@@ -752,7 +788,9 @@ export async function fetchSignAnimation(entry: SignDictionaryEntry): Promise<Si
       : `/data/signs/${encodeURIComponent(entry.gloss.replace(/\s+/g, "_"))}.json`
   }
 
+  console.log(`[signDictionary] loading sign path for ${entry.gloss}: ${url}`)
   const response = await fetch(url)
+  console.log(`[signDictionary] sign file exists/loaded: ${response.ok}`)
   if (!response.ok) {
     throw new Error(`Unable to load animation for ${entry.gloss}.`)
   }

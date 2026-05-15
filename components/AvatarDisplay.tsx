@@ -2,10 +2,18 @@
 
 import { useState, useCallback, useEffect, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { RefreshCw, AlertCircle, Loader2, Video, Database } from "lucide-react"
+import { RefreshCw, AlertCircle, Loader2, Video, Database, ThumbsDown, ThumbsUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { AvatarCanvas } from "./AvatarCanvas"
 import type { SignData, SignStatus } from "@/lib/types"
+
+export type FeedbackType = "thumbs_up" | "thumbs_down"
+export type SignedItemFeedback = {
+  signedItem: string
+  itemIndex: number
+  feedbackType: FeedbackType
+  feedbackKey: string
+}
 
 interface AvatarDisplayProps {
   signData: SignData | null
@@ -16,6 +24,8 @@ interface AvatarDisplayProps {
   signStatus?: SignStatus | null
   onPlaybackComplete?: () => void
   playbackKey?: string | number
+  feedbackByItem?: Record<string, FeedbackType>
+  onFeedback?: (feedback: SignedItemFeedback) => void
 }
 
 export function AvatarDisplay({ 
@@ -27,6 +37,8 @@ export function AvatarDisplay({
   signStatus,
   onPlaybackComplete,
   playbackKey,
+  feedbackByItem = {},
+  onFeedback,
 }: AvatarDisplayProps) {
   const [isPlaying, setIsPlaying] = useState(true)
   const [playCount, setPlayCount] = useState(0)
@@ -56,24 +68,49 @@ export function AvatarDisplay({
   const playableSignData = signData?.frames?.length ? signData : null
   const activeDisplay = useMemo(() => {
     if (!playableSignData) return null
-    if (isComplete) return { primary: "", subtitle: "" }
+    if (isComplete) return { primary: "", subtitle: "", itemIndex: -1, feedbackKey: "" }
 
     const timeline = playableSignData.wordTimeline || []
-    if (!timeline.length) return { primary: playableSignData.word, subtitle: "" }
+    if (!timeline.length) {
+      return {
+        primary: playableSignData.word,
+        subtitle: "",
+        itemIndex: 0,
+        feedbackKey: `${playableSignData.word}:0:${playableSignData.word}`,
+      }
+    }
 
     // Fingerspelling playback preserves a per-letter timeline, so this header
     // can show the active letter while regular signs continue to show the word.
-    const activeWord = timeline.find(
+    const activeItemIndex = timeline.findIndex(
       (item) => currentFrame >= item.startFrame && currentFrame <= item.endFrame,
     )
+    const activeWord = activeItemIndex >= 0 ? timeline[activeItemIndex] : timeline[0]
     const primary = activeWord?.displayWord || timeline[0]?.displayWord || playableSignData.word
     const fingerspelledWords = playableSignData.metadata?.fingerspelledWords
     const subtitle = Array.isArray(fingerspelledWords) && primary.length === 1
       ? `Fingerspelling: ${fingerspelledWords.join(", ")}`
       : ""
 
-    return { primary, subtitle }
+    return {
+      primary,
+      subtitle,
+      itemIndex: activeItemIndex >= 0 ? activeItemIndex : 0,
+      feedbackKey: `${playableSignData.word}:${activeItemIndex >= 0 ? activeItemIndex : 0}:${primary}`,
+    }
   }, [currentFrame, isComplete, playableSignData])
+
+  const activeFeedback = activeDisplay?.feedbackKey ? feedbackByItem[activeDisplay.feedbackKey] : undefined
+
+  const handleFeedback = useCallback((feedbackType: FeedbackType) => {
+    if (!activeDisplay?.primary || activeDisplay.itemIndex < 0) return
+    onFeedback?.({
+      signedItem: activeDisplay.primary,
+      itemIndex: activeDisplay.itemIndex,
+      feedbackType,
+      feedbackKey: activeDisplay.feedbackKey,
+    })
+  }, [activeDisplay, onFeedback])
 
   // Get appropriate error message based on status
   const getErrorContent = () => {
@@ -238,6 +275,31 @@ export function AvatarDisplay({
           )}
         </AnimatePresence>
       </div>
+
+      {playableSignData ? (
+        <div className="flex items-center justify-center gap-2 border-t border-border bg-card/80 px-4 py-3">
+          <Button
+            variant={activeFeedback === "thumbs_up" ? "default" : "outline"}
+            size="icon"
+            onClick={() => handleFeedback("thumbs_up")}
+            disabled={!activeDisplay?.primary}
+            aria-label="Mark current signed item as correct"
+            className="rounded-full"
+          >
+            <ThumbsUp className="w-4 h-4" />
+          </Button>
+          <Button
+            variant={activeFeedback === "thumbs_down" ? "default" : "outline"}
+            size="icon"
+            onClick={() => handleFeedback("thumbs_down")}
+            disabled={!activeDisplay?.primary}
+            aria-label="Mark current signed item as incorrect"
+            className="rounded-full"
+          >
+            <ThumbsDown className="w-4 h-4" />
+          </Button>
+        </div>
+      ) : null}
     </div>
   )
 }

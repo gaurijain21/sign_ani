@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { addDoc, collection, serverTimestamp } from "firebase/firestore"
 import {
   AlertCircle,
   Github,
@@ -13,7 +14,7 @@ import {
   SkipBack,
   SkipForward,
 } from "lucide-react"
-import { AvatarDisplay } from "@/components/AvatarDisplay"
+import { AvatarDisplay, type FeedbackType, type SignedItemFeedback } from "@/components/AvatarDisplay"
 import { ThemeToggle } from "@/components/ThemeToggle"
 import { Button } from "@/components/ui/button"
 import { Switch } from "@/components/ui/switch"
@@ -24,11 +25,36 @@ import {
   loadSignDictionary,
   resolveSentenceWithAI,
 } from "@/lib/signDictionary"
+import { getFirebaseDb } from "@/lib/firebase"
 import { buildSentenceAnimation, type SentenceAnimationResult } from "@/lib/sentenceAnimation"
 import type { MissingWordReplacement, PlaybackQueueItem, SignData, SignDictionaryEntry } from "@/lib/types"
 
-const DEFAULT_SENTENCE = "Type a word here"
+const DEFAULT_SENTENCE = "type a word here"
 type TranslationMode = "live" | "learning"
+type PlaybackFeedbackType = "regular_sign" | "fingerspell_letter" | "phrase_sign" | "synonym" | "ai_semantic_match"
+type FeedbackResolvedFrom = "exact" | "protected_phrase" | "synonymMap" | "word_form" | "ai" | "fingerspell"
+type PlaybackFeedbackItem = {
+  inputText: string
+  originalWord: string
+  playbackItem: string
+  playbackType: PlaybackFeedbackType
+  resolvedFrom: FeedbackResolvedFrom
+  itemIndex: number
+  signSource: string | null
+}
+type FeedbackDocument = {
+  inputText: string
+  originalWord: string
+  playbackItem: string
+  playbackType: PlaybackFeedbackType
+  resolvedFrom: FeedbackResolvedFrom
+  feedback: "up" | "down"
+  itemIndex: number
+  signSource: string | null
+  createdAt: ReturnType<typeof serverTimestamp>
+}
+
+const PROTECTED_PHRASE_WORDS = new Set(["thank you", "no way", "don't know", "i love you", "good bye"])
 
 function chipClass(status: PlaybackQueueItem["status"], active: boolean) {
   const base = "rounded-full border px-3 py-1 text-xs font-medium transition-colors"
@@ -40,6 +66,77 @@ function chipClass(status: PlaybackQueueItem["status"], active: boolean) {
     return `${base} bg-yellow-50 text-yellow-700 border-yellow-200 dark:bg-yellow-900/20 dark:text-yellow-300 dark:border-yellow-800${activeClass}`
   }
   return `${base} bg-red-50 text-red-700 border-red-200 dark:bg-red-900/20 dark:text-red-300 dark:border-red-800${activeClass}`
+}
+
+function getPlaybackType(item: PlaybackQueueItem): PlaybackFeedbackType {
+  if (item.type === "fingerspell") return "fingerspell_letter"
+  if (item.resolutionType === "ai") return "ai_semantic_match"
+  if (item.resolutionType === "synonym") return "synonym"
+  if (item.type === "phrase") return "phrase_sign"
+  return "regular_sign"
+}
+
+function getResolvedFrom(item: PlaybackQueueItem): FeedbackResolvedFrom {
+  if (item.resolutionType === "fingerspell") return "fingerspell"
+  if (item.resolutionType === "ai") return "ai"
+  if (item.resolutionType === "synonym") return "synonymMap"
+  if (PROTECTED_PHRASE_WORDS.has(item.gloss)) return "protected_phrase"
+  return "exact"
+}
+
+function buildPlaybackFeedbackItems(
+  inputText: string,
+  playableQueue: PlaybackQueueItem[],
+): PlaybackFeedbackItem[] {
+  const items: PlaybackFeedbackItem[] = []
+
+  playableQueue.forEach((item) => {
+    if (item.type === "fingerspell") {
+      ;(item.fingerspellLetters || []).forEach((letter) => {
+        items.push({
+          inputText,
+          originalWord: item.text,
+          playbackItem: letter,
+          playbackType: "fingerspell_letter",
+          resolvedFrom: "fingerspell",
+          itemIndex: items.length,
+          signSource: "fingerspelling",
+        })
+      })
+      return
+    }
+
+    items.push({
+      inputText,
+      originalWord: item.text,
+      playbackItem: item.gloss,
+      playbackType: getPlaybackType(item),
+      resolvedFrom: getResolvedFrom(item),
+      itemIndex: items.length,
+      signSource: item.entry?.source || null,
+    })
+  })
+
+  return items
+}
+
+function saveFeedbackToLocalStorage(feedbackDocument: FeedbackDocument) {
+  if (typeof window === "undefined") return
+
+  const fallbackKey = "signwiz_feedback_fallback"
+  const { createdAt: _serverCreatedAt, ...serializableFeedback } = feedbackDocument
+  const existing = window.localStorage.getItem(fallbackKey)
+  let feedbackRecords: unknown[] = []
+  try {
+    feedbackRecords = existing ? JSON.parse(existing) as unknown[] : []
+  } catch {
+    feedbackRecords = []
+  }
+  feedbackRecords.push({
+    ...serializableFeedback,
+    createdAt: new Date().toISOString(),
+  })
+  window.localStorage.setItem(fallbackKey, JSON.stringify(feedbackRecords))
 }
 
 export default function Home() {
@@ -64,6 +161,7 @@ export default function Home() {
   const [aiReplacements, setAiReplacements] = useState<MissingWordReplacement[]>([])
   const [aiUnresolved, setAiUnresolved] = useState<string[]>([])
   const [aiUnavailable, setAiUnavailable] = useState(false)
+  const [feedbackByItem, setFeedbackByItem] = useState<Record<string, FeedbackType>>({})
 
   useEffect(() => {
     loadSignDictionary()
@@ -168,10 +266,10 @@ export default function Home() {
   }, [learningHistory, learningHistoryIndex, playLearningWords])
 
   useEffect(() => {
-    if (dictionary.length && queue.length === 0) {
+    if (dictionary.length && queue.length === 0 && sentence.trim()) {
       void buildQueue()
     }
-  }, [buildQueue, dictionary.length, queue.length])
+  }, [buildQueue, dictionary.length, queue.length, sentence])
 
   useEffect(() => {
     if (!isPlaying) return
@@ -214,6 +312,7 @@ export default function Home() {
         const firstLoadedAnimation = results.find(
           (result): result is PromiseFulfilledResult<SignData> => result.status === "fulfilled",
         )?.value
+        const playbackFeedbackItems = buildPlaybackFeedbackItems(sentence.trim() || words.join(" "), playableQueue)
 
         setSentenceAnimation({ ...built, missingWords })
         if (!built.frames.length) {
@@ -233,6 +332,7 @@ export default function Home() {
             fingerspelledWords: playableQueue
               .filter((item) => item.type === "fingerspell")
               .map((item) => item.text),
+            playbackFeedbackItems,
           },
         })
       })
@@ -254,7 +354,8 @@ export default function Home() {
   }, [currentSignData, isPlaying, playableQueue, sentence, sentenceAnimation])
 
   const goToNext = useCallback(() => {
-    setIsPlaying(false)
+    setPlaybackVersion((version) => version + 1)
+    setIsPlaying(true)
   }, [])
 
   const goToPrevious = useCallback(() => {
@@ -268,6 +369,50 @@ export default function Home() {
   }, [playableQueue.length])
 
   const currentDisplayWord = currentSignData?.word || sentence
+
+  const handleSignedItemFeedback = useCallback(async (feedback: SignedItemFeedback) => {
+    const originalFullSentence = currentSignData?.word || sentence
+    const playbackFeedbackItems = currentSignData?.metadata?.playbackFeedbackItems
+    const playbackItem = Array.isArray(playbackFeedbackItems)
+      ? playbackFeedbackItems[feedback.itemIndex] as PlaybackFeedbackItem | undefined
+      : undefined
+    const feedbackKey = feedback.feedbackKey || `${originalFullSentence}:${feedback.itemIndex}:${feedback.signedItem}`
+    const feedbackDocument: FeedbackDocument = {
+      inputText: playbackItem?.inputText || originalFullSentence,
+      originalWord: playbackItem?.originalWord || feedback.signedItem,
+      playbackItem: playbackItem?.playbackItem || feedback.signedItem,
+      playbackType: playbackItem?.playbackType || "regular_sign",
+      resolvedFrom: playbackItem?.resolvedFrom || "exact",
+      feedback: feedback.feedbackType === "thumbs_up" ? "up" : "down",
+      itemIndex: feedback.itemIndex,
+      signSource: playbackItem?.signSource || null,
+      createdAt: serverTimestamp(),
+    }
+
+    setFeedbackByItem((current) => ({
+      ...current,
+      [feedbackKey]: feedback.feedbackType,
+    }))
+
+    try {
+      console.log("[feedback] preparing feedback document", feedbackDocument)
+      const db = getFirebaseDb()
+      if (!db) {
+        console.warn("[feedback] Firestore unavailable, saved locally")
+        saveFeedbackToLocalStorage(feedbackDocument)
+        return
+      }
+
+      console.log("[feedback] attempting Firestore write")
+      const docRef = await addDoc(collection(db, "feedback"), feedbackDocument)
+      console.log("[feedback] Firestore write successful")
+      console.log(`[feedback] created doc id: ${docRef.id}`)
+    } catch (error) {
+      console.error("[feedback] Firestore write failed:", error)
+      console.warn("[feedback] Firestore unavailable, saved locally")
+      saveFeedbackToLocalStorage(feedbackDocument)
+    }
+  }, [currentSignData?.word, sentence])
 
   return (
     <div className="min-h-screen bg-background">
@@ -353,12 +498,18 @@ export default function Home() {
               </div>
 
               <div className="space-y-3">
-                <Textarea
-                  value={sentence}
-                  onChange={(event) => setSentence(event.target.value)}
-                  placeholder="Type a sentence, e.g. good morning how are you"
-                  className="min-h-28 text-base"
-                />
+                <div className="relative">
+                  <Textarea
+                    value={sentence}
+                    onChange={(event) => setSentence(event.target.value)}
+                    maxLength={150}
+                    placeholder="Type a sentence here"
+                    className="min-h-[72px] max-h-40 resize-none overflow-y-auto border-2 border-border pb-7 pr-16 text-base"
+                  />
+                  <span className="pointer-events-none absolute bottom-2 right-3 text-xs text-muted-foreground">
+                    {sentence.length}/150
+                  </span>
+                </div>
                 <div className="flex flex-wrap items-center gap-3">
                   {mode === "live" ? (
                     <Button onClick={() => void buildQueue()} disabled={dictionaryLoading || isResolvingWords || !sentence.trim()}>
@@ -468,6 +619,8 @@ export default function Home() {
                 signStatus={playbackError ? null : currentSignData ? "available" : null}
                 onPlaybackComplete={handleSentenceComplete}
                 playbackKey={`${playbackVersion}-${currentSignData?.frames.length || 0}`}
+                feedbackByItem={feedbackByItem}
+                onFeedback={handleSignedItemFeedback}
               />
             </div>
 
@@ -492,7 +645,7 @@ export default function Home() {
         </div>
       </main>
       <footer className="px-4 pb-6 text-center text-xs text-muted-foreground">
-        AI can make mistakes. Please verify important information.
+        AI-generated signs can make mistakes. Check important translations.
       </footer>
     </div>
   )
