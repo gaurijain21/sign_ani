@@ -58,13 +58,12 @@ export function AvatarDisplay({
   const playableSignData = signData?.frames?.length ? signData : null
   const activeDisplay = useMemo(() => {
     if (!playableSignData) return null
-    if (isComplete) return { primary: "", subtitle: "", itemIndex: -1, feedbackKey: "" }
+    if (isComplete) return { primary: "", itemIndex: -1, feedbackKey: "" }
 
     const timeline = playableSignData.wordTimeline || []
     if (!timeline.length) {
       return {
         primary: playableSignData.word,
-        subtitle: "",
         itemIndex: 0,
         feedbackKey: `${playableSignData.word}:0:${playableSignData.word}`,
       }
@@ -77,14 +76,9 @@ export function AvatarDisplay({
     )
     const activeWord = activeItemIndex >= 0 ? timeline[activeItemIndex] : timeline[0]
     const primary = activeWord?.displayWord || timeline[0]?.displayWord || playableSignData.word
-    const fingerspelledWords = playableSignData.metadata?.fingerspelledWords
-    const subtitle = Array.isArray(fingerspelledWords) && primary.length === 1
-      ? `Fingerspelling: ${fingerspelledWords.join(", ")}`
-      : ""
 
     return {
       primary,
-      subtitle,
       itemIndex: activeItemIndex >= 0 ? activeItemIndex : 0,
       feedbackKey: `${playableSignData.word}:${activeItemIndex >= 0 ? activeItemIndex : 0}:${primary}`,
     }
@@ -147,52 +141,24 @@ export function AvatarDisplay({
 
   return (
     <div className="relative w-full h-full flex flex-col">
-      {/* Header */}
-      <div className="hidden items-center justify-between border-b border-border p-4 md:flex">
-        <div>
+      {activeDisplay?.primary ? (
+        <div className="flex items-center justify-center border-b border-border px-4 py-3">
           <AnimatePresence mode="wait">
-            {playableSignData ? (
-              activeDisplay?.primary ? (
-                <motion.div
-                  key={activeDisplay.primary}
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                >
-                  <p className="text-sm font-medium text-muted-foreground">Translating:</p>
-                  <h2 className="text-2xl font-bold text-foreground capitalize">
-                    {activeDisplay.primary}
-                  </h2>
-                  {activeDisplay.subtitle ? (
-                    <p className="text-xs text-muted-foreground">{activeDisplay.subtitle}</p>
-                  ) : null}
-                </motion.div>
-              ) : null
-            ) : searchedWord && !isLoading ? (
-              <motion.h2
-                key="not-found"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="text-xl font-medium text-muted-foreground"
-              >
-                {error ? "Sign not available" : "Ready to sign"}
-              </motion.h2>
-            ) : (
-              <motion.h2
-                key="idle"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-xl font-medium text-muted-foreground"
-              >
-                {isLoading ? "Loading..." : "Enter a word to see the sign"}
-              </motion.h2>
-            )}
+            <motion.h2
+              key={activeDisplay.primary}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              className="text-2xl font-bold capitalize text-foreground"
+            >
+              {activeDisplay.primary}
+            </motion.h2>
           </AnimatePresence>
         </div>
-      </div>
+      ) : null}
 
       {/* Canvas area */}
-      <div className="flex-1 relative bg-gradient-to-b from-secondary/30 to-secondary/10 rounded-b-2xl overflow-hidden min-h-[300px] md:min-h-[400px]">
+      <div className="relative mx-auto aspect-[5/4] w-full max-w-[360px] overflow-hidden rounded-2xl bg-gradient-to-b from-secondary/30 to-secondary/10 md:max-w-none md:rounded-b-2xl md:rounded-t-none">
         <AnimatePresence mode="wait">
           {isLoading ? (
             <motion.div

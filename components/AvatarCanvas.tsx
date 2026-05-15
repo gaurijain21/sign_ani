@@ -71,6 +71,8 @@ const MOUTH_MIN_WIDTH = 12
 const MOUTH_MIN_HEIGHT = 6
 const MOUTH_MAX_WIDTH_RATIO = 0.62
 const MOUTH_MAX_HEIGHT_RATIO = 0.34
+const HEAD_TO_SHOULDER_RATIO = 0.72
+const HEAD_RADIUS_RATIO = 0.4
 
 function generateDemoFrames(frameCount = 60): Frame[] {
   return Array.from({ length: frameCount }, (_, i) => {
@@ -624,17 +626,17 @@ export function AvatarCanvas({
         sourceRightShoulder.y - sourceLeftShoulder.y,
       )
       const sourceShoulderCenter = pointBetween(sourceLeftShoulder, sourceRightShoulder, 0.5)
-      const sourceHeadRadius = sourceShoulderDistance * 0.42
-      const sourceHeadCenterY = sourceShoulderCenter.y - sourceShoulderDistance * 0.85
+      const sourceHeadRadius = sourceShoulderDistance * HEAD_RADIUS_RATIO
+      const sourceHeadCenterY = sourceShoulderCenter.y - sourceShoulderDistance * HEAD_TO_SHOULDER_RATIO
       sourceFitBounds.minX = Math.min(sourceFitBounds.minX, sourceShoulderCenter.x - sourceHeadRadius)
       sourceFitBounds.maxX = Math.max(sourceFitBounds.maxX, sourceShoulderCenter.x + sourceHeadRadius)
       sourceFitBounds.minY = Math.min(sourceFitBounds.minY, sourceHeadCenterY - sourceHeadRadius)
       sourceFitBounds.maxY = Math.max(sourceFitBounds.maxY, sourceHeadCenterY + sourceHeadRadius)
     }
 
-    const paddingX = 44
-    const paddingTop = 74
-    const paddingBottom = 42
+    const paddingX = 42
+    const paddingTop = 0
+    const paddingBottom = 2
     const drawableWidth = width - paddingX * 2
     const drawableHeight = height - paddingTop - paddingBottom
     const sourceWidth = Math.max(sourceFitBounds.maxX - sourceFitBounds.minX, 0.12)
@@ -665,8 +667,8 @@ export function AvatarCanvas({
     const shoulderCenter = hasShoulders
       ? pointBetween(leftShoulder!, rightShoulder!, 0.5)
       : { x: width / 2, y: paddingTop + drawableHeight / 2 + floatY + shoulderDistance * 0.2 }
-    const headCenter = { x: shoulderCenter.x, y: shoulderCenter.y - shoulderDistance * 0.85 }
-    const headRadius = Math.max(28, Math.min(58, shoulderDistance * 0.38))
+    const headCenter = { x: shoulderCenter.x, y: shoulderCenter.y - shoulderDistance * HEAD_TO_SHOULDER_RATIO }
+    const headRadius = Math.max(28, Math.min(58, shoulderDistance * HEAD_RADIUS_RATIO))
     const outlineColor = "#d64545"
 
     ctx.save()
@@ -733,8 +735,8 @@ export function AvatarCanvas({
     const canvasHeight = 500
     canvas.width = canvasWidth
     canvas.height = canvasHeight
-    canvas.style.width = `${canvasWidth}px`
-    canvas.style.height = `${canvasHeight}px`
+    canvas.style.width = "100%"
+    canvas.style.height = "100%"
 
     const ctx = canvas.getContext("2d")
     if (!ctx) return
@@ -812,7 +814,7 @@ export function AvatarCanvas({
 
   return (
     <motion.div
-      className="relative w-full h-full min-h-[260px] md:min-h-[300px] flex items-center justify-center"
+      className="relative flex h-full max-h-full aspect-square max-w-full items-center justify-center"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
@@ -821,10 +823,10 @@ export function AvatarCanvas({
         ref={canvasRef}
         className="rounded-xl shadow-sm"
         style={{
-          width: 500,
-          height: 500,
-          maxWidth: "100%",
-          maxHeight: "100%",
+          width: "100%",
+          height: "100%",
+          maxWidth: 500,
+          maxHeight: 500,
           background: "#ffffff",
         }}
         aria-label={signData ? `Avatar performing sign for: ${signData.word}` : "Avatar idle"}

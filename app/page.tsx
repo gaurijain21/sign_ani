@@ -628,7 +628,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="order-1 h-fit md:order-2 xl:sticky xl:top-24"
           >
-            <div className="overflow-hidden rounded-3xl border-2 border-border bg-card shadow-lg">
+            <div className="mx-auto w-full max-w-[360px] overflow-hidden rounded-3xl border-2 border-border bg-card shadow-lg md:max-w-none">
               <AvatarDisplay
                 signData={currentSignData}
                 isLoading={isSignLoading}
