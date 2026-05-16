@@ -411,11 +411,10 @@ async function loadSynonymMap(): Promise<Map<string, string>> {
 
   synonymMapCache.loaded = true
 
-  try {
-    const response = await fetch("/data/synonymMap.json")
+  const loadFromPath = async (filePath: string) => {
+    const response = await fetch(filePath)
     if (!response.ok) {
-      console.warn("[word-resolution] synonymMap.json missing; continuing to AI fallback.")
-      return synonymMapCache.values
+      throw new Error(`${filePath} returned ${response.status}`)
     }
 
     const data = (await response.json()) as Record<string, unknown>
@@ -427,8 +426,19 @@ async function loadSynonymMap(): Promise<Map<string, string>> {
         synonymMapCache.values.set(normalizedWord, normalizedMappedWord)
       }
     })
+    console.log(`[word-resolution] synonym file path loaded: ${filePath}`)
+    console.log(`[word-resolution] synonymEntryCount loaded: ${synonymMapCache.values.size}`)
+  }
+
+  try {
+    await loadFromPath("/data/synonymMap.json")
   } catch (error) {
-    console.warn("[word-resolution] unable to load synonymMap.json; continuing to AI fallback.", error)
+    console.warn("[word-resolution] unable to load generated synonymMap.json; trying manual fallback.", error)
+    try {
+      await loadFromPath("/data/manualSynonymMap.json")
+    } catch (manualError) {
+      console.warn("[word-resolution] unable to load manual synonym map; continuing to AI fallback.", manualError)
+    }
   }
 
   return synonymMapCache.values

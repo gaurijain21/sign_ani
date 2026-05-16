@@ -43,6 +43,7 @@ type ResolveMissingWordsInput = {
 
 const GEMINI_MODEL = "gemini-2.5-flash"
 const SYNONYM_MAP_PATH = path.join(process.cwd(), "public", "data", "synonymMap.json")
+const MANUAL_SYNONYM_MAP_PATH = path.join(process.cwd(), "public", "data", "manualSynonymMap.json")
 const CONFIDENCES = new Set<MissingWordConfidence>(["low", "medium", "high"])
 const DEBUG_RESOLVER = process.env.DEBUG_RESOLVER === "true"
 const COMMON_REPLACEMENT_CANDIDATES: Record<string, string[]> = {
@@ -195,20 +196,42 @@ function looksUnsafeToLearn(rawWord: string, normalizedWord: string) {
   return false
 }
 
+async function readSynonymMapFile(filePath: string) {
+  const raw = await fs.readFile(filePath, "utf8")
+  const parsed = JSON.parse(raw) as Record<string, unknown>
+  return Object.fromEntries(
+    Object.entries(parsed)
+      .filter((entry): entry is [string, string] => typeof entry[1] === "string")
+      .map(([word, mappedWord]) => [normalizeWord(word), normalizeWord(mappedWord)]),
+  )
+}
+
 async function readSynonymMap() {
   try {
-    const raw = await fs.readFile(SYNONYM_MAP_PATH, "utf8")
-    const parsed = JSON.parse(raw) as Record<string, unknown>
-    const synonymMap = Object.fromEntries(
-      Object.entries(parsed)
-        .filter((entry): entry is [string, string] => typeof entry[1] === "string")
-        .map(([word, mappedWord]) => [normalizeWord(word), normalizeWord(mappedWord)]),
-    )
+    const synonymMap = await readSynonymMapFile(SYNONYM_MAP_PATH)
+    console.log(`[resolve-missing-words] synonym file path loaded: ${SYNONYM_MAP_PATH}`)
+    console.log(`[resolve-missing-words] synonymEntryCount loaded: ${Object.keys(synonymMap).length}`)
     resolverLog(`synonymMap loaded: true (${Object.keys(synonymMap).length} entries)`)
     return synonymMap
-  } catch {
-    resolverLog("synonymMap loaded: false")
-    return {}
+  } catch (error) {
+    console.warn(
+      `[resolve-missing-words] generated synonym map unavailable at ${SYNONYM_MAP_PATH}; trying manual fallback.`,
+      error,
+    )
+    try {
+      const synonymMap = await readSynonymMapFile(MANUAL_SYNONYM_MAP_PATH)
+      console.log(`[resolve-missing-words] synonym file path loaded: ${MANUAL_SYNONYM_MAP_PATH}`)
+      console.log(`[resolve-missing-words] synonymEntryCount loaded: ${Object.keys(synonymMap).length}`)
+      resolverLog(`synonymMap loaded: true (${Object.keys(synonymMap).length} manual entries)`)
+      return synonymMap
+    } catch (manualError) {
+      console.warn(
+        `[resolve-missing-words] manual synonym map unavailable at ${MANUAL_SYNONYM_MAP_PATH}; continuing without synonyms.`,
+        manualError,
+      )
+      resolverLog("synonymMap loaded: false")
+      return {}
+    }
   }
 }
 

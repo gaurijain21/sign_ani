@@ -21,6 +21,7 @@ function parseArgs(argv) {
     manifest: "data/signManifest.json",
     thesaurus: "",
     output: "public/data/synonymMap.json",
+    manual: "public/data/manualSynonymMap.json",
   }
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -29,6 +30,7 @@ function parseArgs(argv) {
     if (arg === "--manifest") args.manifest = argv[++index] || args.manifest
     if (arg === "--thesaurus") args.thesaurus = argv[++index] || args.thesaurus
     if (arg === "--output") args.output = argv[++index] || args.output
+    if (arg === "--manual") args.manual = argv[++index] || args.manual
   }
 
   return args
@@ -41,6 +43,7 @@ Options:
   --manifest <path>   Sign manifest path (default: data/signManifest.json)
   --thesaurus <path>  Local zaibacu en_thesaurus.jsonl path. If omitted, downloads from GitHub.
   --output <path>     Output JSON path (default: public/data/synonymMap.json)
+  --manual <path>     Manual fallback map merged into output (default: public/data/manualSynonymMap.json)
   -h, --help          Show this help text
 `)
 }
@@ -72,6 +75,30 @@ async function loadThesaurusJsonl(source) {
   return fs.readFile(source, "utf8")
 }
 
+async function loadManualMap(manualPath, dictionaryWords) {
+  try {
+    const raw = await fs.readFile(manualPath, "utf8")
+    const parsed = JSON.parse(raw)
+    return Object.fromEntries(
+      Object.entries(parsed)
+        .map(([word, mappedWord]) => [normalizeWord(word), normalizeWord(mappedWord)])
+        .filter(([word, mappedWord]) => word && mappedWord && !dictionaryWords.has(word) && dictionaryWords.has(mappedWord)),
+    )
+  } catch (error) {
+    console.warn(`[buildSynonymMap] manual fallback map unavailable at ${manualPath}: ${error.message}`)
+    return {}
+  }
+}
+
+async function fileExists(filePath) {
+  try {
+    await fs.access(filePath)
+    return true
+  } catch {
+    return false
+  }
+}
+
 function candidateScore(candidate, dictionaryWords) {
   if (!dictionaryWords.has(candidate)) return Number.POSITIVE_INFINITY
   const phrasePenalty = candidate.includes(" ") ? 2 : 0
@@ -94,8 +121,24 @@ async function main() {
   }
 
   const dictionaryWords = await loadManifestWords(args.manifest)
-  const thesaurusJsonl = await loadThesaurusJsonl(args.thesaurus)
-  const synonymMap = {}
+  const manualMap = await loadManualMap(args.manual, dictionaryWords)
+  const synonymMap = { ...manualMap }
+  let thesaurusJsonl = ""
+  let loadedThesaurus = false
+
+  try {
+    thesaurusJsonl = await loadThesaurusJsonl(args.thesaurus)
+    loadedThesaurus = true
+  } catch (error) {
+    console.warn(
+      `[buildSynonymMap] thesaurus source unavailable. ${error.message}`,
+    )
+    if (await fileExists(args.output)) {
+      console.warn(`[buildSynonymMap] keeping existing generated synonym map at ${args.output}`)
+      return
+    }
+    console.warn("[buildSynonymMap] generated output missing; writing manual fallback only.")
+  }
 
   thesaurusJsonl.split(/\r?\n/).forEach((line, lineIndex) => {
     const trimmed = line.trim()
@@ -121,7 +164,10 @@ async function main() {
 
   await fs.mkdir(path.dirname(args.output), { recursive: true })
   await fs.writeFile(args.output, `${JSON.stringify(synonymMap, null, 2)}\n`, "utf8")
-  console.log(`[buildSynonymMap] wrote ${Object.keys(synonymMap).length} mappings to ${args.output}`)
+  console.log(
+    `[buildSynonymMap] wrote ${Object.keys(synonymMap).length} mappings to ${args.output} ` +
+      `(thesaurusLoaded=${loadedThesaurus}, manualMappings=${Object.keys(manualMap).length})`,
+  )
 }
 
 main().catch((error) => {

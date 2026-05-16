@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { addDoc, collection, serverTimestamp } from "firebase/firestore"
+import Link from "next/link"
 import {
   Github,
   Hand,
@@ -14,7 +15,6 @@ import {
   ThumbsUp,
 } from "lucide-react"
 import { AvatarDisplay, type ActiveSignedItem, type FeedbackType, type SignedItemFeedback } from "@/components/AvatarDisplay"
-import { ThemeToggle } from "@/components/ThemeToggle"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import {
@@ -23,7 +23,8 @@ import {
   loadSignDictionary,
   resolveSentenceWithAI,
 } from "@/lib/signDictionary"
-import { getFirebaseDb, logFirebaseAnalyticsEvent } from "@/lib/firebase"
+import { trackSignWizEvent } from "@/lib/analytics"
+import { getFirebaseDb } from "@/lib/firebase"
 import { buildSentenceAnimation, type SentenceAnimationResult } from "@/lib/sentenceAnimation"
 import type { MissingWordReplacement, PlaybackQueueItem, SignData, SignDictionaryEntry } from "@/lib/types"
 
@@ -50,6 +51,14 @@ type FeedbackDocument = {
   itemIndex: number
   signSource: string | null
   createdAt: ReturnType<typeof serverTimestamp>
+}
+type DictionaryStats = {
+  synonymFilePathLoaded?: string
+  originalWordCount: number
+  synonymEntryCount: number
+  uniqueResolvableWordCount: number
+  sampleSynonymMappings?: Array<{ word: string; mappedWord: string }>
+  warning?: string | null
 }
 
 const PROTECTED_PHRASE_WORDS = new Set(["thank you", "no way", "don't know", "i love you", "good bye"])
@@ -153,24 +162,48 @@ export default function Home() {
   const [aiUnavailable, setAiUnavailable] = useState(false)
   const [feedbackByItem, setFeedbackByItem] = useState<Record<string, FeedbackType>>({})
   const [activeSignedItem, setActiveSignedItem] = useState<ActiveSignedItem | null>(null)
+  const [adRefreshKey, setAdRefreshKey] = useState(0)
+  const [dictionaryStats, setDictionaryStats] = useState<DictionaryStats | null>(null)
 
   const trackAnalyticsEvent = useCallback((
     eventName: string,
     metadata: Record<string, string | number | boolean | null | undefined> = {},
     eventType = "interaction",
   ) => {
-    void logFirebaseAnalyticsEvent(eventName, {
+    void trackSignWizEvent(eventName, {
       event_type: eventType,
       page_path: "/",
       page_title: "SignWiz",
-      eventName,
       ...metadata,
     })
   }, [])
 
   useEffect(() => {
-    void trackAnalyticsEvent("page_view", {}, "page_view")
+    void trackAnalyticsEvent("page_view_home", {}, "page_view")
+    void trackAnalyticsEvent("ad_view_live_translation", { ad_slot: "home_animation" }, "ad_view")
   }, [trackAnalyticsEvent])
+
+  useEffect(() => {
+    fetch("/api/dictionary-stats")
+      .then((response) => {
+        if (!response.ok) throw new Error("Unable to load dictionary stats.")
+        return response.json() as Promise<DictionaryStats>
+      })
+      .then((stats) => {
+        setDictionaryStats(stats)
+        console.log("[dictionary-stats]", {
+          synonymFilePathLoaded: stats.synonymFilePathLoaded,
+          originalWordCount: stats.originalWordCount,
+          synonymEntryCount: stats.synonymEntryCount,
+          uniqueResolvableWordCount: stats.uniqueResolvableWordCount,
+          sampleSynonymMappings: stats.sampleSynonymMappings,
+          warning: stats.warning,
+        })
+      })
+      .catch((error) => {
+        console.warn("[dictionary-stats] unavailable", error)
+      })
+  }, [])
 
   useEffect(() => {
     loadSignDictionary()
@@ -245,7 +278,9 @@ export default function Home() {
   }, [buildQueueForSentence])
 
   const startLearningMode = useCallback(async () => {
-    void trackAnalyticsEvent("click_start_learning")
+    void trackAnalyticsEvent("button_click_start_learning")
+    void trackAnalyticsEvent("page_view_start_learning", {}, "page_view")
+    void trackAnalyticsEvent("ad_view_start_learning", { ad_slot: "home_animation" }, "ad_view")
     const words = pickRandomLearningWords()
     if (!words.length) return
 
@@ -256,7 +291,7 @@ export default function Home() {
   }, [pickRandomLearningWords, playLearningWords, trackAnalyticsEvent])
 
   const showNextLearningSet = useCallback(async () => {
-    void trackAnalyticsEvent("click_learning_next")
+    void trackAnalyticsEvent("button_click_next")
     const words = pickRandomLearningWords()
     if (!words.length) return
 
@@ -268,7 +303,7 @@ export default function Home() {
   }, [learningHistory, learningHistoryIndex, pickRandomLearningWords, playLearningWords, trackAnalyticsEvent])
 
   const showPreviousLearningSet = useCallback(async () => {
-    void trackAnalyticsEvent("click_learning_back")
+    void trackAnalyticsEvent("button_click_back")
     const previousIndex = learningHistoryIndex - 1
     const words = learningHistory[previousIndex]
     if (!words) return
@@ -366,30 +401,35 @@ export default function Home() {
   }, [currentSignData, isPlaying, playableQueue, sentence, sentenceAnimation])
 
   const handleSentenceComplete = useCallback(() => {
+    const context = mode === "learning" ? "start_learning" : "live_translation"
+    void trackAnalyticsEvent(`ad_refresh_${context}`, { ad_slot: "home_animation" }, "ad_refresh")
+    void trackAnalyticsEvent(`ad_view_${context}`, { ad_slot: "home_animation" }, "ad_view")
+    setAdRefreshKey((key) => key + 1)
     setPlaybackVersion((version) => version + 1)
     setIsPlaying(playableQueue.length > 0)
-  }, [playableQueue.length])
+  }, [mode, playableQueue.length, trackAnalyticsEvent])
 
   const currentDisplayWord = currentSignData?.word || sentence
   const activeFeedback = activeSignedItem?.feedbackKey ? feedbackByItem[activeSignedItem.feedbackKey] : undefined
 
   const handlePlaybackToggle = useCallback(() => {
-    void trackAnalyticsEvent(isPlaying ? "click_pause" : "click_play")
+    void trackAnalyticsEvent(isPlaying ? "button_click_pause" : "button_click_play")
     setIsPlaying((value) => !value)
   }, [isPlaying, trackAnalyticsEvent])
 
   const handleLiveTranslationClick = useCallback(() => {
-    void trackAnalyticsEvent("click_live_translation")
+    void trackAnalyticsEvent("button_click_live_translation")
+    void trackAnalyticsEvent("ad_view_live_translation", { ad_slot: "home_animation" }, "ad_view")
     setMode("live")
   }, [trackAnalyticsEvent])
 
   const handleTranslateClick = useCallback(() => {
-    void trackAnalyticsEvent("click_translate")
+    void trackAnalyticsEvent("button_click_translate")
     void buildQueue()
   }, [buildQueue, trackAnalyticsEvent])
 
   const handleSignedItemFeedback = useCallback(async (feedback: SignedItemFeedback) => {
-    void trackAnalyticsEvent(feedback.feedbackType === "thumbs_up" ? "click_feedback_up" : "click_feedback_down", {
+    void trackAnalyticsEvent(feedback.feedbackType === "thumbs_up" ? "button_click_thumbs_up" : "button_click_thumbs_down", {
       signedItem: feedback.signedItem,
       itemIndex: feedback.itemIndex,
     })
@@ -446,10 +486,15 @@ export default function Home() {
     })
   }, [activeSignedItem, handleSignedItemFeedback])
 
+  const handleAdClick = useCallback(() => {
+    const context = mode === "learning" ? "start_learning" : "live_translation"
+    void trackAnalyticsEvent(`ad_click_${context}`, { ad_slot: "home_animation", ad_refresh_key: adRefreshKey }, "ad_click")
+  }, [adRefreshKey, mode, trackAnalyticsEvent])
+
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 hidden border-b border-border bg-card/50 backdrop-blur-sm md:block">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-4 py-3">
           <div className="flex items-center justify-between">
             <motion.div
               className="flex items-center gap-3"
@@ -461,7 +506,6 @@ export default function Home() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-foreground">SignWiz</h1>
-                <p className="text-xs text-muted-foreground">Learn and understand sign language effortlessly.</p>
               </div>
             </motion.div>
 
@@ -469,7 +513,6 @@ export default function Home() {
               <Button variant="ghost" size="icon" className="rounded-full" onClick={() => setShowInfo(!showInfo)}>
                 <Info className="w-5 h-5" />
               </Button>
-              <ThemeToggle />
             </div>
           </div>
         </div>
@@ -571,7 +614,7 @@ export default function Home() {
             </section>
 
             {dictionaryError ? (
-              <div className="text-sm text-red-600 dark:text-red-400">{dictionaryError}</div>
+              <div className="text-sm text-red-600">{dictionaryError}</div>
             ) : null}
           </div>
 
@@ -594,44 +637,68 @@ export default function Home() {
               />
             </div>
 
-            <div className="mt-2 hidden flex-wrap items-center justify-between gap-3 md:flex">
-              <Button variant="outline" onClick={handlePlaybackToggle} disabled={playableQueue.length === 0}>
-                {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
-                {isPlaying ? "Pause" : "Play"}
-              </Button>
-              <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleFeedbackButtonClick("thumbs_up")}
-                  disabled={!activeSignedItem}
-                  aria-label="Mark current signed item as correct"
-                  className={activeFeedback === "thumbs_up" ? "text-green-600 hover:text-green-700" : "text-muted-foreground"}
-                >
-                  <ThumbsUp className={`w-5 h-5 ${activeFeedback === "thumbs_up" ? "fill-current" : ""}`} />
+            <div className="mx-auto w-full max-w-[360px] md:max-w-none">
+              <div className="mt-2 hidden flex-wrap items-center justify-between gap-3 md:flex">
+                <Button variant="outline" onClick={handlePlaybackToggle} disabled={playableQueue.length === 0}>
+                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+                  {isPlaying ? "Pause" : "Play"}
                 </Button>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={() => handleFeedbackButtonClick("thumbs_down")}
-                  disabled={!activeSignedItem}
-                  aria-label="Mark current signed item as incorrect"
-                  className={activeFeedback === "thumbs_down" ? "text-red-600 hover:text-red-700" : "text-muted-foreground"}
-                >
-                  <ThumbsDown className={`w-5 h-5 ${activeFeedback === "thumbs_down" ? "fill-current" : ""}`} />
-                </Button>
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleFeedbackButtonClick("thumbs_up")}
+                    disabled={!activeSignedItem}
+                    aria-label="Mark current signed item as correct"
+                    className={activeFeedback === "thumbs_up" ? "text-green-600 hover:text-green-700" : "text-muted-foreground"}
+                  >
+                    <ThumbsUp className={`w-5 h-5 ${activeFeedback === "thumbs_up" ? "fill-current" : ""}`} />
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleFeedbackButtonClick("thumbs_down")}
+                    disabled={!activeSignedItem}
+                    aria-label="Mark current signed item as incorrect"
+                    className={activeFeedback === "thumbs_down" ? "text-red-600 hover:text-red-700" : "text-muted-foreground"}
+                  >
+                    <ThumbsDown className={`w-5 h-5 ${activeFeedback === "thumbs_down" ? "fill-current" : ""}`} />
+                  </Button>
+                </div>
               </div>
+              <p className="mt-2 text-center text-[11px] leading-4 text-muted-foreground">
+                AI-generated signs can make mistakes. Check important translations.
+              </p>
+              <button
+                key={adRefreshKey}
+                type="button"
+                onClick={handleAdClick}
+                className="mt-2 flex h-11 w-full items-center justify-center rounded-md border border-dashed border-border bg-muted/30 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted/50"
+                aria-label="Ad placeholder"
+              >
+                Ad placeholder
+              </button>
             </div>
             {sentenceAnimation?.missingWords.length ? (
-              <div className="mt-2 text-center text-sm text-red-600 dark:text-red-400">
+              <div className="mt-2 text-center text-sm text-red-600">
                 Missing from sentence timeline: {sentenceAnimation.missingWords.join(", ")}
               </div>
             ) : null}
           </motion.div>
         </div>
       </main>
-      <footer className="hidden px-4 pb-6 text-center text-xs text-muted-foreground md:block">
-        AI-generated signs can make mistakes. Check important translations.
+      <footer className="mt-8 border-t border-border px-4 py-6 text-center text-sm text-muted-foreground">
+        <nav className="flex flex-wrap items-center justify-center gap-4">
+          <Link className="hover:text-foreground hover:underline" href="/contact">
+            Contact Us
+          </Link>
+          <Link className="hover:text-foreground hover:underline" href="/terms">
+            Terms and Conditions
+          </Link>
+          <Link className="hover:text-foreground hover:underline" href="/about">
+            About Us
+          </Link>
+        </nav>
       </footer>
     </div>
   )
